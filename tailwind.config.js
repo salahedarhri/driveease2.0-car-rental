@@ -15,9 +15,13 @@ export default {
     theme: {    
         extend: {
             fontFamily: {
-                sans: ['Lato', ...defaultTheme.fontFamily.sans],
-                serif: ['Lato', ...defaultTheme.fontFamily.serif],
+                sans:['Cabin'],
+                serif:['Cabin'],
             },
+            colors:{
+                bleuclair: '#e8f5ff',
+                
+            }
         },
     },
 

@@ -2,6 +2,8 @@
 
 @section('content')
 
-<p class="text-xl text-center">it works</p>
+<!--
+  <img src=" {{ asset('images/voitures/car-1.jpg')}} " alt="car image" srcset="" class="car-image">
+-->
 
 @endsection
