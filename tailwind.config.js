@@ -16,7 +16,6 @@ export default {
         extend: {
             fontFamily: {
                 sans:['Cabin'],
-                serif:['Cabin'],
             },
             colors:{
                 bleuclair: '#e8f5ff',
