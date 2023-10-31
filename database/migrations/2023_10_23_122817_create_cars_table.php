@@ -18,7 +18,6 @@ return new class extends Migration
             $table->double('prix',10,1);
             $table->boolean('disponibilite')->default(true);
 
-            //details(string transmission,integer pers,boolean clim,integer minAge,string moteur,string ville)
             $table->string('transmission');
             $table->string('moteur');
             $table->string('ville');

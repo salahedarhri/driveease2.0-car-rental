@@ -37,7 +37,7 @@ class CarSeeder extends Seeder
             'climatisation'=> $faker->boolean,
 
             'slug'=>$slug,
-            'photo'=>$faker->randomElement(['car-1.jpg', 'car-2.jpg', 'car-3.jpg']),
+            'photo'=>$faker->randomElement(['car (1).png', 'car (2).png', 'car (3).png', 'car (4).png']),
         ]);
     }
 }
