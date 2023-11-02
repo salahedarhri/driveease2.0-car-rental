@@ -3,15 +3,63 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Car;
+use Carbon\Carbon;
+
 
 class ReservationController extends Controller
 {
-    public function CheckDisponibilite(Request $request){
+    public function CheckDisponibilite(Request $request) {
 
-        $typeVehicule = $request->input('typeVehicule');
+        $minDateDepart = Carbon::now()->addDay()->toDateString();
+
+        $message = [
+            'required' => 'Ce champ est obligatoire.',
+            'date' => 'La date doit être une date valide.',
+            'after_or_equal' => 'La date de retour doit être postérieure ou égale à la date de départ.',
+            'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
+        ];
+
+        $conditions = $request->validate([
+            'lieuDepart' => 'required',
+            'lieuRetour' => 'required',
+            'dateDepart' => ['required', 'date', "after_or_equal:{$minDateDepart}"],
+            'dateRetour' => ['required', 'date', "after:dateDepart"],
+        ], $message);
+        
         $lieuDepart = $request->input('lieuDepart');
         $lieuRetour = $request->input('lieuRetour');
-        $heureDepart = $request->input('heureDepart');
-        $heureRetour = $request->input('heureRetour');
+        $dateDepart = $request->input('dateDepart');
+        $dateRetour = $request->input('dateRetour');
+    
+        $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
+            ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
+                $query->where('dateDepart', '<=', $dateRetour)
+                      ->where('dateRetour', '>=', $dateDepart);
+            })
+            ->get();
+    
+        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour'));
     }
+
+    //Check Disponibility parameters : 
+
+        // ->orWhere(function ($q) use ($dateRetour,$dateDepart) {
+        //     $q->where('dateDepart', '<=', $dateRetour)
+        //       ->where('dateRetour', '>=', $dateDepart);
+        // })
+    
+        // public function CheckDisponibilite(Request $request) {
+        //     $lieuDepart = $request->input('lieuDepart');
+        //     $lieuRetour = $request->input('lieuRetour');
+        //     $dateDepart = $request->input('dateDepart');
+        //     $dateRetour = $request->input('dateRetour');
+        //     $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
+        //         ->where('dateDepart', '>=', $dateDepart)
+        //         ->where('dateRetour', '<=', $dateRetour)
+        //         ->get();
+        //     return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour'));
+        // }
+    
+
 }

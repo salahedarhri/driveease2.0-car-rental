@@ -14,7 +14,7 @@
       <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="Car Image" class="h-auto w-full p-2">
     </div>
     <div class="sm:w-1/3 px-2 py-4">
-      <h2 class="text-2xl font-semibold">{{ $car->model }}</h2>
+      <h2 class="text-2xl font-semibold">{{ $car->modele }}</h2>
       <p class="text-gray-700"> {{ $car->description }} </p>
       <button class="show-details-btn font-semibold py-3 px-7 rounded-full focus:outline-none mx-2 mt-7">&#11206  Plus de détails</button>
 
