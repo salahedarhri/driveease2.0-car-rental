@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
   <title>DriveEase | Trouvez votre voiture idéale</title>
 
   <!-- Tailwind -->
@@ -34,12 +33,13 @@
       @auth
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
         <a href="/dashboard" class=" md:text-lg text-base bg-emerald-600 hover:bg-emerald-500 bg-opacity-40">Espace Client</a></li>
-      @else
+      @endauth
+      @guest
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
         <a href="{{ route('login') }}" class=" md:text-lg text-base hover:text-lightBlue">Connexion</a></li>
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
         <a href="{{ route('register') }}" class=" md:text-lg text-base hover:text-lightBlue">Inscription</a></li>
-      @endauth
+      @endguest
     </ul>
 
     <!-- medium to small screen -->
@@ -51,10 +51,11 @@
         <li><a href="#" class="text-base">À propos</a></li>
         @auth
         <li><a href="/dashboard" class="text-base bg-emerald-200">Espace Client</a></li>
-        @else
+        @endauth
+        @guest
         <li><a href="{{ route('login') }}" class="text-base" >Connexion</a></li>
         <li><a href="{{ route('register') }}" class="text-base" >Inscription</a></li>
-        @endauth
+        @endguest
       </ul>
 
   </div>

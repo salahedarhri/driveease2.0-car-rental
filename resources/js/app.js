@@ -6,6 +6,7 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
+
 //"more details" function
 // const showDetailsButtons = document.querySelectorAll('.show-details-btn');
 
