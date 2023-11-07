@@ -15,11 +15,10 @@ class ReservationController extends Controller
 
         $message = [
             'required' => 'Ce champ est obligatoire.',
-            'date' => 'La date doit être une date valide.',
+            // 'date' => 'La date doit être une date et heure valide.',
             'after_or_equal' => 'La date de retour doit être postérieure ou égale à la date de départ.',
             'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
         ];
-
         $conditions = $request->validate([
             'lieuDepart' => 'required',
             'lieuRetour' => 'required',
@@ -38,8 +37,14 @@ class ReservationController extends Controller
                       ->where('dateRetour', '>=', $dateDepart);
             })
             ->get();
+
+        //formatter date pour affichage & manip.
+        $dateDepart = Carbon::parse($dateDepart);
+        $dateRetour = Carbon::parse($dateRetour);   
+        $dateDepartDt = $dateDepart->format('d-m-Y H:i');
+        $dateRetourDt = $dateRetour->format('d-m-Y H:i');
     
-        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour'));
+        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt'));
     }
 
     //Check Disponibility parameters : 

@@ -45,16 +45,16 @@
     <!-- medium to small screen -->
     <div class="dropdown dropdown-bottom dropdown-end md:hidden">
       <label tabindex="0"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" width="150px" height="150px" class="w-8 h-8 m-2 fill-white"><path d="M 5 8 A 2.0002 2.0002 0 1 0 5 12 L 45 12 A 2.0002 2.0002 0 1 0 45 8 L 5 8 z M 5 23 A 2.0002 2.0002 0 1 0 5 27 L 45 27 A 2.0002 2.0002 0 1 0 45 23 L 5 23 z M 5 38 A 2.0002 2.0002 0 1 0 5 42 L 45 42 A 2.0002 2.0002 0 1 0 45 38 L 5 38 z"/></svg></label>
-      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a href="/" class="text-base" >Accueil</a></li>
-        <li><a href="/cars" class="text-base" >Voitures</a></li>
-        <li><a href="#" class="text-base">À propos</a></li>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-3 shadow bg-base-100 rounded-box w-64 text-darkBlue">
+        <li><a href="/" class="text-lg">Accueil</a></li>
+        <li><a href="/cars" class="text-lg">Voitures</a></li>
+        <li><a href="#" class="text-lg">À propos</a></li>
         @auth
-        <li><a href="/dashboard" class="text-base bg-emerald-200">Espace Client</a></li>
+        <li><a href="/dashboard" class="text-lg bg-emerald-200">Espace Client</a></li>
         @endauth
         @guest
-        <li><a href="{{ route('login') }}" class="text-base" >Connexion</a></li>
-        <li><a href="{{ route('register') }}" class="text-base" >Inscription</a></li>
+        <li><a href="{{ route('login') }}" class="text-lg" >Connexion</a></li>
+        <li><a href="{{ route('register') }}" class="text-lg" >Inscription</a></li>
         @endguest
       </ul>
 

@@ -26,7 +26,7 @@
 
       <div class="block w-full">
         <label for="heureDepart" class="block font-bold ">Temps du départ</label>
-        <input type="date" name="dateDepart" placeholder="Entrez la date de départ" class="appearance-none border-lightBlue rounded w-full h-10">
+        <input type="datetime-local" name="dateDepart" placeholder="Entrez la date de départ" class="appearance-none border-lightBlue rounded w-full h-10">
         @error('dateDepart')
           <p class="text-red-600 mb-2">{{ $message }}</p>
         @enderror
@@ -34,16 +34,16 @@
 
       <div class="block w-full">
         <label for="heureRetour" class="block font-bold ">Temps du retour</label>
-        <input type="date" name="dateRetour" placeholder="Entrez la date de retour" class="appearance-none border-lightBlue rounded w-full h-10">
+        <input type="datetime-local" name="dateRetour" placeholder="Entrez la date de retour" class="appearance-none border-lightBlue rounded w-full h-10">
         @error('dateRetour')
           <p class="text-red-600 mb-2">{{ $message }}</p>
         @enderror
       </div>
 
-      <div class="block w-full">
+      {{-- <div class="block w-full">
         <label for="Date time trial">Date et Heure : </label>
         <input type="datetime-local" name="date&heure" class="appearance-none border-lightBlue rounded w-full h-10">
-      </div>
+      </div> --}}
 
     </div>
 
