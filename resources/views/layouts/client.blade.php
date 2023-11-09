@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>DriveEase | Trouvez votre voiture idéale</title>
 
-  <!-- Tailwind -->
+  <!-- Tailwind + JS -->
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
 
@@ -17,7 +17,7 @@
   <div class="navbar bg-mediumBlue max-h-12 sm:text-whiteBlue">
     <div class="flex-1 ">
         <a href="/">
-            <img src="{{ asset('images/composants/logo.png') }}" class="invert h-7 w-auto ml-1 max-md:hidden hover:translate-x-2 transition-transform duration-300 ease-in-out" alt="logo">
+            <img src="{{ asset('images/composants/logo.png') }}" class="invert h-7 w-auto ml-1 hover:translate-x-2 transition-transform duration-300 ease-in-out" alt="logo">
         </a>
         <a href="/" class="font-semibold normal-case text-xl p-2 text-whiteBlue hover:text-lightBlue">DriveEase</a>
     </div>
