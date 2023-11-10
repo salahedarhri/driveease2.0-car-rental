@@ -15,19 +15,19 @@
 
   <!-- Navbar -->
   <div class="navbar bg-mediumBlue max-h-12 sm:text-whiteBlue">
-    <div class="flex-1 ">
+    <div class="flex-1">
         <a href="/">
             <img src="{{ asset('images/composants/logo.png') }}" class="invert h-7 w-auto ml-1 hover:translate-x-2 transition-transform duration-300 ease-in-out" alt="logo">
         </a>
-        <a href="/" class="font-semibold normal-case text-xl p-2 text-whiteBlue hover:text-lightBlue">DriveEase</a>
+        <a href="{{ route('accueil')}}" class="font-semibold normal-case text-xl p-2 text-whiteBlue hover:text-lightBlue">DriveEase</a>
     </div>
 
     <!-- for medium and big screen -->
     <ul class="menu menu-horizontal px-3 max-md:hidden">
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
-        <a href="/" class=" md:text-lg text-base hover:text-lightBlue">Accueil</a></li>
+        <a href="{{ route('accueil')}}" class=" md:text-lg text-base hover:text-lightBlue">Accueil</a></li>
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
-        <a href="/cars" class=" md:text-lg text-base hover:text-lightBlue">Voitures</a></li>
+        <a href="{{ route('cars')}}" class=" md:text-lg text-base hover:text-lightBlue">Voitures</a></li>
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
         <a href="#" class=" md:text-lg text-base hover:text-lightBlue">À propos</a></li>
       @auth

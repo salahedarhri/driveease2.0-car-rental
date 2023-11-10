@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {   return view('accueil'); });
+Route::get('/', function () {   return view('accueil'); })->name('accueil');
 
 Route::get('/cars', [CarController::class,'index'])->name('cars');
 
@@ -27,15 +27,14 @@ Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponi
 //         return view('admin.dashboard');
 //     })->name('admin.dashboard');
 // });
-Route::get('/dashboard', function () {
 
+Route::get('/dashboard', function () {
     if (auth()->user()->is_admin) {
         // return view('admin.dashboard');
         return view('dashboard');
     } else {
         return view('dashboard');
     }
-
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
