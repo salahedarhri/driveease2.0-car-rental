@@ -29,7 +29,7 @@
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
         <a href="{{ route('cars')}}" class=" md:text-lg text-base hover:text-lightBlue">Voitures</a></li>
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
-        <a href="#" class=" md:text-lg text-base hover:text-lightBlue">À propos</a></li>
+        <a href="{{ route('date')}}" class=" md:text-lg text-base hover:text-lightBlue">Pick a date</a></li>
       @auth
       <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
         <a href="/dashboard" class=" md:text-lg text-base bg-emerald-600 hover:bg-emerald-500 bg-opacity-40">Espace Client</a></li>
