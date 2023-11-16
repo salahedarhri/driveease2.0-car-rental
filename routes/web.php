@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {   return view('accueil'); })->name('accueil');
-Route::get('/date', function () {   return view('date'); })->name('date');
-
-Route::get('/cars', [CarController::class,'index'])->name('cars');
-
-Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])->name('voituresDisponibles');
+Route::get('/', function () {   return view('accueil'); })
+    ->name('accueil');
+Route::get('/cars', [CarController::class,'index'])
+    ->name('cars');
+Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
+    ->name('voituresDisponibles');
 
 // Route::middleware('admin.check')->group(function () {
 //     Route::get('/admin/dashboard', function () {

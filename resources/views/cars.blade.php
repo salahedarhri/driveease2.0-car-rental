@@ -5,7 +5,7 @@
 <!-- tous les voitures -->
 <div class="container mx-auto p-4 max-w-5xl">
   @foreach($cars as $car)
-  <div class="bg-white rounded-t-lg shadow-lg overflow-hidden flex flex-col sm:flex-row p-2 border-b-2">
+  <div class="bg-white rounded-t-md shadow-lg overflow-hidden flex flex-col sm:flex-row p-2 border-b-2">
     <div class="sm:w-1/3 py-4">
       <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="Car Image" class="h-auto w-full p-2">
     </div>
