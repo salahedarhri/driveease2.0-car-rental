@@ -15,17 +15,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 20; $i++) {
-            $this->call(CarSeeder::class);
-        }
+
+        $this->call(CarSeeder::class);
+   
 
         User::factory(10)->create();
 
         User::factory()->create([
-            'name' => 'salah',
-            'email' => 'salah@mail.com',
+            'name' => 'admin',
+            'email' => 'admin@mail.com',
             'password' => Hash::make('selesama'),
             'is_admin' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'client',
+            'email' => 'client@mail.com',
+            'password' => Hash::make('selesama'),
         ]);
     }
 }

@@ -1,1 +1,7 @@
-<p>wassup fucker</p>
+@extends('admin.layout')
+
+@section('content')
+
+
+
+@endsection

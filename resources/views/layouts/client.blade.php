@@ -11,11 +11,10 @@
   @vite('resources/js/app.js')
 
 </head>
-<body>
+<body class="bg-slate-200">
 
-  <header>
     <!-- Navbar -->
-    <div class="navbar bg-mediumBlue h-12 sm:text-whiteBlue">
+    <div class="navbar bg-mediumBlue px-2 py-0 sm:text-whiteBlue">
       <div class="flex-1">
           <a href="/">
               <img src="{{ asset('images/composants/logo.png') }}" class="invert h-7 w-auto ml-1 hover:translate-x-2 transition-transform duration-300 ease-in-out" alt="logo">
@@ -30,7 +29,7 @@
         <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
           <a href="{{ route('cars')}}" class=" md:text-lg text-base hover:text-lightBlue">Voitures</a></li>
         <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
-          <a href="#" class=" md:text-lg text-base hover:text-lightBlue">Pick a date</a></li>
+          <a href="#" class=" md:text-lg text-base hover:text-lightBlue">à propos</a></li>
         @auth
         <li class="md:px-1 lg:px-5 hover:translate-x-2 transition-transform duration-300 ease-in-out">
           <a href="/dashboard" class=" md:text-lg text-base bg-emerald-600 hover:bg-emerald-500 bg-opacity-40">Espace Client</a></li>
@@ -61,12 +60,9 @@
 
         </div>
     </div>
-  </header>
 
-  <main class="min-h-screen bg-whiteBlue">
     <!-- Contenu -->
     @yield('content')
-  </main>
 
 
 

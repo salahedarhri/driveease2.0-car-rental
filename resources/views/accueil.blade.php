@@ -1,9 +1,9 @@
 @extends('layouts.client')
 
 @section('content')
-<div class="mesh-gradient min-h-screen">
+<div class="min-h-screen pt-8"> <!-- Background for page can be set here -->
 
-  <div class="grid justify-center p-5 bg-white rounded-xl md:max-w-3xl lg:max-w-5xl mx-auto max-sm:mx-2 mt-8 shadow-md">
+  <div class="grid justify-center p-5 bg-white rounded-xl md:max-w-3xl lg:max-w-5xl mx-auto max-sm:mx-2 shadow-md">
 
     <form action="{{ route('voituresDisponibles')}}" method="post" class="w-full">
       @csrf
@@ -45,6 +45,8 @@
       
     </form>
   </div>
+
+</div>
 </div>
   <!-- flatpicker for dateTime input -->
   @once

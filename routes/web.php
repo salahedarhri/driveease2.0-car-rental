@@ -23,16 +23,15 @@ Route::get('/cars', [CarController::class,'index'])
 Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
     ->name('voituresDisponibles');
 
-// Route::middleware('admin.check')->group(function () {
-//     Route::get('/admin/dashboard', function () {
-//         return view('admin.dashboard');
-//     })->name('admin.dashboard');
-// });
+Route::middleware('admin.check')->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
 
 Route::get('/dashboard', function () {
     if (auth()->user()->is_admin) {
-        // return view('admin.dashboard');
-        return view('dashboard');
+        return view('admin.dashboard');
     } else {
         return view('dashboard');
     }

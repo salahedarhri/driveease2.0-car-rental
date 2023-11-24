@@ -16,28 +16,31 @@ class CarSeeder extends Seeder
 
     public function run(): void
     {
-        $faker = Faker::create();
+        for ($i = 0; $i < 20; $i++) {
 
-        //Slug using modele :
-        $modele = $faker->words(3,true);
-        $slug = Str::slug($modele);
+            $faker = Faker::create();
 
-        Car::create([
-            'modele'=>$modele,
-            'description'=> $faker->sentence,
-            'prix'=> $faker->randomFloat(0,200, 700),
-            'disponibilite'=> $faker->boolean,
+            //Slug using modele :
+            $modele = $faker->words(3,true);
+            $slug = Str::slug($modele);
 
-            //details seeding
-            'transmission'=> $faker->randomElement(['Automatique','Manuelle']),
-            'moteur'=> $faker->randomElement(['Diesel','Hybride','Gasoil','Electrique']),
-            'ville'=> $faker->randomElement(['Agadir','Marrakech','Casablanca']),
-            'nbPers'=> $faker->numberBetween(4,7),
-            'minAge'=> $faker->numberBetween(18,21),
-            'climatisation'=> $faker->boolean,
+            Car::create([
+                'modele'=>$modele,
+                'description'=> $faker->sentence,
+                'prix'=> $faker->randomFloat(0,200, 700),
+                'disponibilite'=> $faker->boolean,
 
-            'slug'=>$slug,
-            'photo'=>$faker->randomElement(['car (1).png', 'car (2).png', 'car (3).png', 'car (4).png']),
-        ]);
+                'transmission'=> $faker->randomElement(['Automatique','Manuelle']),
+                'moteur'=> $faker->randomElement(['Diesel','Hybride','Gasoil','Electrique']),
+                'ville'=> $faker->randomElement(['Agadir','Marrakech','Casablanca']),
+                'nbPers'=> $faker->numberBetween(4,7),
+                'minAge'=> $faker->numberBetween(18,21),
+                'climatisation'=> $faker->boolean,
+
+                'slug'=>$slug,
+                'photo'=>$faker->randomElement(['car (1).png', 'car (2).png', 'car (3).png', 'car (4).png']),
+            ]);
+
+        }
     }
 }

@@ -1,4 +1,3 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
@@ -16,22 +15,22 @@ export default {
         extend: {
             fontFamily: {
                 sans:['Cabin'],
+                dash:['Roboto'],
             },
             colors:{
-                //theme
+                
                 darkBlue:'#053B50',
                 mediumBlue:'#176B87',
                 lightBlue:'#64CCC5',
                 whiteBlue:'#EEEEEE',
-
-                //others
                 bleuclair: '#e8f5ff',
                 
             }
         },
     },
 
-    plugins: [require("daisyui"),forms],
+    plugins: [
+        require("daisyui"),forms],
 
     daisyui: {
         themes: ["light", "dark", "autumn","garden","winter"],
