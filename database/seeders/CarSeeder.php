@@ -16,7 +16,7 @@ class CarSeeder extends Seeder
 
     public function run(): void
     {
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 50; $i++) {
 
             $faker = Faker::create();
 

@@ -1,6 +1,7 @@
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
+
 export default {
     content: [
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
@@ -10,27 +11,28 @@ export default {
         "./resources/**/*.js",
         "./resources/**/*.vue",
     ],
+    
+    darkMode: 'class',
 
     theme: {    
         extend: {
             fontFamily: {
                 sans:['Cabin'],
-                dash:['Roboto'],
+                tables:['Roboto'],
             },
-            colors:{
-                
+            colors:{ 
                 darkBlue:'#053B50',
                 mediumBlue:'#176B87',
                 lightBlue:'#64CCC5',
                 whiteBlue:'#EEEEEE',
                 bleuclair: '#e8f5ff',
-                
             }
         },
     },
 
     plugins: [
         require("daisyui"),forms],
+        
 
     daisyui: {
         themes: ["light", "dark", "autumn","garden","winter"],

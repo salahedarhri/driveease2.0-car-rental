@@ -19,7 +19,7 @@
 <body class="bg-slate-100 min-h-screen text-black">
 
   {{-- Barre de côté --}}
-  <div class="fixed left-0 top-0 w-64 max-md:hidden h-full bg-cyan-900 p-4 ">
+  <div class="fixed left-0 top-0 w-64 max-md:hidden h-full bg-gradient-to-b from-mediumBlue to-darkBlue p-4 ">
     <a href="/" class="flex items-center pb-4 border-b border-b-gray-100">
       <img src="{{ asset('images/composants/logo.png') }}" alt="logo" class="w-16 h-auto invert">
       <span class="text-xl font-bold text-white ml-3 hover:text-lightBlue transition-all">DriveEase</span>
@@ -79,7 +79,10 @@
             </label>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-white">
               <li><a>Profil</a></li>
-              <li><a>Se déconnecter</a></li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}">
+                @csrf <input type="submit" value="Se déconnecter"></form>
+              </li>
             </ul>
           </div>
         </li>
@@ -88,7 +91,7 @@
     </div>
 
     {{-- Main --}}
-    <div class="font-dash">
+    <div class="font-tables">
       @yield('content')
     </div>
 

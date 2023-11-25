@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CarSeeder::class);
    
 
-        User::factory(10)->create();
+        User::factory(50)->create();
 
         User::factory()->create([
             'name' => 'admin',
