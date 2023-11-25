@@ -19,7 +19,7 @@ class AdminCheck
             return $next($request);
         }
 
-        abort(403,'Non autorisé à l\'espace Admin');
+        abort(403,'Espace pour Admins uniquement. Veuillez vous connecter en tant qu\'admin pour y accéder');
         
     }
 }

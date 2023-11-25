@@ -21,7 +21,7 @@ class CarSeeder extends Seeder
             $faker = Faker::create();
 
             //Slug using modele :
-            $modele = $faker->words(3,true);
+            $modele = $faker->words(2,true);
             $slug = Str::slug($modele);
 
             Car::create([
@@ -30,7 +30,7 @@ class CarSeeder extends Seeder
                 'prix'=> $faker->randomFloat(0,200, 700),
                 'disponibilite'=> $faker->boolean,
 
-                'transmission'=> $faker->randomElement(['Automatique','Manuelle']),
+                'transmission'=> $faker->randomElement(['Auto','Manuelle']),
                 'moteur'=> $faker->randomElement(['Diesel','Hybride','Gasoil','Electrique']),
                 'ville'=> $faker->randomElement(['Agadir','Marrakech','Casablanca']),
                 'nbPers'=> $faker->numberBetween(4,7),
