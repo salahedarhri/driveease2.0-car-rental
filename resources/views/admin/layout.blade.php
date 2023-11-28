@@ -19,7 +19,7 @@
 <body class="bg-slate-100 min-h-screen text-black">
 
   {{-- Barre de côté --}}
-  <div class="fixed left-0 top-0 w-64 max-md:hidden h-full bg-gradient-to-b from-mediumBlue to-darkBlue p-4 ">
+  <div class="fixed left-0 top-0 w-64 h-full max-md:hidden bg-gradient-to-b from-mediumBlue to-darkBlue p-4">
     <a href="/" class="flex items-center pb-4 border-b border-b-gray-100">
       <img src="{{ asset('images/composants/logo.png') }}" alt="logo" class="w-16 h-auto invert">
       <span class="text-xl font-bold text-white ml-3 hover:text-lightBlue transition-all">DriveEase</span>

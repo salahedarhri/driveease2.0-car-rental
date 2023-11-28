@@ -1,7 +1,9 @@
 @extends('layouts.client')
 
 @section('content')
-<div class="min-h-screen pt-8"> <!-- Background for page can be set here -->
+<div class="min-h-screen pt-24 bg-cover bg-no-repeat" 
+{{-- style="background-image:url( {{ asset('images/composants/landing.jpg')}} )" --}}
+> <!-- Background for page can be set here -->
 
   <div class="grid justify-center p-5 bg-white rounded-xl md:max-w-3xl lg:max-w-5xl mx-auto max-sm:mx-2 shadow-md">
 
@@ -44,6 +46,7 @@
       <input type="submit" value="Rechercher" class="btn bg-lightBlue hover:bg-teal-500 mt-4 mb-2 text-white">
       
     </form>
+
   </div>
 
 </div>
