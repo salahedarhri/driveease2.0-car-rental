@@ -16,6 +16,9 @@ export default {
 
     theme: {    
         extend: {
+            spacing: {
+                'largeHeight': '45rem',
+              },
             fontFamily: {
                 sans:['Cabin'],
                 tables:['Roboto'],

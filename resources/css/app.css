@@ -6,12 +6,8 @@
 @tailwind utilities;
 
 /* Mesh Gradient Background */
-
-.mesh-gradient{
-  background-color:#99f3ff;
-  background-image:
-  radial-gradient(at 2% 5%, hsla(186,72%,74%,0.68) 0px, transparent 50%),
-  radial-gradient(at 65% 16%, hsla(225,68%,61%,0.68) 0px, transparent 50%),
-  radial-gradient(at 24% 13%, hsla(294,80%,67%,1) 0px, transparent 50%),
-  radial-gradient(at 62% 78%, hsla(132,70%,75%,1) 0px, transparent 50%);
+@layer components {
+  .formInput{
+    @apply appearance-none border-slate-600 placeholder-slate-500 text-sm bg-no-repeat;
+  }
 }
