@@ -22,11 +22,12 @@ export default {
             fontFamily: {
                 sans:['Cabin'],
                 tables:['Roboto'],
+                titles:['Montserrat']
             },
             colors:{ 
                 darkBlue:'#053B50',
                 mediumBlue:'#176B87',
-                lightBlue:'#64CCC5',
+                lightBlue:'#51C3BC',
                 whiteBlue:'#EEEEEE',
                 bleuclair: '#e8f5ff',
             }
