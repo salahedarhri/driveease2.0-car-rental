@@ -12,3 +12,10 @@
     @apply appearance-none border-slate-600 placeholder-slate-500 text-sm bg-no-repeat;
   }
 }
+
+.svgBackground{ 
+  background-image:url(images/composants/landingSvg.svg);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: cover;
+}

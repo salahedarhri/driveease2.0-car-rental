@@ -1,4 +1,4 @@
-@extends('layouts.client')
+@extends('layouts.index')
 
 @section('content')
   <div class="h-96 w-full mx-auto grid md:grid-cols-2 max-md:grid-cols-1 lg:max-w-7xl md:max-w-5xl max-md:w-full">

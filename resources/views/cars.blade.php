@@ -4,6 +4,7 @@
 
 <!-- tous les voitures -->
 <div class="container mx-auto p-4 max-w-5xl">
+
   @foreach($cars as $car)
   <div class="bg-white rounded-t-md shadow-lg overflow-hidden flex flex-col sm:flex-row p-2 border-b-2">
     <div class="sm:w-1/3 py-4">
@@ -24,6 +25,7 @@
     </div>
   </div>
   @endforeach
+  
 </div>
 
 @endsection

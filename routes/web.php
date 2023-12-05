@@ -22,7 +22,7 @@ use App\Http\Controllers\Admin\AdminReservationController;
 */
 
 
-Route::get('/', function () {   return view('accueil'); })
+Route::get('/', function () {   return view('landing'); })
     ->name('accueil');
 Route::get('/cars', [CarController::class,'index'])
     ->name('cars');
