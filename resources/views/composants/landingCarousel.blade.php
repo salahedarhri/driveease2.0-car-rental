@@ -1,7 +1,7 @@
-<div class="w-screen bg-blue-100">
+<div class="w-screen bg-slate-100">
 
   <!-- large screen-->
-  <div class="cabin grid grid-cols-3 gap-4 max-md:hidden justify-center items-center max-w-7xl mx-auto px-8 py-12 text-sky-800">
+  <div class="font-cabin grid grid-cols-3 gap-4 max-md:hidden justify-center items-center max-w-7xl mx-auto px-8 py-12 text-sky-800">
     <!-- Luxe -->
     <div class="w-full py-2 bg-white rounded-xl shadow">
       <img src="{{ asset('images/composants/luxe.png') }}" class="aspect-auto object-contain h-48 mx-auto" alt="voiture luxe">
@@ -57,24 +57,24 @@
       <!-- Prev/Next Arrows -->
       <div class="absolute inset-0 flex">
         <div class="flex items-center justify-start w-1/2">
-          <button class="bg-cyan-100 text-cyan-500 hover:text-teal-500 font-bold hover:shadow-lg rounded-full w-12 h-12 -ml-0"
+          <button class="bg-sky-100 text-sky-500 hover:text-teal-500 font-bold hover:shadow-lg rounded-full w-12 h-12 -ml-0"
             x-on:click="activeSlide = activeSlide === 1 ? slides.length : activeSlide - 1">
-            &#8592;
+            &#11164;
           </button>
         </div>
         <div class="flex items-center justify-end w-1/2">
-          <button class="bg-cyan-100 text-cyan-500 hover:text-teal-500 font-bold hover:shadow rounded-full w-12 h-12 -mr-0"
+          <button class="bg-sky-100 text-sky-500 hover:text-teal-500 font-bold hover:shadow rounded-full w-12 h-12 -mr-0"
             x-on:click="activeSlide = activeSlide === slides.length ? 1 : activeSlide + 1">
-            &#8594;
+            &#11166;
           </button>
         </div>        
       </div>
   
       <!-- Buttons -->
-      <div class="w-full flex items-center justify-center p-2">
+      <div class="w-full flex items-center justify-center p-1 bg-transparent">
         <template x-for="slide in slides" :key="slide">
-          <button class="flex-1 w-3 h-2 mt-2 mx-2 mb-0 rounded-full overflow-hidden transition-colors duration-500 ease-out hover:bg-sky-600 hover:shadow-lg"
-            :class="{ 'bg-teal-400': activeSlide === slide, 'bg-sky-300': activeSlide !== slide }" 
+          <button class="flex-1 w-2 h-2 mt-1 mx-6 mb-0 rounded-full overflow-hidden transition-colors duration-500 ease-out hover:bg-cyan-600 hover:shadow-lg"
+            :class="{ 'bg-teal-300': activeSlide === slide, 'bg-sky-300': activeSlide !== slide }" 
             x-on:click="activeSlide = slide"
           ></button>
         </template>

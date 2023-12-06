@@ -18,7 +18,7 @@
 
   <!-- Navbar -->
   <div class="w-screen bg-sky-700">
-    <nav class="cabin flex justify-between px-4 py-3 max-w-7xl mx-auto  text-white">
+    <nav class="font-cabin flex justify-between px-4 py-3 max-w-7xl mx-auto  text-white">
       <div class="flex items-center">
         <a href="#" class="flex">
           <i class="ri-car-line text-3xl pr-2"></i>
@@ -40,7 +40,7 @@
   @yield('content')
 
   <!-- Footer -->
-  <div class="w-screen bg-sky-700">
+  <div class="w-screen bg-sky-700 font-cabin">
     <footer class="footer max-w-7xl p-10 mx-auto bg-transparent text-slate-100">
       <nav>
         <header class="footer-title text-teal-200">Services</header> 

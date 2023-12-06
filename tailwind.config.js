@@ -20,9 +20,9 @@ export default {
                 'largeHeight': '45rem',
               },
             fontFamily: {
-                sans:['Cabin'],
+                cabin:['Cabin'],
                 tables:['Roboto'],
-                titles:['Montserrat']
+                montserrat:['Montserrat']
             },
             colors:{ 
                 darkBlue:'#053B50',

@@ -29,19 +29,19 @@
               <label for="lieuDepart" class="block font-bold ">Lieu du départ</label>
               <input type="text" name="lieuDepart"  placeholder="Lieu de départ" class="formInput md:w-full max-md:w-64 rounded py-3 pl-12 mt-2"
               style="background-image: url(' {{ asset('images/icons/location.png') }} '); background-position: 8px center; background-size: 1.5rem;">
-              @error('lieuDepart')  <p class="text-red-600">{{ $message }}</p> @enderror
+              @error('lieuDepart')  <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
             </div>
             <div class="w-full">
               <label for="lieuRetour" class="block font-bold ">Lieu du retour</label>
               <input type="text" name="lieuRetour" placeholder="Lieu de retour" class="formInput md:w-full max-md:w-64 rounded py-3 pl-12 mt-2"
               style="background-image: url(' {{ asset('images/icons/location.png') }} '); background-position: 8px center; background-size: 1.5rem;">
-              @error('lieuRetour')  <p class="text-red-600">{{ $message }}</p> @enderror
+              @error('lieuRetour')  <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
             </div>
             <div class="w-full">
               <label for="heureDepart" class="block font-bold ">Temps du départ</label>
                 <input type="text" id="dateTime1" name="dateDepart" placeholder="Date de départ" class="formInput md:w-full max-md:w-64 rounded py-3 pl-12 mt-2"
                 style="background-image: url(' {{ asset('images/icons/calendar.png') }} '); background-position: 8px center; background-size: 1.5rem;">
-                @error('dateDepart')  <p class="text-red-600">{{ $message }}</p> @enderror
+                @error('dateDepart')  <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
             </div>
             <div class="w-full">
               <label for="heureRetour" class="block font-bold ">Temps du retour</label>
