@@ -1,5 +1,5 @@
 
-<div class="cabin flex flex-col justify-center lg:max-w-3xl sm:max-w-xl max-sm:w-80 mx-auto md:p-4 max-md:p-3 bg-white rounded-md shadow-md">
+<div class="cabin font-semibold flex flex-col justify-center lg:max-w-3xl sm:max-w-xl max-sm:w-80 mx-auto md:p-4 max-md:p-3 bg-white rounded-md shadow-md">
   
   <form action="{{ route('voituresDisponibles')}}" method="post">
     @csrf
@@ -14,18 +14,18 @@
           <input id="dateTime2" name="dateRetour" type="text" placeholder="Date de retour" class="p-3 text-slate-800 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm lg:rounded-r-xl"></label>
     </div>
     <div class="flex flex-col align-center justify-center">
-      @error('dateDepart') <p class="text-red-600">{{ $message }}</p> @enderror
-      @error('dateRetour') <p class="text-red-600">{{ $message }}</p> @enderror
-      @error('lieuDepart') <p class="text-red-600">{{ $message }}</p> @enderror
-      @error('lieuRetour') <p class="text-red-600">{{ $message }}</p> @enderror
+      @error('dateDepart') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
+      @error('dateRetour') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
+      @error('lieuDepart') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
+      @error('lieuRetour') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
     </div>
     <div class="flex flex-row align-middle justify-between pt-4 text-sm">
 
-      <select name="minAge" class="px-6 md:h-12 max-md:h-10 w-18 text-sm font-semibold text-sky-700 bg-white cursor-pointer border-none">
+      <select name="minAge" class="px-2 md:h-12 pr-8 max-md:h-10 text-sm font-semibold text-sky-700 bg-white cursor-pointer border-none">
         <option value="16">Entre 16 et 18</option>
-        <option value="18" selected>Entre 18 et 23</option>
+        <option value="18">Entre 18 et 23</option>
         <option value="23">Entre 23 et 26</option>
-        <option value="26">26+</option>
+        <option value="26" selected>26+</option>
       </select>
 
       <input type="submit" value="Rechercher" class="px-5 py-3 bg-teal-500 hover:bg-teal-600 text-white cursor-pointer font-semibold rounded-lg shadow-md uppercase transition-all">
