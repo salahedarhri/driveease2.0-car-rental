@@ -20,6 +20,7 @@ class ReservationController extends Controller
             'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
         ];
         $conditions = $request->validate([
+            'minAge' => 'required',
             'lieuDepart' => 'required',
             'lieuRetour' => 'required',
             'dateDepart' => ['required', 'date', "after_or_equal:{$minDateDepart}"],
@@ -30,11 +31,14 @@ class ReservationController extends Controller
         $lieuRetour = $request->input('lieuRetour');
         $dateDepart = $request->input('dateDepart');
         $dateRetour = $request->input('dateRetour');
+        $minAge = $request->input('minAge');
     
         $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
+            ->where('minAge','<=',$minAge)
             ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
                 $query->where('dateDepart', '<=', $dateRetour)
                       ->where('dateRetour', '>=', $dateDepart);
+      
             })
             ->get();
 
@@ -44,7 +48,7 @@ class ReservationController extends Controller
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
         $dateRetourDt = $dateRetour->format('d-m-Y H:i');
     
-        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt'));
+        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt','minAge'));
     }
 
     //Check Disponibility parameters : 

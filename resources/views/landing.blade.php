@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- First Part -->
-    <div class="w-screen bg-slate-200">
+    <div class="w-full bg-slate-200">
 
       <div class="max-w-7xl mx-auto pb-4">
         <div class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center">
@@ -34,7 +34,7 @@
     @include('composants.landingNewsletter')
 
     <!-- fourth part -->
-    <div class="w-screen bg-slate-200">
+    <div class="w-full bg-slate-200">
       <div class="font-montserrat grid md:grid-cols-3 max-md:grid-cols-1 justify-center max-w-7xl mx-auto md:p-10 max-md:p-3 text-white md:gap-8 max-md:gap-3">
 
         <!-- Calendar -->

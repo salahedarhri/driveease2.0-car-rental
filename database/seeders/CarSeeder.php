@@ -34,7 +34,7 @@ class CarSeeder extends Seeder
                 'moteur'=> $faker->randomElement(['Diesel','Hybride','Gasoil','Electrique']),
                 'ville'=> $faker->randomElement(['Agadir','Marrakech','Casablanca']),
                 'nbPers'=> $faker->numberBetween(4,7),
-                'minAge'=> $faker->numberBetween(18,21),
+                'minAge'=> $faker->numberBetween(18,26),
                 'climatisation'=> $faker->boolean,
 
                 'slug'=>$slug,

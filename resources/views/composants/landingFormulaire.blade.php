@@ -4,31 +4,34 @@
   <form action="{{ route('voituresDisponibles')}}" method="post">
     @csrf
     <div class="grid lg:grid-cols-4 sm:grid-cols-2 max-sm:grid-cols-1 justify-center max-lg:gap-2">
-        <label for="lieuDepart">
-          <input name="lieuDepart"  type="text" placeholder="Lieu de départ" class="p-3 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg text-sm lg:rounded-l-xl"></label>
-        <label for="lieuRetour">
-          <input name="lieuRetour"  type="text" placeholder="Lieu de retour" class="p-3 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm"></label>
+        <label for="lieuDepart" class="">
+          <input name="lieuDepart"  type="text" placeholder="Lieu de départ" class="p-3 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg text-sm lg:rounded-l-xl">
+          @error('lieuDepart') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror</label>
+        <label for="lieuRetour" class="">
+          <input name="lieuRetour"  type="text" placeholder="Lieu de retour" class="p-3 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm">
+          @error('lieuRetour') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror</label>
         <label for="dateDepart">
-          <input id="dateTime1" name="dateDepart" type="text" placeholder="Date de départ" class="p-3 text-slate-800 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm"></label>
+          <input id="dateTime1" name="dateDepart" type="text" placeholder="Date de départ" class="p-3 text-slate-800 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm">
+          @error('dateDepart') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror</label>
         <label for="dateRetour">
-          <input id="dateTime2" name="dateRetour" type="text" placeholder="Date de retour" class="p-3 text-slate-800 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm lg:rounded-r-xl"></label>
+          <input id="dateTime2" name="dateRetour" type="text" placeholder="Date de retour" class="p-3 text-slate-800 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm lg:rounded-r-xl">
+          @error('dateRetour') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror</label>
     </div>
-    <div class="flex flex-col align-center justify-center">
-      @error('dateDepart') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
-      @error('dateRetour') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
-      @error('lieuDepart') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
-      @error('lieuRetour') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
-    </div>
-    <div class="flex flex-row align-middle justify-between pt-4 text-sm">
+    <div class="flex flex-row align-middle justify-between pt-2 text-sm mx-2">
 
-      <select name="minAge" class="px-2 md:h-12 pr-8 max-md:h-10 text-sm font-semibold text-sky-700 bg-white cursor-pointer border-none">
-        <option value="16">Entre 16 et 18</option>
-        <option value="18">Entre 18 et 23</option>
-        <option value="23">Entre 23 et 26</option>
-        <option value="26" selected>26+</option>
-      </select>
+      <div class="flex flex-row gap-2 place-items-center">
+        <p>Mon age :</p>
 
-      <input type="submit" value="Rechercher" class="px-5 py-3 bg-teal-500 hover:bg-teal-600 text-white cursor-pointer font-semibold rounded-lg shadow-md uppercase transition-all">
+        <select name="minAge" class="border-none focus:border-none">
+          @for($i = 18; $i <= 25; $i++)
+            <option value="{{ $i }}">{{ $i }}</option>
+          @endfor
+            <option value="26" selected>26+</option>
+        </select>
+      
+      </div>
+
+      <input type="submit" value="Rechercher" class="px-5 py-2 bg-teal-500 hover:bg-teal-600 text-white cursor-pointer font-semibold rounded-lg shadow-md uppercase transition-all">
     </div>
   </form> 
 </div>

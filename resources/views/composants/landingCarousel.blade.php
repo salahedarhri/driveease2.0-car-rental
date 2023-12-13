@@ -1,4 +1,4 @@
-<div class="w-screen bg-slate-100">
+<div class="w-full bg-slate-100">
 
   <!-- large screen-->
   <div class="font-cabin grid grid-cols-3 gap-4 max-md:hidden justify-center items-center max-w-7xl mx-auto px-8 py-12 text-sky-800">
@@ -71,14 +71,15 @@
       </div>
   
       <!-- Buttons -->
-      <div class="w-full flex items-center justify-center p-1 bg-transparent">
+      {{-- <div class="w-full flex items-center justify-center p-1 bg-transparent">
         <template x-for="slide in slides" :key="slide">
           <button class="flex-1 w-2 h-2 mt-1 mx-6 mb-0 rounded-full overflow-hidden transition-colors duration-500 ease-out hover:bg-cyan-600 hover:shadow-lg"
             :class="{ 'bg-teal-300': activeSlide === slide, 'bg-sky-300': activeSlide !== slide }" 
             x-on:click="activeSlide = slide"
           ></button>
         </template>
-      </div>
+      </div> --}}
+
     </div>
   </div>
 
