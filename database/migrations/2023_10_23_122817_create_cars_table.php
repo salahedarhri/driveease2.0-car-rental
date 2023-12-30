@@ -24,6 +24,7 @@ return new class extends Migration
             $table->integer('nbPers');
             $table->integer('minAge');
             $table->boolean('climatisation')->default(true);
+            $table->string('protection');
 
             $table->string('slug')->unique();
             $table->string('photo');

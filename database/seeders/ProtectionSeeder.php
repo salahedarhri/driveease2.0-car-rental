@@ -20,8 +20,8 @@ class ProtectionSeeder extends Seeder
             $faker = Faker::create();
 
             Protection::create([
-                'type'=> $faker->words(1,true),
-                'details'=> $faker->sentence,
+                'type'=> $faker->randomElement(['Basique','Medium','Premium']),
+                'details'=> $faker->sentence,                
             ]);
         }
     }

@@ -11,7 +11,7 @@
 
         <div class="flex flex-row gap-1 bg-white p-2 m-1 max-w-md items-center justify-evenly rounded shadow-xl max-md:mx-auto">
           
-          <input type="email" name="newsletter" placeholder="Votre adresse email" class="w-full p-2 rounded-md border-teal-400 shadow-md text-sm">
+          <input type="email" name="newsletter" placeholder="Votre adresse email" class="w-full p-2 rounded-md border-teal-400 shadow-sm text-sm">
           <input type="submit" value="Envoyer" class="bg-teal-500 hover:bg-teal-700 transition-all text-white rounded shadow-md font-semibold uppercase py-2 px-3 cursor-pointer">
         </div>
       </div>

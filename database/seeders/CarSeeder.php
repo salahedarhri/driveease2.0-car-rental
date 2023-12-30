@@ -26,6 +26,7 @@ class CarSeeder extends Seeder
 
             Car::create([
                 'modele'=>$modele,
+                'protection'=> $faker->words(1,true),
                 'description'=> $faker->sentence,
                 'prix'=> $faker->randomFloat(0,200, 700),
                 'disponibilite'=> $faker->boolean,

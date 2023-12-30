@@ -17,12 +17,12 @@
 <body class="overflow-x-hidden antialiased">
 
   <!-- Navbar -->
-  <div class="w-screen bg-sky-700">
-    <nav class="font-cabin flex justify-between px-4 md:py-3 max-md:py-1 max-w-7xl mx-auto  text-white">
+  <div class="w-full bg-sky-700">
+    <nav class="font-cabin flex justify-between px-6 md:py-2 max-md:py-1 max-w-7xl mx-auto  text-white">
 
       <div class="flex items-center">
         <a href="{{ route('accueil')}}">
-            <img src="{{ asset('images/composants/logo.png') }}" class="invert h-7 w-auto ml-1 max-md:hidden hover:translate-x-2 transition-transform duration-300 ease-in-out" alt="logo">
+            <img src="{{ asset('images/composants/logo.png') }}" class="invert h-7 w-auto max-md:hidden hover:translate-x-2 transition-transform duration-300 ease-in-out" alt="logo">
         </a>
         <a href="{{ route('accueil')}}" class="font-semibold normal-case text-xl p-2 text-whiteBlue hover:text-lightBlue">DriveEase</a>
       </div>
@@ -47,7 +47,7 @@
             @guest
                 <details class="dropdown dropdown-end">
                     <summary class="m-0 btn px-3 bg-cyan-700 border-whiteBlue rounded-xl p-0 hover:bg-cyan-600 hover:border-transparent">
-                        <i class="ri-user-3-fill text-whiteBlue text-xl py-2 pr-2"></i><p class="text-whiteBlue hover:text-md transition-all">Connexion</p></summary>
+                        <i class="ri-user-3-fill text-whiteBlue text-xl py-2"></i></summary>
                     <ul class="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-48 text-mediumBlue">
                     <li><a href="{{ route('login') }}" class="text-base hover:text-lightBlue px-3 py-2">Se Connecter</a></li>
                     <li><a href="{{ route('register') }}" class="text-base hover:text-lightBlue px-3 py-2">Inscription</a></li>
@@ -59,7 +59,7 @@
         <!-- Medium / Small Screen -->
         <div class="md:hidden flex items-center align-center justify-center">
           <div class="dropdown dropdown-end p-0 mr-3">
-            <div tabindex="0" role="button" class="m-1"><i class="ri-account-circle-line text-slate-100 text-2xl"></i></div>
+            <div tabindex="0" role="button" class="m-1"><i class="ri-account-circle-fill text-slate-100 text-3xl"></i></div>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-48 text-darkBlue text-lg">
               @auth
                   <li><a href="{{ route('dashboard') }}" class="bg-emerald-200">Espace Client</a></li>
@@ -87,7 +87,7 @@
   @yield('content')
 
   <!-- Footer -->
-  <div class="w-screen bg-sky-700 font-cabin">
+  <div class="w-full bg-sky-700 font-cabin">
     <footer class="footer max-w-7xl p-10 mx-auto bg-transparent text-slate-100">
       <nav>
         <header class="footer-title text-teal-200">Services</header> 

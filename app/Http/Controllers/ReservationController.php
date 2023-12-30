@@ -15,7 +15,7 @@ class ReservationController extends Controller
 
         $message = [
             'required' => 'Ce champ est obligatoire.',
-            // 'date' => 'La date doit être une date et heure valide.',
+            'date' => 'La date doit être une date et heure valide.',
             'after_or_equal' => 'La date de retour doit être postérieure ou égale à la date de départ.',
             'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
         ];
@@ -48,27 +48,23 @@ class ReservationController extends Controller
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
         $dateRetourDt = $dateRetour->format('d-m-Y H:i');
     
-        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt','minAge'));
+        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt'));
     }
 
-    //Check Disponibility parameters : 
+    public function choisirProtection(Request $request){
 
-        // ->orWhere(function ($q) use ($dateRetour,$dateDepart) {
-        //     $q->where('dateDepart', '<=', $dateRetour)
-        //       ->where('dateRetour', '>=', $dateDepart);
-        // })
-    
-        // public function CheckDisponibilite(Request $request) {
-        //     $lieuDepart = $request->input('lieuDepart');
-        //     $lieuRetour = $request->input('lieuRetour');
-        //     $dateDepart = $request->input('dateDepart');
-        //     $dateRetour = $request->input('dateRetour');
-        //     $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
-        //         ->where('dateDepart', '>=', $dateDepart)
-        //         ->where('dateRetour', '<=', $dateRetour)
-        //         ->get();
-        //     return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour'));
-        // }
+        if($request->has('dateDepart')){ $dateDepartDt = $request->dateDepart; }
+        if($request->has('dateRetour')){ $dateRetourDt = $request->dateRetour; }
+        if($request->has('lieuDepart')){ $lieuDepart = $request->lieuDepart; }
+        if($request->has('lieuRetour')){ $lieuRetour = $request->lieuRetour; }
+
+        if($request->has('idVoiture')){
+            $voiture = Car::find($request->idVoiture);
+        }
+
+        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture'));
+    }   
+
     
 
 }
