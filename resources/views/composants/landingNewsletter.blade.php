@@ -1,5 +1,5 @@
 <div class="w-full bg-gradient-to-r from-sky-700 to-teal-700">
-  <div class="max-w-7xl  mx-auto ">
+  <div class="max-w-7xl mx-auto">
     <div class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center md:h-96">
       
       <div class="svgBackground p-4 ">

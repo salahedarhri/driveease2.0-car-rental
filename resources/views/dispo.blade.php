@@ -2,11 +2,13 @@
 
 @section('content')
 
-<div class="w-full bg-slate-200 pt-4">
+<div class="w-full bg-slate-200 p-5">
 
   @include('composants.formulaireRecap')
 
-  <div class=" max-w-5xl mx-auto p-4 ">
+  <div class=" max-w-5xl mx-auto py-2 font-cabin">
+
+    <p class="font-montserrat text-3xl max-sm:text-2xl text-darkBlue font-bold px-3 py-5">Choisissez votre véhicule</p>
 
     @if ($voituresDisponibles->isEmpty())
         <p>Aucune voiture disponible pour les critères spécifiés.</p>
@@ -21,26 +23,33 @@
                   <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="Car Image" class="h-auto w-full p-3">
                 </div>
                 <div class="sm:w-1/3 px-2 py-4">
-                  <h2 class="text-xl font-semibold">{{ $car->modele }}</h2>
+                  <h2 class="text-xl font-semibold font-montserrat">{{ $car->modele }}</h2>
 
-                  <button @click="open =! open" 
-                  class="px-2 py-1 mt-3 rounded-md font-semibold text-emerald-500">
-                  Plus de détails &#11033</button>
+                  <p class="text-slate-600 py-2"> {{ $car->description }} </p>
+
+
+
+
+                  <button @click="open =! open" class="px-2 py-1 mt-3 rounded-md font-semibold font-montserrat text-teal-500">
+                    Plus de détails &nbsp; &#11033</button>
 
                 </div>
                 <div class="sm:w-1/3 p-4 flex flex-col items-right justify-center">
-                  <div class="text-right">
-                    <p class="text-xl max-sm:text-lg font-semibold text-mediumBlue">{{ $car->prix}} Dh/Jour</p>
+                  <div class="text-right font-montserrat">
+
+                    <p class="text-xl max-sm:text-lg text-mediumBlue"><b>{{ $car->prix}} DH</b>/Jour</p>
+                    <p class="text-md max-sm:text-sm text-lightBlue pb-4 max-sm:pb-2">Total {{ $car->prix * $nbJrs }} DH</p>
                     
                     <form action="{{ route('protection')}}" method="post">
                       @csrf
-                      <input type="hidden" name="dateDepart" value="{{ $dateDepart }}">
-                      <input type="hidden" name="dateRetour" value="{{ $dateRetour }}">
+                      <input type="hidden" name="dateDepart" value="{{ $dateDepartDt }}">
+                      <input type="hidden" name="dateRetour" value="{{ $dateRetourDt }}">
                       <input type="hidden" name="lieuDepart" value="{{ $lieuDepart }}">
                       <input type="hidden" name="lieuRetour" value="{{ $lieuRetour }}">
+                      <input type="hidden" name="nbJrs" value="{{ $nbJrs }}">
                       <input type="hidden" name="idVoiture" value="{{ $car->id }}">
                       <input type="submit" value="Sélectionner"
-                      class="font-semibold py-2 px-4 rounded-full bg-lightBlue mt-4 w-36 max-sm:w-full">
+                      class="font-semibold py-2 px-4 rounded-full bg-lightBlue hover:bg-teal-500 transition mt-4 w-36 max-sm:w-full text-white">
                     </form>
                     
                     </a>
@@ -49,30 +58,34 @@
               </div>
               
               <!-- Garantie + Details de la voiture -->
-              <div x-show="open" @click.outside="open = false" x-transition:enter="transition ease-out duration-300"x-transition:enter-start="opacity-0 transform scale-95"x-transition:enter-end="opacity-100 transform scale-100"class="rounded-b-lg">
+              <div x-show="open" @click.outside="open = false" x-transition:enter="transition ease-out duration-300"
+              x-transition:enter-start="opacity-0 transform scale-95"x-transition:enter-end="opacity-100 transform scale-100"class="rounded-b-lg">
 
                   <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-2 justify-evenly p-4">
 
                     <div class="flex flex-col p-4 bg-slate-100 rounded">
                       <p class="font-bold text-lg pb-1">Détails de la Voiture </p>
                       <div class="flex flex-col p-2">
-                        <p>Nbre Personnes : {{ $car->nbPers }}</p>
-                        <p>Transmission : {{ $car->transmission }}</p>
-                        <p>Climatisation : @if( isset( $car->climatisation)){{'Oui'}} @else {{'Non'}}@endif</p>
-                        <p class="text-gray-700"> {{ $car->description }} </p>
+                        <p><b class="text-teal-500 mr-2">&#11047;</b> {{ $car->nbPers }} Personnes</p>
+                        <p><b class="text-teal-500 mr-2">&#11047;</b> Transmission {{ $car->transmission }}</p>
+                        <p><b class="text-teal-500 mr-2">&#11047;</b>  @if( isset( $car->climatisation)){{'Climatisation'}}@endif</p>
+                        <p><b class="text-teal-500 mr-2">&#11047;</b> {{ $car->minAge }} ans min.</p>
+
+                        
                       </div>
                     </div>
 
                     <div class="flex flex-col p-3 bg-slate-100">
                       <p class="font-bold text-lg pb-1">Protection Basique <i class="text-sm text-teal-600">&nbsp; inclus</i></p>
-                      <p> <i class="text-lg text-teal-600 mr-2">&#x2713;</i> Protection contre le vol</p>
-                      <p> <i class="text-lg text-teal-600 mr-2">&#x2713;</i> Protection contre les dommages résultant d'une collision</p>
+                      <p> <i class="text-lg text-teal-500 mr-2">&#x2713;</i> Protection contre le vol</p>
+                      <p> <i class="text-lg text-teal-500 mr-2">&#x2713;</i> Protection contre les dommages résultant d'une collision</p>
 
                     </div>
 
                   </div>
 
               </div>
+
             </div>
         @endforeach
     @endif

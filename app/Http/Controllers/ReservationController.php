@@ -44,11 +44,14 @@ class ReservationController extends Controller
 
         //formatter date pour affichage & manip.
         $dateDepart = Carbon::parse($dateDepart);
-        $dateRetour = Carbon::parse($dateRetour);   
+        $dateRetour = Carbon::parse($dateRetour);
+
+        $nbJrs = $dateRetour->diffInDays($dateDepart);
+
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
         $dateRetourDt = $dateRetour->format('d-m-Y H:i');
     
-        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt'));
+        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt','nbJrs'));
     }
 
     public function choisirProtection(Request $request){
@@ -57,12 +60,13 @@ class ReservationController extends Controller
         if($request->has('dateRetour')){ $dateRetourDt = $request->dateRetour; }
         if($request->has('lieuDepart')){ $lieuDepart = $request->lieuDepart; }
         if($request->has('lieuRetour')){ $lieuRetour = $request->lieuRetour; }
+        if($request->has('nbJrs')){ $nbJrs = $request->nbJrs; }
 
         if($request->has('idVoiture')){
             $voiture = Car::find($request->idVoiture);
         }
 
-        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture'));
+        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs'));
     }   
 
     
