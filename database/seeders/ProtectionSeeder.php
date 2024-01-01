@@ -15,14 +15,28 @@ class ProtectionSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 5 ; $i++) {
-                
             $faker = Faker::create();
 
             Protection::create([
-                'type'=> $faker->randomElement(['Basique','Medium','Premium']),
-                'details'=> $faker->sentence,                
+              'type'=> 'Basique',
+              'details'=> $faker->sentence,
+              'prixCaution' =>15000,
+              'prixFranchise'=>12000,                
+            ]);
+
+            Protection::create([
+              'type'=> 'Medium',
+              'details'=> $faker->sentence,
+              'prixCaution' =>7000,
+              'prixFranchise'=>7000,                
+            ]);
+
+            Protection::create([
+              'type'=> 'Premium',
+              'details'=> $faker->sentence,
+              'prixCaution' =>2000,
+              'prixFranchise'=>0,                
             ]);
         }
     }
-}
+

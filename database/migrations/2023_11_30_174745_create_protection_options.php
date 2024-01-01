@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('protection_options', function (Blueprint $table) {
             $table->id();
             $table->string('type');
+            $table->decimal('prixCaution');
+            $table->decimal('prixFranchise');
             $table->longText('details');
             $table->timestamps();
         });

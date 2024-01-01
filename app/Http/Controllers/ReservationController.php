@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Protection;
 use Carbon\Carbon;
 
 
@@ -62,11 +63,15 @@ class ReservationController extends Controller
         if($request->has('lieuRetour')){ $lieuRetour = $request->lieuRetour; }
         if($request->has('nbJrs')){ $nbJrs = $request->nbJrs; }
 
-        if($request->has('idVoiture')){
-            $voiture = Car::find($request->idVoiture);
-        }
+        if($request->has('idVoiture')){ $voiture= Car::find($request->idVoiture);  }
 
-        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs'));
+        $protection = Protection::where('type','=','Basique')->first();
+
+        $protection_display = Protection::all();
+
+        dd($protection_display);
+                
+        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs','protection','protection_display'));
     }   
 
     
