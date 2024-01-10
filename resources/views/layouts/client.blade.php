@@ -18,7 +18,7 @@
 
   <!-- Navbar -->
   <div class="w-full bg-sky-700">
-    <nav class="font-cabin flex justify-between px-6 md:py-2 max-md:py-1 max-w-7xl mx-auto  text-white">
+    <nav class="font-cabin flex justify-between px-6 md:py-1 max-md:py-1 max-w-7xl mx-auto  text-white">
 
       <div class="flex items-center">
         <a href="{{ route('accueil')}}">
@@ -28,7 +28,7 @@
       </div>
       
         <!-- Medium / Big Screen -->
-        <ul class="menu menu-horizontal flex-1 justify-center px-3 py-0 max-md:hidden">
+        <ul class="flex flex-row place-items-center gap-8 py-0 max-md:hidden">
             <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out">
                 <a href="{{ route('accueil')}}" class="md:text-lg text-base hover:text-lightBlue">Accueil</a>
             </li>

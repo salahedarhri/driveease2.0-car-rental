@@ -68,8 +68,6 @@ class ReservationController extends Controller
         $protection = Protection::where('type','=','Basique')->first();
 
         $protection_display = Protection::all();
-
-        dd($protection_display);
                 
         return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs','protection','protection_display'));
     }   

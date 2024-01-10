@@ -20,6 +20,7 @@ class ProtectionSeeder extends Seeder
             Protection::create([
               'type'=> 'Basique',
               'details'=> $faker->sentence,
+              'prix'=>0,
               'prixCaution' =>15000,
               'prixFranchise'=>12000,                
             ]);
@@ -27,6 +28,7 @@ class ProtectionSeeder extends Seeder
             Protection::create([
               'type'=> 'Medium',
               'details'=> $faker->sentence,
+              'prix'=>70,
               'prixCaution' =>7000,
               'prixFranchise'=>7000,                
             ]);
@@ -34,6 +36,7 @@ class ProtectionSeeder extends Seeder
             Protection::create([
               'type'=> 'Premium',
               'details'=> $faker->sentence,
+              'prix'=>150,
               'prixCaution' =>2000,
               'prixFranchise'=>0,                
             ]);
