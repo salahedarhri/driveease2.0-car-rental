@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('idUser')->constrained('users');
-            $table->foreignId('idCar')->constrained('cars');
+            $table->foreignId('idUser')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('idCar')->constrained('cars')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('idProtection')->constrained('protection_options')->onUpdate('cascade')->onDelete('cascade');
 
             $table->dateTime('dateDepart');
             $table->dateTime('dateRetour');

@@ -17,8 +17,8 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->call(CarSeeder::class);
-        $this->call(LocationSeeder::class);
         $this->call(ProtectionSeeder::class);
+        $this->call(OptionSeeder::class);
    
         User::factory(50)->create();
 

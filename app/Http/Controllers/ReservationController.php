@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Protection;
+use App\Models\Option;
 use Carbon\Carbon;
 
 
@@ -38,9 +39,8 @@ class ReservationController extends Controller
             ->where('minAge','<=',$minAge)
             ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
                 $query->where('dateDepart', '<=', $dateRetour)
-                      ->where('dateRetour', '>=', $dateDepart);
-      
-            })
+                      ->where('dateRetour', '>=', $dateDepart);})
+            ->orderBy('prix','asc')
             ->get();
 
         //formatter date pour affichage & manip.
@@ -65,11 +65,12 @@ class ReservationController extends Controller
 
         if($request->has('idVoiture')){ $voiture= Car::find($request->idVoiture);  }
 
-        $protection = Protection::where('type','=','Basique')->first();
+        // $protection = Protection::where('type','=','Basique')->first();
 
-        $protection_display = Protection::all();
+        $protections = Protection::all();
+        $options = Option::all();
                 
-        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs','protection','protection_display'));
+        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs','protections','options'));
     }   
 
     

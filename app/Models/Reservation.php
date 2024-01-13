@@ -14,8 +14,12 @@ class Reservation extends Model
     return $this->belongsTo(User::class, 'idUser','id');
     }
 
-public function car(){
-    return $this->belongsTo(Car::class, 'idCar','id');
+    public function car(){
+        return $this->belongsTo(Car::class, 'idCar','id');
+        }
+
+    public function protection(){
+        return $this->belongsTo(Protection::class,'idProtection','id');
     }
 
 }

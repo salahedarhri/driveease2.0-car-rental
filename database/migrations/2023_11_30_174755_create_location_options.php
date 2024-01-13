@@ -13,8 +13,12 @@ return new class extends Migration
     {
         Schema::create('location_options', function (Blueprint $table) {
             $table->id();
-            $table->string('city');
-            $table->tinyText('location');
+            $table->string('option');
+            $table->string('urlPhoto');
+            $table->longText('description');
+            $table->decimal('prix');
+            $table->boolean('inclus')->default(false);
+            $table->integer('quantite')->default(0);
             $table->timestamps();
         });
     }
