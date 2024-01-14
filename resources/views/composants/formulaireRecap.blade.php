@@ -1,4 +1,4 @@
-<div class="grid grid-cols-3 max-sm:grid-cols-1 max-w-4xl mx-auto font-cabin my-4 rounded-lg bg-white shadow-lg">
+<div class="grid grid-cols-3 max-sm:grid-cols-1 max-w-4xl mx-auto font-cabin my-2 rounded-lg bg-white shadow-lg">
 
   {{-- Date et Lieu --}}
   <div class="flex flex-col align-center max-sm:text-center p-4">

@@ -14,7 +14,8 @@
         <p>Aucune voiture disponible pour les critères spécifiés.</p>
     @else
 
-        @foreach ($voituresDisponibles as $car)
+        @foreach ($voituresDisponibles as $car)7
+        
             <div x-data="{ open: false }">
 
               <!-- Informations de Voiture   -->
@@ -27,10 +28,8 @@
 
                   <p class="text-slate-600 py-2"> {{ $car->description }} </p>
 
-
-
-
-                  <button @click="open =! open" class="px-2 py-1 mt-3 rounded-md font-semibold font-montserrat text-teal-500">
+                  <button @click="open =! open" 
+                          class="px-2 py-1 mt-3 rounded-md font-semibold font-montserrat text-teal-500">
                     Plus de détails &nbsp; &#11033</button>
 
                 </div>
@@ -58,8 +57,12 @@
               </div>
               
               <!-- Garantie + Details de la voiture -->
-              <div x-show="open" @click.outside="open = false" x-transition:enter="transition ease-out duration-300"
-              x-transition:enter-start="opacity-0 transform scale-95"x-transition:enter-end="opacity-100 transform scale-100"class="rounded-b-lg">
+              <div x-show="open" 
+                @click.outside="open = false"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                class="rounded-b-lg">
 
                   <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-2 justify-evenly p-4">
 

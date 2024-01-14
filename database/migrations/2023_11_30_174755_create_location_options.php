@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('urlPhoto');
             $table->longText('description');
             $table->decimal('prix');
-            $table->boolean('inclus')->default(false);
-            $table->integer('quantite')->default(0);
+            // $table->boolean('inclus')->default(false);
+            // $table->integer('quantite')->default(0);
             $table->timestamps();
         });
     }
