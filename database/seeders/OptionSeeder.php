@@ -31,16 +31,29 @@ class OptionSeeder extends Seeder
         Option::create([
             'option'=>'Conducteur supplémentaire',
             'prix'=>'250',
-            'description'=>"Obligatoire pour les conducteurs de moins de 26 ans. Si vous supprimez cette option maintenant, vous devrez tout de même l’acheter en agence lors du retrait de votre véhicule. En plus tout conducteur doit avoir son permis de conduire depuis au moins un an (varie selon la catégorie du véhicule).",
-            'urlPhoto'=>'option2.png',
-        ]);
-
-        Option::create([
-            'option'=>'Conducteur supplémentaire',
-            'prix'=>'250',
             'description'=>"Partez l'esprit tranquille et partagez le volant avec une autre personne assuré pour conduire. ",
             'urlPhoto'=>'option1.png',
         ]);
-        
+
+        Option::create([
+            'option'=>'Siège de sécurité bébé (0-12 mois)',
+            'prix'=>'120',
+            'description'=>"Recommandé pour les enfants de 0 à 12 mois ou de 0 à 13 kg. ",
+            'urlPhoto'=>'option_baby.png',
+        ]);
+
+        Option::create([
+            'option'=>'Siège de sécurité enfant (1-3 ans)',
+            'prix'=>'120',
+            'description'=>"Recommandé pour les enfants de 1 à 3 ans ou de 9 à 18 kg.",
+            'urlPhoto'=>'option_baby.png',
+        ]);
+
+        Option::create([
+            'option'=>'Système de navigation GPS',
+            'prix'=>'150',
+            'description'=>"Restez sur la bonne voie et réservez un GPS, très utile sur les routes inconnues. ",
+            'urlPhoto'=>'option1.png',
+        ]);
     }
 }

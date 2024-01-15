@@ -14,16 +14,18 @@
         <p>Aucune voiture disponible pour les critères spécifiés.</p>
     @else
 
-        @foreach ($voituresDisponibles as $car)7
+        @foreach ($voituresDisponibles as $car)
         
             <div x-data="{ open: false }">
 
               <!-- Informations de Voiture   -->
               <div class="bg-white overflow-hidden flex flex-col sm:flex-row px-2 border-b-2">
+
                 <div class="sm:w-1/3 py-3 flex items-center justify-center">
-                  <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="Car Image" class="h-auto w-full p-3">
+                  <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="Car Image" class="h-56 w-auto object-center object-contain p-3">
                 </div>
-                <div class="sm:w-1/3 px-2 py-4">
+                
+                <div class="sm:w-1/3 px-2 md:py-4">
                   <h2 class="text-xl font-semibold font-montserrat">{{ $car->modele }}</h2>
 
                   <p class="text-slate-600 py-2"> {{ $car->description }} </p>

@@ -91,21 +91,21 @@
   <div class="w-full bg-sky-700 font-cabin">
     <footer class="footer max-w-7xl p-10 mx-auto bg-transparent text-slate-100">
       <nav>
-        <header class="footer-title text-teal-200">Services</header> 
+        <header class="uppercase text-teal-300">Services</header> 
         <a class="link link-hover">Branding</a>
         <a class="link link-hover">Design</a>
         <a class="link link-hover">Marketing</a>
         <a class="link link-hover">Advertisement</a>
       </nav> 
       <nav>
-        <header class="footer-title text-teal-200">Company</header> 
+        <header class="uppercase text-teal-300">Company</header> 
         <a class="link link-hover">About us</a>
         <a class="link link-hover">Contact</a>
         <a class="link link-hover">Jobs</a>
         <a class="link link-hover">Press kit</a>
       </nav> 
       <nav>
-        <header class="footer-title text-teal-200">Legal</header> 
+        <header class="uppercase text-teal-300">Legal</header> 
         <a class="link link-hover">Terms of use</a>
         <a class="link link-hover">Privacy policy</a>
         <a class="link link-hover">Cookie policy</a>
