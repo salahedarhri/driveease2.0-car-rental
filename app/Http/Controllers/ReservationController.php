@@ -43,34 +43,43 @@ class ReservationController extends Controller
             ->orderBy('prix','asc')
             ->get();
 
-        //formatter date pour affichage & manip.
+        //Formatter date pour affichage & manip.
         $dateDepart = Carbon::parse($dateDepart);
         $dateRetour = Carbon::parse($dateRetour);
 
         $nbJrs = $dateRetour->diffInDays($dateDepart);
 
+        //Date pour affichage
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
         $dateRetourDt = $dateRetour->format('d-m-Y H:i');
     
-        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt','nbJrs'));
+        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt','nbJrs','minAge'));
     }
 
     public function choisirProtection(Request $request){
 
-        if($request->has('dateDepart')){ $dateDepartDt = $request->dateDepart; }
-        if($request->has('dateRetour')){ $dateRetourDt = $request->dateRetour; }
+        //Date for Controller
+        if($request->has('dateDepart')){ $dateDepart = $request->dateDepart; }
+        if($request->has('dateRetour')){ $dateRetour = $request->dateRetour; }
+
+        //Date for View
+        if($request->has('dateDepartDt')){ $dateDepartDt = $request->dateDepartDt; }
+        if($request->has('dateRetourDt')){ $dateRetourDt = $request->dateRetourDt; }
+
+        //Rest of Informations 
         if($request->has('lieuDepart')){ $lieuDepart = $request->lieuDepart; }
         if($request->has('lieuRetour')){ $lieuRetour = $request->lieuRetour; }
         if($request->has('nbJrs')){ $nbJrs = $request->nbJrs; }
-
+        if($request->has('minAge')){ $minAge = $request->minAge; }
         if($request->has('idVoiture')){ $voiture= Car::find($request->idVoiture);  }
 
+        //Pour séléctionner la protection basique par défaut :
         // $protection = Protection::where('type','=','Basique')->first();
 
         $protections = Protection::all();
         $options = Option::all();
                 
-        return view('protection',compact('dateDepartDt','dateRetourDt','lieuDepart','lieuRetour','voiture','nbJrs','protections','options'));
+        return view('protection',compact('dateDepartDt','dateRetourDt','dateDepart','dateRetour','lieuDepart','lieuRetour','voiture','minAge','nbJrs','protections','options'));
     }   
 
     

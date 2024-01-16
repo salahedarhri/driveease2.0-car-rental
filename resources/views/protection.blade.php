@@ -34,21 +34,21 @@
               @if ($prtc->type == 'Basique')
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
-                <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection bris de glace,phares et pneumatiques</p>
+                <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection bris de glace, phares et pneumatiques</p>
                 <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection personnelle accident (conducteur et passagers)</p>
                 <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection des biens personnels</p>
 
               @elseif($prtc->type == 'Medium')
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
-                <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection bris de glace,phares et pneumatiques</p>
+                <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection bris de glace, phares et pneumatiques</p>
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection personnelle accident (conducteur et passagers)</p>
                 <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection des biens personnels</p>
 
               @elseif($prtc->type == 'Premium')
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
-                <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection bris de glace,phares et pneumatiques</p>
+                <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection bris de glace, phares et pneumatiques</p>
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection personnelle accident (conducteur et passagers)</p>
                 <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection des biens personnels</p>
 
@@ -89,14 +89,15 @@
               <!-- Buttons -->
               <div class="flex flex-row justify-between px-2 py-4">
                 <button class="underline" @click="open =! open" >En savoir plus</button>
-                <p class="text-lg font-semibold text-right text-teal-500"> {{ $optn->prix}} DH/Total</p>
+                <p class="font-semibold text-right text-teal-500"> {{ $optn->prix}} DH/Total</p>
               </div>
 
               <button class="py-2 px-4 bg-cyan-500 text-white font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Sélectionner</button>
           </div>
 
           <!-- Modal associé à l'option -->
-          <div x-show="open" x-transition.duration.500ms class="fixed inset-0 bg-whiteBlue bg-opacity-75 flex items-center justify-center max-md:px-4">
+          <div x-show="open" x-transition.duration.500ms
+           class="fixed inset-0 bg-whiteBlue bg-opacity-75 flex items-center justify-center max-md:px-4">
 
                 <!-- Modal -->
                 <div  @click.away="open = false" class="flex flex-col max-w-xl bg-white shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">

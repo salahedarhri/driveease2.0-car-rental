@@ -8,7 +8,7 @@
 
   <div class=" max-w-5xl mx-auto py-2 font-cabin">
 
-    <p class="font-montserrat text-3xl max-sm:text-2xl text-darkBlue font-bold px-3 py-5">Choisissez votre véhicule</p>
+    <p class="font-montserrat text-2xl max-sm:text-2xl text-darkBlue font-bold px-3 py-5">Choisissez votre véhicule</p>
 
     @if ($voituresDisponibles->isEmpty())
         <p>Aucune voiture disponible pour les critères spécifiés.</p>
@@ -43,10 +43,13 @@
                     
                     <form action="{{ route('protection')}}" method="post">
                       @csrf
-                      <input type="hidden" name="dateDepart" value="{{ $dateDepartDt }}">
-                      <input type="hidden" name="dateRetour" value="{{ $dateRetourDt }}">
+                      <input type="hidden" name="dateDepartDt" value="{{ $dateDepartDt }}">
+                      <input type="hidden" name="dateRetourDt" value="{{ $dateRetourDt }}">
+                      <input type="hidden" name="dateDepart" value="{{ $dateDepart }}">
+                      <input type="hidden" name="dateRetour" value="{{ $dateRetour }}">
                       <input type="hidden" name="lieuDepart" value="{{ $lieuDepart }}">
                       <input type="hidden" name="lieuRetour" value="{{ $lieuRetour }}">
+                      <input type="hidden" name="minAge" value="{{ $minAge }}">
                       <input type="hidden" name="nbJrs" value="{{ $nbJrs }}">
                       <input type="hidden" name="idVoiture" value="{{ $car->id }}">
                       <input type="submit" value="Sélectionner"
