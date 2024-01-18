@@ -29,11 +29,21 @@ class ReservationController extends Controller
             'dateRetour' => ['required', 'date', "after:dateDepart"],
         ], $message);
         
-        $lieuDepart = $request->input('lieuDepart');
-        $lieuRetour = $request->input('lieuRetour');
-        $dateDepart = $request->input('dateDepart');
-        $dateRetour = $request->input('dateRetour');
-        $minAge = $request->input('minAge');
+        if (session()->has('dateDepart')) {
+            $lieuDepart = session('lieuDepart');
+            $lieuRetour = session('lieuRetour');
+            $dateDepart = session('dateDepart');
+            $dateRetour = session('dateRetour');
+            $minAge = session('minAge');
+
+        }else{
+            $lieuDepart = $request->input('lieuDepart');
+            $lieuRetour = $request->input('lieuRetour');
+            $dateDepart = $request->input('dateDepart');
+            $dateRetour = $request->input('dateRetour');
+            $minAge = $request->input('minAge');
+        }
+
     
         $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
             ->where('minAge','<=',$minAge)
@@ -52,36 +62,87 @@ class ReservationController extends Controller
         //Date pour affichage
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
         $dateRetourDt = $dateRetour->format('d-m-Y H:i');
+
+        //store data in session via the global helper
+        session([
+            'lieuRetour' => $lieuRetour,
+            'lieuDepart' => $lieuDepart,
+            'dateDepart' => $dateDepart,
+            'dateRetour' => $dateRetour,
+            'dateDepartDt' => $dateDepartDt,
+            'dateRetourDt' => $dateRetourDt,
+            'nbJrs' => $nbJrs,
+            'minAge' => $minAge,
+        ]);
     
-        return view('dispo', compact('voituresDisponibles', 'dateDepart', 'dateRetour', 'lieuDepart', 'lieuRetour','dateDepartDt','dateRetourDt','nbJrs','minAge'));
+        return view('dispo', compact('voituresDisponibles','nbJrs','minAge', 
+        'dateDepart', 'dateRetour', 
+        'lieuDepart', 'lieuRetour',
+        'dateDepartDt','dateRetourDt'));
     }
 
     public function choisirProtection(Request $request){
 
-        //Date for Controller
-        if($request->has('dateDepart')){ $dateDepart = $request->dateDepart; }
-        if($request->has('dateRetour')){ $dateRetour = $request->dateRetour; }
+        //Retrieve data from session
+        $dateDepart = session('dateDepart');
+        $dateRetour = session('dateRetour');
+        $dateDepartDt = session('dateDepartDt');
+        $dateRetourDt = session('dateRetourDt');
+        $lieuDepart = session('lieuDepart');
+        $lieuRetour = session('lieuRetour');
+        $nbJrs = session('nbJrs');
+        $minAge = session('minAge');
 
-        //Date for View
-        if($request->has('dateDepartDt')){ $dateDepartDt = $request->dateDepartDt; }
-        if($request->has('dateRetourDt')){ $dateRetourDt = $request->dateRetourDt; }
-
-        //Rest of Informations 
-        if($request->has('lieuDepart')){ $lieuDepart = $request->lieuDepart; }
-        if($request->has('lieuRetour')){ $lieuRetour = $request->lieuRetour; }
-        if($request->has('nbJrs')){ $nbJrs = $request->nbJrs; }
-        if($request->has('minAge')){ $minAge = $request->minAge; }
         if($request->has('idVoiture')){ $voiture= Car::find($request->idVoiture);  }
-
-        //Pour séléctionner la protection basique par défaut :
-        // $protection = Protection::where('type','=','Basique')->first();
 
         $protections = Protection::all();
         $options = Option::all();
+
+        $protectionChoisi = Protection::where('type','=','Basique')->first();
+
+        session([
+            'voiture'=>$voiture,
+
+        ]);
                 
-        return view('protection',compact('dateDepartDt','dateRetourDt','dateDepart','dateRetour','lieuDepart','lieuRetour','voiture','minAge','nbJrs','protections','options'));
+        return view('protection',compact('protectionChoisi','voiture','minAge','nbJrs','protections','options',
+        'dateDepartDt','dateRetourDt',
+        'dateDepart','dateRetour',
+        'lieuDepart','lieuRetour'));
     }   
 
+    public function actualiserFranchise(Request $request){
+
+        $dateDepart = session('dateDepart');
+        $dateRetour = session('dateRetour');
+        $dateDepartDt = session('dateDepartDt');
+        $dateRetourDt = session('dateRetourDt');
+        $lieuDepart = session('lieuDepart');
+        $lieuRetour = session('lieuRetour');
+        $nbJrs = session('nbJrs');
+        $minAge = session('minAge');
+        $voiture = session('voiture');
+        
+        $protections = Protection::all();
+        $options = Option::all();
+
+        // Pour franchise, Chaque catégorie a une forme avec id
+        if ($request->has('prtcChoisi')) {
+            $prtc_choisi = $request->prtcChoisi;
+        }
+    
+        $protectionChoisi = Protection::find($prtc_choisi);
+
+        session([
+            'protectionChoisi'=>$protectionChoisi,
+        ]);
+    
+        return view('protection',compact('protectionChoisi', 'prtc_choisi','voiture','minAge','nbJrs','protections','options','voiture',
+        'dateDepartDt','dateRetourDt',
+        'dateDepart','dateRetour',
+        'lieuDepart','lieuRetour'));
+    }
+    
     
 
 }

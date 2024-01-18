@@ -7,7 +7,7 @@
       </div>
 
       <div class="px-4 md:pt-12 max-md:pb-6 max-md:text-center align-center justify-center">
-        <p class="text-slate-100   text-lg font-semibold py-4 max-md:pb-2">Souscrivez pour recevoir nos dernières nouveautés</p>
+        <p class="text-white text-2xl max-md:text-lg font-semibold py-4 max-md:pb-2">Souscrivez pour recevoir nos dernières nouveautés</p>
 
         <div class="flex flex-row gap-1 bg-white p-2 m-1 max-w-md items-center justify-evenly rounded shadow-xl max-md:mx-auto">
           

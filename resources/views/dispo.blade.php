@@ -41,16 +41,8 @@
                     <p class="text-xl max-sm:text-lg text-mediumBlue"><b>{{ $car->prix}} DH</b>/Jour</p>
                     <p class="text-md max-sm:text-sm text-lightBlue pb-4 max-sm:pb-2">Total {{ $car->prix * $nbJrs }} DH</p>
                     
-                    <form action="{{ route('protection')}}" method="post">
+                    <form action="{{ route('franchise')}}" method="post">
                       @csrf
-                      <input type="hidden" name="dateDepartDt" value="{{ $dateDepartDt }}">
-                      <input type="hidden" name="dateRetourDt" value="{{ $dateRetourDt }}">
-                      <input type="hidden" name="dateDepart" value="{{ $dateDepart }}">
-                      <input type="hidden" name="dateRetour" value="{{ $dateRetour }}">
-                      <input type="hidden" name="lieuDepart" value="{{ $lieuDepart }}">
-                      <input type="hidden" name="lieuRetour" value="{{ $lieuRetour }}">
-                      <input type="hidden" name="minAge" value="{{ $minAge }}">
-                      <input type="hidden" name="nbJrs" value="{{ $nbJrs }}">
                       <input type="hidden" name="idVoiture" value="{{ $car->id }}">
                       <input type="submit" value="Sélectionner"
                       class="font-semibold py-2 px-4 rounded-full bg-lightBlue hover:bg-teal-500 transition mt-4 w-36 max-sm:w-full text-white">

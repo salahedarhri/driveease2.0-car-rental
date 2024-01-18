@@ -20,43 +20,46 @@
 
   {{-- Voiture --}}
   <div class="p-4 sm:border-x max-sm:border-y border-opacity-40 border-slate-300 hover:bg-teal-100 transition duration-300">
-    <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Voiture<i class="ri-roadster-fill font-normal text-2xl pl-2"></i></p>
-    
+    <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Voiture<i class="ri-roadster-fill font-normal text-2xl pl-2"></i></p>   
     @if(isset($voiture)) 
       <form action="{{ route('voituresDisponibles')}}" method="post" class="flex flex-col align-center">
         @csrf
-        <input type="hidden" name="dateDepart" value="{{ $dateDepart }}">
-        <input type="hidden" name="dateRetour" value="{{ $dateRetour }}">
-        <input type="hidden" name="lieuDepart" value="{{ $lieuDepart }}">
-        <input type="hidden" name="lieuRetour" value="{{ $lieuRetour }}">
-        <input type="hidden" name="minAge" value="{{ $minAge }}">
+          <input type="hidden" name="dateDepart" value="{{ $dateDepart }}">
+          <input type="hidden" name="dateRetour" value="{{ $dateRetour }}">
+          <input type="hidden" name="lieuDepart" value="{{ $lieuDepart }}">
+          <input type="hidden" name="lieuRetour" value="{{ $lieuRetour }}">
+          <input type="hidden" name="minAge" value="{{ $minAge }}"> 
 
-        <button>
-          <div class="flex flex-col justify-center align-center gap-1 text-center">
+        <button type="submit">
+          <div class="flex flex-col justify-center align-center gap-1 text-center font-montserrat">
             <img src="{{ asset('images/voitures/'.$voiture->photo)}}" alt="Car Image" class="h-20 w-auto object-center object-contain">
-            <p class="font-semibold font-montserrat">{{ $voiture->modele }}</p>
-            <p>{{ $voiture->prix }} DH/Jour</p>
-            <p class="font-semibold font-montserrat text-teal-600">Total &nbsp; {{ $voiture->prix * $nbJrs }} DH</p>
+            <p class="font-semibold ">{{ $voiture->modele }}</p>
+            <p class="font-semibold text-sm text-cyan-600">{{ $voiture->prix }} DH/Jour</p>
+            <p class="font-semibold text-teal-600">Total &nbsp; {{ $voiture->prix * $nbJrs }} DH</p>
           </div>
         </button>
-
       </form>
     @else
-      <p>Aucune véhicule choisie pour le moment.<br>Veuillez choisir un véhicule</p>
+      <p class="font-cabin text-center">Aucune véhicule choisie pour le moment.<br>Veuillez choisir un véhicule</p>
     @endif
-
   </div>
 
   {{-- Franchise --}}
-  <div class="flex flex-col align-center max-sm:text-center p-4">
-    <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Assurance<i class="ri-shield-line font-normal text-2xl pl-2"></i></p>
-    
-    @if( isset($protection))
-      <p class="font-semibold font-montserrat">Franchise {{ $protection->type }}</p>
-    @else
-      <p>Vous pourrez choisir votre protection et vos options après avoir sélectionné votre véhicule</p>  
-    @endif
+  <div class="flex flex-col align-center text-center p-4 font-montserrat">
+    <p class="font-bold text-cyan-600 text-center p-1">Assurance<i class="ri-shield-line font-normal text-2xl pl-2"></i></p>
+    <div class="flex flex-col gap-1 justify-center align-center p-1">
+    @if( isset($protectionChoisi))
+        <p class="font-semibold ">Franchise {{ $protectionChoisi->type }}</p>
+        <p class="font-semibold text-sm text-cyan-600">{{ $protectionChoisi->prix }} DH /Jour</p>
 
+        @if( isset($optionsChoisi))
+        <p class="font-semibold">+ {{ $optionsChoisi->count() }}Options</p>
+        @endif
+
+      @else
+        <p class="font-cabin text-center">Vous pourrez choisir votre protection et vos options après avoir sélectionné votre véhicule</p>  
+      @endif
+    </div>
   </div>
 
 </div>

@@ -21,15 +21,19 @@ use App\Http\Controllers\Admin\AdminReservationController;
 |
 */
 
-
+//Pages standards
 Route::get('/', function () {   return view('landing'); })
     ->name('accueil');
 Route::get('/cars', [CarController::class,'index'])
     ->name('cars');
+
+ //Reservation
 Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
     ->name('voituresDisponibles');
-Route::post('/protection', [ReservationController::class, 'choisirProtection'])
-    ->name('protection');
+Route::post('/franchise', [ReservationController::class, 'choisirProtection'])
+    ->name('franchise');
+Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
+    ->name('actualiserFranchise');
 
 //Espace Client / Espace Admin (à revoir )
 Route::middleware('admin.check')->group(function () {
