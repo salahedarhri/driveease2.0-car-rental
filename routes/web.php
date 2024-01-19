@@ -34,6 +34,8 @@ Route::post('/franchise', [ReservationController::class, 'choisirProtection'])
     ->name('franchise');
 Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
     ->name('actualiserFranchise');
+Route::post('/options', [ReservationController::class, 'choisirOptions'])
+    ->name('choisirOptions');
 
 //Espace Client / Espace Admin (à revoir )
 Route::middleware('admin.check')->group(function () {

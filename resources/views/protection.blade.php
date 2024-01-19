@@ -10,12 +10,14 @@
 
     <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 py-5">Choisissez votre franchise</p>
 
+    <!--Section Franchises -->
     <div class="grid grid-cols-3 gap-3 max-lg:grid-cols-1 w-full">
       
       @foreach ($protections as $prtc)
-      
+      <div x-data="{ open:false }">
+
         @if( isset($protectionChoisi) && $prtc == $protectionChoisi)
-          <div class="bg-cyan-200 rounded shadow-lg p-4 max-lg:text-center">
+          <div class="bg-teal-100 rounded shadow-lg shadow-teal-600 p-4 max-lg:text-center">
         @else
           <div class="bg-white rounded shadow-lg p-4 max-lg:text-center">
         @endif
@@ -38,17 +40,17 @@
               <div class="flex flex-col gap-2 px-1 py-6 mx-auto text-left">
 
                 @if ($prtc->type == 'Basique')
-                  <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
-                  <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
+                  <p><b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
+                  <p><b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
                   <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection bris de glace, phares et pneumatiques</p>
                   <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection personnelle accident (conducteur et passagers)</p>
                   <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection des biens personnels</p>
 
                 @elseif($prtc->type == 'Medium')
-                  <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
-                  <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
-                  <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection bris de glace, phares et pneumatiques</p>
-                  <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection personnelle accident (conducteur et passagers)</p>
+                  <p><b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>
+                  <p><b class="text-teal-500 mr-1">&#x2713;</b> Protection contre le vol</p>
+                  <p><b class="text-teal-500 mr-1">&#x2713;</b> Protection bris de glace, phares et pneumatiques</p>
+                  <p><b class="text-teal-500 mr-1">&#x2713;</b> Protection personnelle accident (conducteur et passagers)</p>
                   <p class="text-slate-400"><b class="mr-2 text-red-700 text-opacity-50">&#10006;</b>Protection des biens personnels</p>
 
                 @elseif($prtc->type == 'Premium')
@@ -70,7 +72,8 @@
                 @endif
 
 
-                <div class="p-4 max-lg:text-center">
+                <div class="flex flex-col gap-2 p-4 max-lg:text-center">
+
 
                   <form method="POST" action="{{ route('actualiserFranchise') }}" class="w-full">
                     @csrf
@@ -81,13 +84,19 @@
                       <button type="submit" class="p-2 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-full">Sélectionner</button>
                     @endif
                   </form>
+
+                  <button class="text-sm font-semibold underline" @click="open =! open" >En savoir plus...</button>
+
                 </div>
 
-              
+                  <!-- Modal associé à l'option -->
+                 @include('composants.modalFranchise')
+
               </div>
 
           </div>
-      @endforeach
+        </div>
+        @endforeach
     </div>
 
 
@@ -96,39 +105,42 @@
     <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 pt-8 pb-4">Choisissez vos options</p>
 
     <div class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 max-w-7xl mx-auto gap-4 p-2">
-      
-      @foreach ($options as $optn)
-        <div x-data="{ open:false }">
 
-          <!-- Affichage standard d'Option -->
-          <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg">
+        @foreach ($options as $optn)
+          
+          @if(in_array($optn->id, $optnIdArray))
+            <p>Selected</p>
+          @else
+            <div x-data="{ open:false }">
+              <!-- Affichage standard d'Option -->
+              <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg">
+                  <div class="flex flex-row justify-left gap-2 p-2 h-20">
+                    <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}" class="w-auto h-16 object-center">
+                    <p class="text-lg font-bold"> {{ $optn->option}} </p>
+                  </div>
+                  <div class="flex flex-col gap-3 p-2 h-24">
+                    <p class="line-clamp-3">{{ $optn->description }}</p>
+                  </div>
+                  <div class="flex flex-row justify-between px-2 py-4">
+                    <button class="underline" @click="open =! open" >En savoir plus...</button>
+                    <p class="font-semibold text-right text-teal-500"> {{ $optn->prix}} DH/Total</p>
+                  </div>
 
-              <div class="flex flex-row justify-left gap-2 p-2 h-20">
-                <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}" class="w-auto h-16 object-center">
-                <p class="text-lg font-bold"> {{ $optn->option}} </p>
+                  <form action="{{ route('choisirOptions') }}" method="post" class="w-full">
+                    @csrf
+                    <input type="hidden" name="optionId" value="{{ $optn->id }}"> 
+                    <button class="py-2 px-4 bg-cyan-500 text-white font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Sélectionner</button>
+                  </form>
               </div>
 
-              <div class="flex flex-col gap-3 p-2 h-24">
-                <p class="line-clamp-3">{{ $optn->description }}</p>
-              </div>
-
-              <!-- Buttons -->
-              <div class="flex flex-row justify-between px-2 py-4">
-                <button class="underline" @click="open =! open" >En savoir plus...</button>
-                <p class="font-semibold text-right text-teal-500"> {{ $optn->prix}} DH/Total</p>
-              </div>
-
-              <button class="py-2 px-4 bg-cyan-500 text-white font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Sélectionner</button>
-          </div>
-
-          <!-- Modal associé à l'option -->
-            @include('composants.modalOptions')
-        
-        </div>
+              <!-- Modal associé à l'option -->
+                @include('composants.modalOptions')
+            
+            </div>
+          @endif
       @endforeach
 
     </div>
-
   </div>
 </div>
 

@@ -1,7 +1,7 @@
 <div class="grid grid-cols-3 max-sm:grid-cols-1 max-w-4xl mx-auto font-cabin my-2 rounded-lg bg-white shadow-lg">
 
   {{-- Date et Lieu --}}
-  <div class="max-sm:text-center p-4 hover:bg-teal-100 transition duration-300">
+  <div class="max-sm:text-center p-4 hover:bg-slate-100 transition duration-300">
     <a href="{{ route('accueil')}}" class="flex flex-col align-center">
       <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Lieu et Date<i class="ri-calendar-line font-normal text-2xl pl-2"></i></p>
       <div class="p-1">
@@ -19,7 +19,7 @@
   </div>
 
   {{-- Voiture --}}
-  <div class="p-4 sm:border-x max-sm:border-y border-opacity-40 border-slate-300 hover:bg-teal-100 transition duration-300">
+  <div class="p-4 sm:border-x max-sm:border-y border-opacity-40 border-slate-300 hover:bg-slate-100 transition duration-300">
     <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Voiture<i class="ri-roadster-fill font-normal text-2xl pl-2"></i></p>   
     @if(isset($voiture)) 
       <form action="{{ route('voituresDisponibles')}}" method="post" class="flex flex-col align-center">
@@ -45,9 +45,10 @@
   </div>
 
   {{-- Franchise --}}
-  <div class="flex flex-col align-center text-center p-4 font-montserrat">
+  <div class="flex flex-col align-center text-center p-4 font-montserrat hover:bg-slate-100 transition duration-300">
     <p class="font-bold text-cyan-600 text-center p-1">Assurance<i class="ri-shield-line font-normal text-2xl pl-2"></i></p>
-    <div class="flex flex-col gap-1 justify-center align-center p-1">
+
+    <div class="flex flex-col gap-1 p-1">
     @if( isset($protectionChoisi))
         <p class="font-semibold ">Franchise {{ $protectionChoisi->type }}</p>
         <p class="font-semibold text-sm text-cyan-600">{{ $protectionChoisi->prix }} DH /Jour</p>
@@ -55,6 +56,8 @@
         @if( isset($optionsChoisi))
         <p class="font-semibold">+ {{ $optionsChoisi->count() }}Options</p>
         @endif
+
+        <p class="font-semibold text-teal-600 ">Total &nbsp; {{ $protectionChoisi->prix * $nbJrs }} DH</p>
 
       @else
         <p class="font-cabin text-center">Vous pourrez choisir votre protection et vos options après avoir sélectionné votre véhicule</p>  

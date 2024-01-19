@@ -126,21 +126,62 @@ class ReservationController extends Controller
         $protections = Protection::all();
         $options = Option::all();
 
-        // Pour franchise, Chaque catégorie a une forme avec id
         if ($request->has('prtcChoisi')) {
-            $prtc_choisi = $request->prtcChoisi;
-        }
+            $prtc_choisi = $request->prtcChoisi;    }
     
         $protectionChoisi = Protection::find($prtc_choisi);
 
-        session([
-            'protectionChoisi'=>$protectionChoisi,
-        ]);
+        session([ 'protectionChoisi'=>$protectionChoisi, ]);
+
+        $optnSelectionneeArray=[];
     
-        return view('protection',compact('protectionChoisi', 'prtc_choisi','voiture','minAge','nbJrs','protections','options','voiture',
+        return view('protection',compact('optnSelectionneeArray','protectionChoisi', 'prtc_choisi','voiture','minAge','nbJrs','protections','options',
         'dateDepartDt','dateRetourDt',
         'dateDepart','dateRetour',
         'lieuDepart','lieuRetour'));
+    }
+
+    public function choisirOptions( Request $request){
+
+        //Data from Session
+        $dateDepart = session('dateDepart');
+        $dateRetour = session('dateRetour');
+        $dateDepartDt = session('dateDepartDt');
+        $dateRetourDt = session('dateRetourDt');
+        $lieuDepart = session('lieuDepart');
+        $lieuRetour = session('lieuRetour');
+        $nbJrs = session('nbJrs');
+        $minAge = session('minAge');
+        $voiture = session('voiture');
+        $protectionChoisi = session('protectionChoisi');
+
+        //Objects from database
+        $protections = Protection::all();
+        $options = Option::all();
+
+        //Setting up options data for storage and display
+        $optnIdArray = session('optnIdArray', []);
+        $optnIdSelectionne = $request->input('optionId');
+
+        if( empty($optnIdArray)){
+            $optnIdArray = [ $optnIdSelectionne ];
+        }else{
+            $optnIdArray[] = $optnIdSelectionne;
+        }
+
+        session(['optnIdArray' => $optnIdArray]);
+
+        //Retrieving option Objects with the optnIdArrays ids :
+        foreach( $optnIdArray as $optionId){
+            $optnSelectionnee = Option::find($optionId);
+            $optnSelectionneeArray[] = $optnSelectionnee;
+        }
+                
+        return view('protection',compact('optnSelectionneeArray','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+        'dateDepartDt','dateRetourDt',
+        'dateDepart','dateRetour',
+        'lieuDepart','lieuRetour'));
+
     }
     
     
