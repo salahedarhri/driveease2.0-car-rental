@@ -68,7 +68,9 @@
                       <div class="flex flex-col p-2">
                         <p><b class="text-teal-500 mr-2">&#11047;</b> {{ $car->nbPers }} Personnes</p>
                         <p><b class="text-teal-500 mr-2">&#11047;</b> Transmission {{ $car->transmission }}</p>
-                        <p><b class="text-teal-500 mr-2">&#11047;</b>  @if( isset( $car->climatisation)){{'Climatisation'}}@endif</p>
+                        @if( $car->climatisation == true )
+                          <p><b class="text-teal-500 mr-2">&#11047;</b>Climatisation</p>
+                        @endif
                         <p><b class="text-teal-500 mr-2">&#11047;</b> {{ $car->minAge }} ans min.</p>
 
                         

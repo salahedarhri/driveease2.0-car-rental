@@ -29,20 +29,12 @@ class ReservationController extends Controller
             'dateRetour' => ['required', 'date', "after:dateDepart"],
         ], $message);
         
-        if (session()->has('dateDepart')) {
-            $lieuDepart = session('lieuDepart');
-            $lieuRetour = session('lieuRetour');
-            $dateDepart = session('dateDepart');
-            $dateRetour = session('dateRetour');
-            $minAge = session('minAge');
-
-        }else{
-            $lieuDepart = $request->input('lieuDepart');
-            $lieuRetour = $request->input('lieuRetour');
-            $dateDepart = $request->input('dateDepart');
-            $dateRetour = $request->input('dateRetour');
-            $minAge = $request->input('minAge');
-        }
+        //Data depuis la session ou depuis $request 
+        $lieuDepart = session('lieuDepart', $request->input('lieuDepart'));
+        $lieuRetour = session('lieuRetour', $request->input('lieuRetour'));
+        $dateDepart = session('dateDepart', $request->input('dateDepart'));
+        $dateRetour = session('dateRetour', $request->input('dateRetour'));
+        $minAge = session('minAge', $request->input('minAge'));
 
     
         $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
@@ -63,7 +55,7 @@ class ReservationController extends Controller
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
         $dateRetourDt = $dateRetour->format('d-m-Y H:i');
 
-        //store data in session via the global helper
+        //store data in session
         session([
             'lieuRetour' => $lieuRetour,
             'lieuDepart' => $lieuDepart,
@@ -74,6 +66,10 @@ class ReservationController extends Controller
             'nbJrs' => $nbJrs,
             'minAge' => $minAge,
         ]);
+
+        //clean session from previous use
+        session()->forget('optnIdArray');
+        session()->forget('prtc_choisi');
     
         return view('dispo', compact('voituresDisponibles','nbJrs','minAge', 
         'dateDepart', 'dateRetour', 
@@ -113,29 +109,28 @@ class ReservationController extends Controller
 
     public function actualiserFranchise(Request $request){
 
-        $dateDepart = session('dateDepart');
-        $dateRetour = session('dateRetour');
-        $dateDepartDt = session('dateDepartDt');
-        $dateRetourDt = session('dateRetourDt');
-        $lieuDepart = session('lieuDepart');
-        $lieuRetour = session('lieuRetour');
+        $dateDepart = session('dateDepart');    $dateRetour = session('dateRetour');
+        $dateDepartDt = session('dateDepartDt');    $dateRetourDt = session('dateRetourDt');
+        $lieuDepart = session('lieuDepart');    $lieuRetour = session('lieuRetour');
         $nbJrs = session('nbJrs');
         $minAge = session('minAge');
         $voiture = session('voiture');
+        $optnIdArray = session('optnIdArray');
         
         $protections = Protection::all();
         $options = Option::all();
 
+        //Protection par défaut :
         if ($request->has('prtcChoisi')) {
-            $prtc_choisi = $request->prtcChoisi;    }
+            $prtc_choisi = $request->prtcChoisi; }else{  $prtc_choisi = 1;
+        }
     
         $protectionChoisi = Protection::find($prtc_choisi);
 
-        session([ 'protectionChoisi'=>$protectionChoisi, ]);
+        session([ 'prtc_choisi'=>$prtc_choisi ]);
 
-        $optnSelectionneeArray=[];
     
-        return view('protection',compact('optnSelectionneeArray','protectionChoisi', 'prtc_choisi','voiture','minAge','nbJrs','protections','options',
+        return view('protection',compact('optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
         'dateDepartDt','dateRetourDt',
         'dateDepart','dateRetour',
         'lieuDepart','lieuRetour'));
@@ -153,11 +148,15 @@ class ReservationController extends Controller
         $nbJrs = session('nbJrs');
         $minAge = session('minAge');
         $voiture = session('voiture');
-        $protectionChoisi = session('protectionChoisi');
+        $prtc_choisi = session('prtc_choisi');
+
 
         //Objects from database
         $protections = Protection::all();
         $options = Option::all();
+
+        //Résumer la protection déja choisie ou celle par défaut
+        $protectionChoisi = Protection::find($prtc_choisi);
 
         //Setting up options data for storage and display
         $optnIdArray = session('optnIdArray', []);
@@ -167,17 +166,52 @@ class ReservationController extends Controller
             $optnIdArray = [ $optnIdSelectionne ];
         }else{
             $optnIdArray[] = $optnIdSelectionne;
+            $optnIdArray = array_unique($optnIdArray);
         }
 
         session(['optnIdArray' => $optnIdArray]);
-
-        //Retrieving option Objects with the optnIdArrays ids :
-        foreach( $optnIdArray as $optionId){
-            $optnSelectionnee = Option::find($optionId);
-            $optnSelectionneeArray[] = $optnSelectionnee;
-        }
                 
-        return view('protection',compact('optnSelectionneeArray','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+        return view('protection',compact('optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+        'dateDepartDt','dateRetourDt',
+        'dateDepart','dateRetour',
+        'lieuDepart','lieuRetour'));
+
+    }
+
+    //Pas encore fonctionnel
+    public function retirerOption( Request $request){
+
+        //Data from session & request
+        $dateDepart = session('dateDepart');    $dateRetour = session('dateRetour');
+        $dateDepartDt = session('dateDepartDt');    $dateRetourDt = session('dateRetourDt');
+        $lieuDepart = session('lieuDepart');    $lieuRetour = session('lieuRetour');
+        $nbJrs = session('nbJrs');
+        $minAge = session('minAge');
+        $voiture = session('voiture');
+        $prtc_choisi = session('prtc_choisi');
+        $optnIdArray = session('optnIdArray', []);
+        $optnIdSup = $request->input('optionIdSup');
+
+        //Objects from database
+        $protections = Protection::all();
+        $options = Option::all();
+
+        //Résumer la protection déja choisie ou celle par défaut
+        $protectionChoisi = Protection::find($prtc_choisi);
+
+        $indexIdSup = array_search($optnIdSup, $optnIdArray);
+
+        if ( $indexIdSup !== false ){
+            unset($optnIdArray[ $indexIdSup ]);
+            $optnIdArray = array_unique($optnIdArray);
+
+        }else{
+            dd($indexIdSup);
+        }
+
+        session(['optnIdArray' => $optnIdArray]);
+                
+        return view('protection',compact('optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
         'dateDepartDt','dateRetourDt',
         'dateDepart','dateRetour',
         'lieuDepart','lieuRetour'));

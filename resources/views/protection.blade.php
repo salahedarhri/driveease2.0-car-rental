@@ -10,7 +10,7 @@
 
     <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 py-5">Choisissez votre franchise</p>
 
-    <!--Section Franchises -->
+    {{-- Section Franchises --}}
     <div class="grid grid-cols-3 gap-3 max-lg:grid-cols-1 w-full">
       
       @foreach ($protections as $prtc)
@@ -101,18 +101,40 @@
 
 
 
-    <!-- Section Options -->
+      {{-- Section Options --}}
     <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 pt-8 pb-4">Choisissez vos options</p>
 
     <div class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 max-w-7xl mx-auto gap-4 p-2">
 
-        @foreach ($options as $optn)
-          
-          @if(in_array($optn->id, $optnIdArray))
-            <p>Selected</p>
+      @foreach ($options as $optn)
+
+        <div x-data="{ open:false }">
+          @if( isset($optnIdArray) && in_array($optn->id, $optnIdArray))
+               {{-- Option sélectionné  --}}
+              <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg shadow-teal-600">
+                  <div class="flex flex-row justify-left gap-2 p-2 h-20">
+                    <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}" class="w-auto h-16 object-center">
+                    <p class="text-lg font-bold"> {{ $optn->option}} </p>
+                  </div>
+                  <div class="flex flex-col gap-3 p-2 h-24">
+                    <p class="line-clamp-3">{{ $optn->description }}</p>
+                  </div>
+                  <div class="flex flex-row justify-between px-2 py-4">
+                    <button class="underline" @click="open =! open" >En savoir plus...</button>
+                    <p class="font-semibold text-right text-teal-500"> {{ $optn->prix}} DH/Total</p>
+                  </div>
+
+                  <form action="{{ route('retirerOption') }}" method="post" class="w-full">
+                    @csrf
+                    <input type="hidden" name="optionIdSup" value="{{ $optn->id }}"> 
+                    <button class="py-2 px-4 text-teal-500 border-2 border-teal-500 font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Retirer</button>
+                  </form>
+              </div>
+
+               {{-- Modal associé à l'option  --}}
+              @include('composants.modalOptions')
           @else
-            <div x-data="{ open:false }">
-              <!-- Affichage standard d'Option -->
+               {{-- Affichage standard d'Option  --}}
               <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg">
                   <div class="flex flex-row justify-left gap-2 p-2 h-20">
                     <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}" class="w-auto h-16 object-center">
@@ -132,12 +154,11 @@
                     <button class="py-2 px-4 bg-cyan-500 text-white font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Sélectionner</button>
                   </form>
               </div>
-
               <!-- Modal associé à l'option -->
-                @include('composants.modalOptions')
-            
-            </div>
+              @include('composants.modalOptions')
           @endif
+
+        </div>
       @endforeach
 
     </div>
