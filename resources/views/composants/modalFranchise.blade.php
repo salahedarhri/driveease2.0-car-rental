@@ -2,7 +2,11 @@
 class="fixed inset-0 bg-neutral-800 bg-opacity-75 flex items-center justify-center max-md:px-4">
 
      <!-- Franchise Modal -->
-     <div  @click.away="open = false" class="flex flex-col max-w-xl bg-white shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
+    @if( isset($protectionChoisi) && $prtc == $protectionChoisi)
+      <div  @click.away="open = false" class="flex flex-col max-w-xl bg-teal-100 shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
+    @else
+      <div  @click.away="open = false" class="flex flex-col max-w-xl bg-white shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
+    @endif
        <div class="w-full flex justify-end p-1">
          <button @click="open=false" ><i class="ri-close-line text-2xl hover:bg-red-500 hover:text-white rounded-full p-1"></i></button>
        </div>
@@ -41,7 +45,16 @@ class="fixed inset-0 bg-neutral-800 bg-opacity-75 flex items-center justify-cent
       </div>
        <div class="flex flex-row justify-between place-items-center p-6 max-md:p-4">
          <p class="text-lg font-semibold text-teal-600 underline"> {{ $prtc->prix}} DH /Total</p>
-         <button class="py-2 px-4 border border-cyan-600 text-cyan-600 font-semibold shadow-lg rounded font-montserrat">Sélectionner</button>
+
+         <form method="POST" action="{{ route('actualiserFranchise') }}" class="w-fit">
+          @csrf
+          <input type="hidden" name="prtcChoisi" value="{{ $prtc->id }}">
+          @if( isset($protectionChoisi) && $prtc == $protectionChoisi)
+            <button type="submit" class="py-2 px-3 font-semibold bg-neutral-500 hover:bg-neutral-600 rounded shadow transition text-white my-4 w-full" disabled>Sélectionnée</button>
+          @else
+            <button type="submit" class="py-2 px-3 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-full">Sélectionner</button>
+          @endif
+        </form>
 
        </div>
 

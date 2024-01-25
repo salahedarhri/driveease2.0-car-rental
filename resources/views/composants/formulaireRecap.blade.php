@@ -3,7 +3,13 @@
   {{-- Date et Lieu --}}
   <div class="sm:col-span-2 max-sm:text-center p-2 hover:bg-slate-100 transition duration-300">
     <a href="{{ route('accueil')}}" class="flex flex-col align-center">
-      <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Lieu et Date<i class="ri-calendar-line font-normal text-2xl pl-2"></i></p>
+
+      <div class="flex flex-row px-2 py-1 justify-between align-center text-cyan-600">
+        <p class="font-bold text-center font-montserrat">Lieu et Date<i class="ri-calendar-line font-normal text-2xl pl-2"></i></p>
+        <i class="opacity-50 ri-edit-line text-2xl"></i>
+      </div>
+
+
       <div class="p-1 text-sm">
         <p class="font-semibold font-montserrat ">Départ</p>          
         <p>@if(isset($lieuDepart)) {{ $lieuDepart }} @else - @endif</p> 
@@ -20,7 +26,10 @@
 
   {{-- Voiture --}}
   <div class="sm:col-span-2 p-2 sm:border-x max-sm:border-y border-opacity-50 border-slate-300 hover:bg-slate-100 transition duration-300">
-    <p class="font-bold text-cyan-600 text-center font-montserrat p-1">Voiture<i class="ri-roadster-fill font-normal text-2xl pl-2"></i></p>   
+    <div class="flex flex-row px-2 py-1 justify-between align-center text-cyan-600">
+      <p class="font-bold  text-center font-montserrat">Voiture<i class="ri-roadster-fill font-normal text-2xl pl-2"></i></p>   
+      <i class="opacity-50 ri-edit-line text-2xl"></i>
+    </div>
     @if(isset($voiture)) 
       <form action="{{ route('voituresDisponibles')}}" method="post" class="flex flex-col align-center">
         @csrf
@@ -34,7 +43,6 @@
           <div class="flex flex-col justify-center align-center gap-1 text-center font-montserrat text-sm">
             <img src="{{ asset('images/voitures/'.$voiture->photo)}}" alt="Car Image" class="h-20 w-auto object-center object-contain">
             <p class="text-base">{{ $voiture->modele }}</p>
-            <p>{{ $nbJrs }} Jours</p>
             <p class="font-semibold text-teal-600">{{ $voiture->prix * $nbJrs }} DH</p>
           </div>
         </button>
@@ -46,6 +54,7 @@
 
   {{-- Franchise --}}
   <div class="sm:col-span-2 flex flex-col align-center text-center p-2 sm:border-r max-sm:border-b border-opacity-50 border-slate-300 font-montserrat hover:bg-slate-100 transition duration-300">
+
     <p class="font-bold text-cyan-600 text-center p-1">Assurance<i class="ri-shield-line font-normal text-2xl pl-2"></i></p>
 
     <div class="flex flex-row max-md:flex-col justify-between align-center p-2 text-sm max-md:gap-4">
