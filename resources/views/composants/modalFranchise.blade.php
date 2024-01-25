@@ -9,12 +9,12 @@ class="fixed inset-0 bg-neutral-800 bg-opacity-75 flex items-center justify-cent
        <div class="flex flex-row justify-center place-items-center gap-2 p-2">
          <h4 class="text-xl font-semibold font-montserrat underline">Franchise {{ $prtc->type }}</h4>
        </div>
-       <div class="flex flex-col justify-center text-center py-3 gap-1 px-3 font-semibold">
+       <div class="flex flex-col justify-center text-center py-3 gap-1 px-3">
           <p class="text-teal-600">Caution minimum : <span>{{ $prtc->prixCaution }} DH</span></p>
           <p class="text-cyan-600">Franchise à payer en cas de dommages : <span>{{ $prtc->prixFranchise }} DH</span></p>
           <p class="font-cabin text-lg py-2">{{ $prtc->details }}</p>
        </div>
-       <div class="flex flex-col gap-2 py-4 px-6 mx-auto text-left font-semibold">
+       <div class="flex flex-col gap-2 py-12 px-8 mx-auto text-left font-semibold">
 
         @if ($prtc->type == 'Basique')
           <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>

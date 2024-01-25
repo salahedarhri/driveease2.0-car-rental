@@ -66,9 +66,9 @@
               <div class="font-montserrat flex flex-col justify-center align-center text-center pt-4">
 
                 @if($prtc->type == 'Basique')
-                <p class="text-lg  font-semibold text-teal-600">Incluse</p>
+                <p class="text-xl text-teal-600">Incluse</p>
                 @else
-                <p class="text-lg  font-semibold text-teal-600">{{ $prtc->prix }}DH/Jour</p>
+                <p class="text-xl text-teal-600"><b>{{ $prtc->prix }} DH</b>/Jour</p>
                 @endif
 
 
@@ -109,9 +109,10 @@
       @foreach ($options as $optn)
 
         <div x-data="{ open:false }">
+
           @if( isset($optnIdArray) && in_array($optn->id, $optnIdArray))
                {{-- Option sélectionné  --}}
-              <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg shadow-teal-600">
+              <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg shadow-teal-600 border border-teal-400">
                   <div class="flex flex-row justify-left gap-2 p-2 h-20">
                     <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}" class="w-auto h-16 object-center">
                     <p class="text-lg font-bold"> {{ $optn->option}} </p>
@@ -127,7 +128,7 @@
                   <form action="{{ route('retirerOption') }}" method="post" class="w-full">
                     @csrf
                     <input type="hidden" name="optionIdSup" value="{{ $optn->id }}"> 
-                    <button class="py-2 px-4 text-teal-500 border-2 border-teal-500 font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Retirer</button>
+                    <button class="bg-white py-2 px-4 text-teal-500 border-2 border-teal-500 font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Retirer</button>
                   </form>
               </div>
 
