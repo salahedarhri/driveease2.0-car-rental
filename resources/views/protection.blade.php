@@ -2,13 +2,39 @@
 
 @section('content')
 
-<div class="w-full bg-slate-200 p-5">
+@include('composants.formulaireRecap')
 
-  @include('composants.formulaireRecap')
+{{-- Total avec Validation --}}
+<div id="navbar-total" class="w-full bg-white shadow-xl">
+  <div class="flex flex-row justify-between max-md:justify-center place-items-center max-w-5xl mx-auto p-2 px-3 font-montserrat ">
+    <p class="text-xl max-md:hidden font-semibold ">Choisissez votre franchise et vos options</p>
+
+    <div class="flex flex-row place-items-center  gap-6 text-lg p-2">
+      @if(isset($voiture) && isset($protectionChoisi) && isset($optnIdArray)) 
+      <div class="flex flex-row gap-1">
+        <p class="font-semibold">Total : </p>  
+        <p class="font-semibold text-teal-600">{{ ($voiture->prix * $nbJrs) + $prix_prtc + $prix_optns }} Dh</p>
+      </div>
+  
+      @elseif( isset($voiture) && isset($protectionChoisi))    
+      <div class="flex flex-row gap-1">
+        <p class="font-semibold">Total :</p>
+        <p class="font-semibold text-teal-600"> {{ ($voiture->prix * $nbJrs) + $prix_prtc }} Dh</p>
+      </div>
+  
+      @else
+        <p> ---- </p>
+      @endif
+      <button class="text-white bg-teal-600 hover:bg-teal-500 transition-all rounded-lg shadow-lg py-2 px-4 font-semibold">Valider</button>
+    </div>
+  </div>
+</div>
+
+<div class="w-full bg-slate-200 px-4">
 
   <div class="max-w-7xl mx-auto p-4 max-sm:px-0 font-cabin">
 
-    <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 py-5">Choisissez votre franchise</p>
+    <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 py-5">Nos franchises</p>
 
     {{-- Section Franchises --}}
     <div class="grid grid-cols-3 gap-3 max-lg:grid-cols-1 w-full">
@@ -99,10 +125,8 @@
         @endforeach
     </div>
 
-
-
       {{-- Section Options --}}
-    <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 pt-8 pb-4">Choisissez vos options</p>
+    <p class="font-montserrat text-2xl max-sm:text-xl text-mediumBlue font-bold px-3 pt-8 pb-4">Nos options</p>
 
     <div class="grid grid-cols-4 max-xl:grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 max-w-7xl mx-auto gap-4 p-2">
 

@@ -5,35 +5,18 @@ import Alpine from 'alpinejs';
 window.Alpine = Alpine;
 Alpine.start();
 
+//Sticky Navbar 
+window.onscroll = function() {myFunction()};
 
-//Sidebar Dropdown
-const sidebarToggle = document.querySelector('.sidebar-toggle')
-const sidebarOverlay = document.querySelector('.sidebar-overlay')
-const sidebarMenu = document.querySelector('.sidebar-menu')
-const main = document.querySelector('.main')
-sidebarToggle.addEventListener('click', function (e) {
-    e.preventDefault()
-    main.classList.toggle('active')
-    sidebarOverlay.classList.toggle('hidden')
-    sidebarMenu.classList.toggle('-translate-x-full')
-})
-sidebarOverlay.addEventListener('click', function (e) {
-    e.preventDefault()
-    main.classList.add('active')
-    sidebarOverlay.classList.add('hidden')
-    sidebarMenu.classList.add('-translate-x-full')
-})
-document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
-    item.addEventListener('click', function (e) {
-        e.preventDefault()
-        const parent = item.closest('.group')
-        if (parent.classList.contains('selected')) {
-            parent.classList.remove('selected')
-        } else {
-            document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (i) {
-                i.closest('.group').classList.remove('selected')
-            })
-            parent.classList.add('selected')
-        }
-    })
-})
+var navbar = document.getElementById("navbar-total");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= sticky) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+

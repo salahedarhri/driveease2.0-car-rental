@@ -2,11 +2,11 @@
 
 @section('content')
 
-<div class="w-full bg-slate-200 p-5">
+@include('composants.formulaireRecap')
 
-  @include('composants.formulaireRecap')
+<div class="w-full bg-slate-200 px-4">
 
-  <div class=" max-w-5xl mx-auto py-2 font-cabin">
+  <div class="max-w-5xl mx-auto py-2 font-cabin">
 
     <p class="font-montserrat text-2xl max-sm:text-2xl text-darkBlue font-bold px-3 py-5">Choisissez votre véhicule</p>
 

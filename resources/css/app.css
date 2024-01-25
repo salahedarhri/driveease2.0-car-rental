@@ -13,6 +13,13 @@
   }
 }
 
+/* Sticky Navbar */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 .svgBackground{ 
   background-image:url(images/composants/landingSvg.svg);
   background-repeat: no-repeat;

@@ -1,5 +1,5 @@
 <div x-show="open" x-transition.duration.500ms
-class="fixed inset-0 bg-whiteBlue bg-opacity-75 flex items-center justify-center max-md:px-4">
+class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center max-md:px-4">
 
      <!-- Modal -->
      @if( isset($optnIdArray) && in_array($optn->id, $optnIdArray))
