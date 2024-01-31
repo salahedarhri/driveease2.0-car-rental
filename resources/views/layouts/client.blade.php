@@ -7,16 +7,15 @@
 
   <title>DriveEase | Location de voitures</title>
 
-  <!-- Tailwind + JS -->
+   {{-- Tailwind + JS  --}}
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
 
-  <!-- Icons -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 <body class="overflow-x-hidden antialiased">
 
-  <!-- Navbar -->
+   {{-- Navbar --}}
   <div class="w-full bg-gradient-to-r from-sky-700 to-sky-800">
     <nav class="font-montserrat flex justify-between px-6 md:py-2 max-md:py-1 max-w-7xl mx-auto  text-white">
 
@@ -27,7 +26,7 @@
         <a href="{{ route('accueil')}}" class="font-semibold normal-case text-xl p-2 text-whiteBlue hover:text-lightBlue max-md:hidden">DriveEase</a>
       </div>
       
-        <!-- Medium / Big Screen -->
+         {{-- Medium / Big Screen --}}
         <ul class="flex flex-row place-items-center gap-8 py-0 max-md:hidden font-montserrat font-semibold">
             <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
                 <a href="{{ route('accueil')}}" class="hover:text-lightBlue">Accueil</a>
@@ -57,7 +56,7 @@
             @endguest
         </div>
 
-        <!-- Medium / Small Screen -->
+         {{-- Medium / Small Screen --}}
         <div class="md:hidden flex items-center align-center justify-center">
           <div class="dropdown dropdown-end p-0 mr-3">
             <div tabindex="0" role="button" class="m-1"><i class="ri-account-circle-fill text-slate-100 text-3xl"></i></div>
@@ -87,7 +86,7 @@
 
   @yield('content')
 
-  <!-- Footer -->
+   {{-- Footer --}}
   <div class="w-full bg-sky-700 font-cabin">
     <footer class="footer max-w-7xl p-10 mx-auto bg-transparent text-slate-100">
       <nav>
@@ -112,7 +111,6 @@
       </nav>
     </footer>
   </div>
-    
   
 </body>
 </html>

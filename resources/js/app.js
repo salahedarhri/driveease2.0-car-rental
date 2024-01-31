@@ -20,19 +20,19 @@ function myFunction() {
 }
 
 //Suggestions de lieux
-function fetchSuggestions() {
-  fetch("{{ route('autocomplete') }}", {
-      method: 'POST',
-      headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
-      },
-      body: JSON.stringify({ query: this.inputValue }),
-  })
+// function fetchSuggestions() {
+//   fetch("{{ route('autocomplete') }}", {
+//       method: 'POST',
+//       headers: {
+//           'Content-Type': 'application/json',
+//           'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+//       },
+//       body: JSON.stringify({ query: this.inputValue }),
+//   })
 
-  .then(response => response.json())
-  .then(data => this.suggestions = data)
-  .catch(error => console.error('Error fetching suggestions:', error));
-}
+//   .then(response => response.json())
+//   .then(data => this.suggestions = data)
+//   .catch(error => console.error('Error fetching suggestions:', error));
+// }
 
 

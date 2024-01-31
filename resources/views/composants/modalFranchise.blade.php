@@ -18,7 +18,7 @@ class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center
           <p class="text-cyan-600">Franchise à payer en cas de dommages : <span>{{ $prtc->prixFranchise }} DH</span></p>
           <p class="font-cabin text-lg py-2">{{ $prtc->details }}</p>
        </div>
-       <div class="flex flex-col gap-2 py-12 px-8 mx-auto text-left font-semibold">
+       <div class="flex flex-col gap-2 sm:py-12 sm:px-8 max-sm:py-2 max-sm:px-5 mx-auto text-left font-semibold">
 
         @if ($prtc->type == 'Basique')
           <p> <b class="text-teal-500 mr-1">&#x2713;</b> Protection contre les dommages résultant d'une collision</p>

@@ -30,7 +30,7 @@
 
                   <p class="text-slate-600 py-2"> {{ $car->description }} </p>
 
-                  <button @click="open =! open" 
+                  <button @click="open= !open" 
                           class="px-2 py-1 mt-3 rounded-md font-semibold font-montserrat text-teal-500">
                     Plus de détails &nbsp; &#11033</button>
 
