@@ -1,19 +1,12 @@
 
-<div class="cabin font-semibold flex flex-col justify-center lg:max-w-3xl sm:max-w-xl max-sm:w-80 mx-auto md:p-4 max-md:p-3 bg-white rounded-md shadow-md">
+<div class="cabin font-semibold flex flex-col justify-center lg:max-w-5xl sm:max-w-xl max-sm:w-80 mx-auto md:p-4 max-md:p-3 bg-white rounded-md shadow-md">
   
   <form action="{{ route('voituresDisponibles')}}" method="post">
     @csrf
     <div class="grid lg:grid-cols-4 sm:grid-cols-2 max-sm:grid-cols-1 justify-center max-lg:gap-2">
 
-      @livewire('ChercherLieu') 
-      
-        {{-- <label for="lieuDepart">
-          <input name="lieuDepart"  type="text" placeholder="Lieu de départ" class="p-3 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg text-sm lg:rounded-l-xl">
-          @error('lieuDepart') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror</label>
-        <label for="lieuRetour">
-          <input name="lieuRetour"  type="text" placeholder="Lieu de retour" class="p-3 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm">
-          @error('lieuRetour') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror</label> --}}
-        
+        @livewire('ChercherLieu') 
+
         <label for="dateDepart">
           <input id="dateTime1" name="dateDepart" type="text" placeholder="Date de départ"
            class="p-3 text-slate-800 w-full cursor-pointer border border-sky-700 max-lg:rounded-lg lg:border-l-0 text-sm">
