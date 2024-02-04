@@ -16,31 +16,38 @@ class LieuSeeder extends Seeder
      */
     public function run(): void
     {
-
-        $locations = [
-            // Airports
-            ['nom' => 'Al Massira Airport', 'ville' => 'Agadir', 'type' => 'Airport'],
-            ['nom' => 'Marrakesh Menara Airport', 'ville' => 'Marrakech', 'type' => 'Airport'],
-            ['nom' => 'Mohammed V International Airport', 'ville' => 'Casablanca', 'type' => 'Airport'],
-            ['nom' => 'Fes-Saïss Airport', 'ville' => 'Fes', 'type' => 'Airport'],
-            ['nom' => 'Rabat-Salé Airport', 'ville' => 'Rabat', 'type' => 'Airport'],
-            ['nom' => 'Tangier Ibn Battuta Airport', 'ville' => 'Tangier', 'type' => 'Airport'],
-            ['nom' => 'Moulay Ali Cherif Airport', 'ville' => 'Errachidia', 'type' => 'Airport'],
-            ['nom' => 'Ouarzazate Airport', 'ville' => 'Ouarzazate', 'type' => 'Airport'],
-            ['nom' => 'Nador International Airport', 'ville' => 'Nador', 'type' => 'Airport'],
-            ['nom' => 'Essaouira-Mogador Airport', 'ville' => 'Essaouira', 'type' => 'Airport'],
-            ['nom' => 'Ifrane Airport', 'ville' => 'Ifrane', 'type' => 'Airport'],
-            ['nom' => 'Beni Mellal Airport', 'ville' => 'Beni Mellal', 'type' => 'Airport'],
-            ['nom' => 'Dakhla Airport', 'ville' => 'Dakhla', 'type' => 'Airport'],
-            ['nom' => 'Oujda Angads Airport', 'ville' => 'Oujda', 'type' => 'Airport'],
-            ['nom' => 'Laayoune Hassan I Airport', 'ville' => 'Laayoune', 'type' => 'Airport'],
+            $locations = [
+                // Aéroports à Agadir
+                ['nom' => 'Aéroport Al Massira', 'ville' => 'Agadir', 'type' => 'Aéroport'],
+                ['nom' => 'Aéroport Inzegane', 'ville' => 'Agadir', 'type' => 'Aéroport'],
+                ['nom' => 'Aéroport Agadir–Al Massira', 'ville' => 'Agadir', 'type' => 'Aéroport'],
             
-            // Bus Stations
-            ['nom' => 'Agadir Bus Station', 'ville' => 'Agadir', 'type' => 'Bus Station'],
-            ['nom' => 'Marrakech Bus Station', 'ville' => 'Marrakech', 'type' => 'Bus Station'],
-            ['nom' => 'Casablanca Bus Station', 'ville' => 'Casablanca', 'type' => 'Bus Station'],
-        ];
-
+                // Gares routières à Agadir
+                ['nom' => 'Gare Routière Agadir', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Inzegane', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Tikiouine', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
+            
+                // Aéroports à Marrakech
+                ['nom' => 'Aéroport Marrakech Menara', 'ville' => 'Marrakech', 'type' => 'Aéroport'],
+                ['nom' => 'Aéroport de Marrakech-Ménara', 'ville' => 'Marrakech', 'type' => 'Aéroport'],
+                ['nom' => 'Aéroport Marrakech-Menara International', 'ville' => 'Marrakech', 'type' => 'Aéroport'],
+            
+                // Gares routières à Marrakech
+                ['nom' => 'Gare Routière Marrakech', 'ville' => 'Marrakech', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Bab Doukkala', 'ville' => 'Marrakech', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Sidi Mimoun', 'ville' => 'Marrakech', 'type' => 'Gare Routière'],
+            
+                // Aéroports à Casablanca
+                ['nom' => 'Aéroport Mohammed V', 'ville' => 'Casablanca', 'type' => 'Aéroport'],
+                ['nom' => 'Aéroport International Mohammed V', 'ville' => 'Casablanca', 'type' => 'Aéroport'],
+                ['nom' => 'Aéroport de Casablanca-Anfa', 'ville' => 'Casablanca', 'type' => 'Aéroport'],
+            
+                // Gares routières à Casablanca
+                ['nom' => 'Gare Routière Casablanca', 'ville' => 'Casablanca', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Oasis', 'ville' => 'Casablanca', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Sidi Bernoussi', 'ville' => 'Casablanca', 'type' => 'Gare Routière'],
+            ];
+        
         DB::table('lieux')->insert($locations);
     
         // $faker = Faker::create();

@@ -10,25 +10,20 @@ class ChercherLieu extends Component {
     public $lieuDepart, $lieuRetour ="";
     public $indicDepart , $indicRetour = null;
     public $suggestionsDepart , $suggestionsRetour = [];
-    public $loading = false;
 
     public function chercherLieu( $lieu, $suggestions ){
 
-        $this->loading = true;
+        usleep(300000);
         
         $suggestions = [];
-
-        sleep(0.5);
 
         if( strlen($lieu) >= 3){
             $suggestions = Lieu::where('ville','like','%'.$lieu.'%')
                                 ->orWhere('nom', 'LIKE', '%'.$lieu.'%')
-                                ->limit(7)
+                                ->limit(10)
                                 ->get();    }
         
-        
-        $this->loading = false;
-        
+                
         return $suggestions;
     }
 

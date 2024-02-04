@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Lieu;
 use App\Models\Protection;
 use App\Models\Option;
 use Carbon\Carbon;
@@ -37,8 +38,10 @@ class ReservationController extends Controller
         $dateRetour = $request->input('dateRetour');
         $minAge = $request->input('minAge');
 
+        $depart = Lieu::where('nom','like','%'.$lieuDepart.'%')
+                        ->first();
     
-        $voituresDisponibles = Car::where('ville', '=', $lieuDepart)
+        $voituresDisponibles = Car::where('ville', '=', $depart->ville)
             ->where('minAge','<=',$minAge)
             ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
                 $query->where('dateDepart', '<=', $dateRetour)
