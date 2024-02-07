@@ -35,7 +35,7 @@
                 <a href="{{ route('cars')}}" class="hover:text-lightBlue">Voitures</a>
             </li>
             <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
-                <a href="#" class="hover:text-lightBlue">À propos</a>
+                <a href="/protection2" wire:navigate class="hover:text-lightBlue">Protection</a>
             </li>
         </ul>
 

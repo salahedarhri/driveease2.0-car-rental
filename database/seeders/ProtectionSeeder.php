@@ -23,7 +23,6 @@ class ProtectionSeeder extends Seeder
               'prix'=>0,
               'prixCaution' =>15000,
               'prixFranchise'=>12000,
-
             ]);
 
             Protection::create([

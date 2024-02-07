@@ -12,8 +12,6 @@ class ChercherLieu extends Component {
     public $suggestionsDepart , $suggestionsRetour = [];
 
     public function chercherLieu( $lieu, $suggestions ){
-
-        usleep(300000);
         
         $suggestions = [];
 
@@ -23,7 +21,6 @@ class ChercherLieu extends Component {
                                 ->limit(10)
                                 ->get();    }
         
-                
         return $suggestions;
     }
 

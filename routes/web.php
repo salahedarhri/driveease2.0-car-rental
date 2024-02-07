@@ -24,20 +24,22 @@ use App\Http\Controllers\Admin\AdminReservationController;
 //Pages standards
 Route::get('/', function () {   return view('landing'); })
     ->name('accueil');
-Route::get('/cars', [CarController::class,'index'])
+Route::get('/cars', [   CarController::class,'index'   ])
     ->name('cars');
+Route::get('/protection2', function(){  return view('protection2'); })
+    ->name('protection2');
 
  //Reservation
 Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
     ->name('voituresDisponibles');
-Route::post('/franchise', [ReservationController::class, 'choisirProtection'])
-    ->name('franchise');
-Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
-    ->name('actualiserFranchise');
-Route::post('/options', [ReservationController::class, 'choisirOptions'])
-    ->name('choisirOptions');
-Route::post('/option_remove', [ReservationController::class, 'retirerOption'])
-    ->name('retirerOption');
+Route::post('/protection_&_options', [ReservationController::class, 'choisirProtection'])
+    ->name('protection_&_options');
+// Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
+//     ->name('actualiserFranchise');
+// Route::post('/options', [ReservationController::class, 'choisirOptions'])
+//     ->name('choisirOptions');
+// Route::post('/option_remove', [ReservationController::class, 'retirerOption'])
+//     ->name('retirerOption');
 
 //Espace Client / Espace Admin (à revoir )
 Route::middleware('admin.check')->group(function () {

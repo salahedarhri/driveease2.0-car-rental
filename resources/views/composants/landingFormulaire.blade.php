@@ -10,13 +10,13 @@
         <div class="flex flex-row max-sm:flex-col w-full max-lg:gap-2">
             <label for="dateDepart" class="w-full">
               <input id="dateTime1" name="dateDepart" type="text" placeholder="Date de départ"
-              class="p-3 text-mediumBlue w-full cursor-pointer focus:ring-0 border-2 border-slate-300 focus:border-teal-500 max-lg:rounded-lg lg:border-l-0 text-sm">
-              @error('dateDepart') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror
+              class="p-3 w-full cursor-pointer focus:ring-0 border-2 border-slate-300 focus:border-teal-500 max-lg:rounded-lg lg:border-l-0">
+              @error('dateDepart') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
             </label>
             <label for="dateRetour" class="w-full">
               <input id="dateTime2" name="dateRetour" type="text" placeholder="Date de retour"
-              class="p-3 text-mediumBlue w-full cursor-pointer focus:ring-0 border-2 border-slate-300 focus:border-teal-500 max-lg:rounded-lg lg:border-l-0 text-sm lg:rounded-r-xl">
-              @error('dateRetour') <p class="text-red-600 text-xs p-2">{{ $message }}</p> @enderror
+              class="p-3 w-full cursor-pointer focus:ring-0 border-2 border-slate-300 focus:border-teal-500 max-lg:rounded-lg lg:border-l-0 lg:rounded-r-xl">
+              @error('dateRetour') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
             </label>
         </div>
 

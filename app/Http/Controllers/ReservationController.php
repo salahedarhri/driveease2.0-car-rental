@@ -83,7 +83,6 @@ class ReservationController extends Controller
 
     public function choisirProtection(Request $request){
 
-        //Retrieve data from session
         $dateDepart = session('dateDepart');
         $dateRetour = session('dateRetour');
         $dateDepartDt = session('dateDepartDt');
@@ -93,7 +92,9 @@ class ReservationController extends Controller
         $nbJrs = session('nbJrs');
         $minAge = session('minAge');
 
-        if($request->has('idVoiture')){ $voiture= Car::find($request->idVoiture);  }
+        if($request->has('idVoiture')){
+             $voiture= Car::find($request->idVoiture);
+        }
 
         $protections = Protection::all();
         $options = Option::all();
@@ -105,151 +106,152 @@ class ReservationController extends Controller
         session([ 'voiture'=>$voiture  ]);
         session([ 'prtc_choisi'=>$prtc_choisi  ]);
                 
-        return view('protection',compact('prix_prtc','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+        return view('prtc-et-optns',compact('prix_prtc','protectionChoisi','voiture','minAge','nbJrs',
+        'protections','options',
         'dateDepartDt','dateRetourDt',
         'dateDepart','dateRetour',
         'lieuDepart','lieuRetour'));
     }   
 
-    public function actualiserFranchise(Request $request){
+    // public function actualiserFranchise(Request $request){
 
-        $dateDepart = session('dateDepart');    $dateRetour = session('dateRetour');
-        $dateDepartDt = session('dateDepartDt');    $dateRetourDt = session('dateRetourDt');
-        $lieuDepart = session('lieuDepart');    $lieuRetour = session('lieuRetour');
-        $nbJrs = session('nbJrs');
-        $minAge = session('minAge');
-        $voiture = session('voiture');
-        $optnIdArray = session('optnIdArray');
+    //     $dateDepart = session('dateDepart');    $dateRetour = session('dateRetour');
+    //     $dateDepartDt = session('dateDepartDt');    $dateRetourDt = session('dateRetourDt');
+    //     $lieuDepart = session('lieuDepart');    $lieuRetour = session('lieuRetour');
+    //     $nbJrs = session('nbJrs');
+    //     $minAge = session('minAge');
+    //     $voiture = session('voiture');
+    //     $optnIdArray = session('optnIdArray');
         
-        $protections = Protection::all();
-        $options = Option::all();
+    //     $protections = Protection::all();
+    //     $options = Option::all();
 
-        //Protection par défaut /Protection sélecionnée :
-        if ($request->has('prtcChoisi')) {
-            $prtc_choisi = $request->prtcChoisi; 
-        }else{  $prtc_choisi = 1;  }
+    //     //Protection par défaut /Protection sélecionnée :
+    //     if ($request->has('prtcChoisi')) {
+    //         $prtc_choisi = $request->prtcChoisi; 
+    //     }else{  $prtc_choisi = 1;  }
     
-        $protectionChoisi = Protection::find($prtc_choisi);
+    //     $protectionChoisi = Protection::find($prtc_choisi);
 
-        $prix_prtc = $protectionChoisi->prix * $nbJrs;
+    //     $prix_prtc = $protectionChoisi->prix * $nbJrs;
 
-        session([ 'prtc_choisi'=>$prtc_choisi ]);
+    //     session([ 'prtc_choisi'=>$prtc_choisi ]);
 
 
-        //Calculer prix options
-        if( $optnIdArray !== null ){
+    //     //Calculer prix options
+    //     if( $optnIdArray !== null ){
 
-            $optnsChoisi = Option::whereIn('id',$optnIdArray)->get();
-            $prix_optns = 0;
+    //         $optnsChoisi = Option::whereIn('id',$optnIdArray)->get();
+    //         $prix_optns = 0;
 
-            foreach( $optnsChoisi as $optnChoisi){  $prix_optns += $optnChoisi->prix;   }
+    //         foreach( $optnsChoisi as $optnChoisi){  $prix_optns += $optnChoisi->prix;   }
 
-        }else{  $optnsChoisi = null;    $prix_optns = 0;     }
+    //     }else{  $optnsChoisi = null;    $prix_optns = 0;     }
 
-        return view('protection',compact('prix_prtc','prix_optns','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
-        'dateDepartDt','dateRetourDt',
-        'dateDepart','dateRetour',
-        'lieuDepart','lieuRetour'));
-    }
+    //     return view('protection2',compact('prix_prtc','prix_optns','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+    //     'dateDepartDt','dateRetourDt',
+    //     'dateDepart','dateRetour',
+    //     'lieuDepart','lieuRetour'));
+    // }
 
-    public function choisirOptions( Request $request){
+    // public function choisirOptions( Request $request){
 
-        //Data from Session
-        $dateDepart = session('dateDepart');
-        $dateRetour = session('dateRetour');
-        $dateDepartDt = session('dateDepartDt');
-        $dateRetourDt = session('dateRetourDt');
-        $lieuDepart = session('lieuDepart');
-        $lieuRetour = session('lieuRetour');
-        $nbJrs = session('nbJrs');
-        $minAge = session('minAge');
-        $voiture = session('voiture');
-        $prtc_choisi = session('prtc_choisi');
+    //     //Data from Session
+    //     $dateDepart = session('dateDepart');
+    //     $dateRetour = session('dateRetour');
+    //     $dateDepartDt = session('dateDepartDt');
+    //     $dateRetourDt = session('dateRetourDt');
+    //     $lieuDepart = session('lieuDepart');
+    //     $lieuRetour = session('lieuRetour');
+    //     $nbJrs = session('nbJrs');
+    //     $minAge = session('minAge');
+    //     $voiture = session('voiture');
+    //     $prtc_choisi = session('prtc_choisi');
 
-        //Objects from database
-        $protections = Protection::all();
-        $options = Option::all();
+    //     //Objects from database
+    //     $protections = Protection::all();
+    //     $options = Option::all();
 
-        //Résumer la protection déja choisie ou celle par défaut
-        $protectionChoisi = Protection::find($prtc_choisi);
-        $prix_prtc = $protectionChoisi->prix * $nbJrs;
+    //     //Résumer la protection déja choisie ou celle par défaut
+    //     $protectionChoisi = Protection::find($prtc_choisi);
+    //     $prix_prtc = $protectionChoisi->prix * $nbJrs;
 
-        //Setting up options data for storage and display
-        $optnIdArray = session('optnIdArray', []);
-        $optnIdSelectionne = $request->input('optionId');
+    //     //Setting up options data for storage and display
+    //     $optnIdArray = session('optnIdArray', []);
+    //     $optnIdSelectionne = $request->input('optionId');
 
-        if( empty($optnIdArray)){
-            $optnIdArray = [ $optnIdSelectionne ];
-        }else{
-            $optnIdArray[] = $optnIdSelectionne;
-            $optnIdArray = array_unique($optnIdArray);
-        }
+    //     if( empty($optnIdArray)){
+    //         $optnIdArray = [ $optnIdSelectionne ];
+    //     }else{
+    //         $optnIdArray[] = $optnIdSelectionne;
+    //         $optnIdArray = array_unique($optnIdArray);
+    //     }
 
-        session(['optnIdArray' => $optnIdArray]);
+    //     session(['optnIdArray' => $optnIdArray]);
         
-        //Calculer prix options
-        if( $optnIdArray !== null ){
+    //     //Calculer prix options
+    //     if( $optnIdArray !== null ){
 
-            $optnsChoisi = Option::whereIn('id',$optnIdArray)->get();
-            $prix_optns = 0;
+    //         $optnsChoisi = Option::whereIn('id',$optnIdArray)->get();
+    //         $prix_optns = 0;
 
-            foreach( $optnsChoisi as $optnChoisi){  $prix_optns += $optnChoisi->prix;   }
+    //         foreach( $optnsChoisi as $optnChoisi){  $prix_optns += $optnChoisi->prix;   }
 
-        }else{  $optnsChoisi = null;    $prix_optns = 0;  }
+    //     }else{  $optnsChoisi = null;    $prix_optns = 0;  }
                 
-        return view('protection',compact('prix_prtc','prix_optns','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
-        'dateDepartDt','dateRetourDt',
-        'dateDepart','dateRetour',
-        'lieuDepart','lieuRetour'));
+    //     return view('protection',compact('prix_prtc','prix_optns','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+    //     'dateDepartDt','dateRetourDt',
+    //     'dateDepart','dateRetour',
+    //     'lieuDepart','lieuRetour'));
 
-    }
+    // }
 
-    public function retirerOption( Request $request){
+    // public function retirerOption( Request $request){
 
-        //Data from session & request
-        $dateDepart = session('dateDepart');    $dateRetour = session('dateRetour');
-        $dateDepartDt = session('dateDepartDt');    $dateRetourDt = session('dateRetourDt');
-        $lieuDepart = session('lieuDepart');    $lieuRetour = session('lieuRetour');
-        $nbJrs = session('nbJrs');
-        $minAge = session('minAge');
-        $voiture = session('voiture');
-        $prtc_choisi = session('prtc_choisi');
-        $optnIdArray = session('optnIdArray', []);
-        $optnIdSup = $request->input('optionIdSup');
+    //     //Data from session & request
+    //     $dateDepart = session('dateDepart');    $dateRetour = session('dateRetour');
+    //     $dateDepartDt = session('dateDepartDt');    $dateRetourDt = session('dateRetourDt');
+    //     $lieuDepart = session('lieuDepart');    $lieuRetour = session('lieuRetour');
+    //     $nbJrs = session('nbJrs');
+    //     $minAge = session('minAge');
+    //     $voiture = session('voiture');
+    //     $prtc_choisi = session('prtc_choisi');
+    //     $optnIdArray = session('optnIdArray', []);
+    //     $optnIdSup = $request->input('optionIdSup');
 
-        //Objects from database
-        $protections = Protection::all();
-        $options = Option::all();
+    //     //Objects from database
+    //     $protections = Protection::all();
+    //     $options = Option::all();
 
-        //Résumer Protection choisie ou par défaut
-        $protectionChoisi = Protection::find($prtc_choisi);
-        $prix_prtc = $protectionChoisi->prix * $nbJrs;
+    //     //Résumer Protection choisie ou par défaut
+    //     $protectionChoisi = Protection::find($prtc_choisi);
+    //     $prix_prtc = $protectionChoisi->prix * $nbJrs;
 
-        //Retirer l'option du groupe sélectionnée
-        $indexIdSup = array_search($optnIdSup, $optnIdArray);
-        if ( $indexIdSup !== false ){
-            unset($optnIdArray[ $indexIdSup ]);
-            $optnIdArray = array_unique($optnIdArray);
-        }
+    //     //Retirer l'option du groupe sélectionnée
+    //     $indexIdSup = array_search($optnIdSup, $optnIdArray);
+    //     if ( $indexIdSup !== false ){
+    //         unset($optnIdArray[ $indexIdSup ]);
+    //         $optnIdArray = array_unique($optnIdArray);
+    //     }
 
-        session(['optnIdArray' => $optnIdArray]);
+    //     session(['optnIdArray' => $optnIdArray]);
 
-        //Calculer prix options
-        if( $optnIdArray !== null ){
+    //     //Calculer prix options
+    //     if( $optnIdArray !== null ){
 
-            $optnsChoisi = Option::whereIn('id',$optnIdArray)->get();
-            $prix_optns = 0;
+    //         $optnsChoisi = Option::whereIn('id',$optnIdArray)->get();
+    //         $prix_optns = 0;
 
-            foreach( $optnsChoisi as $optnChoisi){  $prix_optns += $optnChoisi->prix; }
+    //         foreach( $optnsChoisi as $optnChoisi){  $prix_optns += $optnChoisi->prix; }
 
-        }else{  $optnsChoisi = null;     $prix_optns = 0;  }
+    //     }else{  $optnsChoisi = null;     $prix_optns = 0;  }
 
                  
-        return view('protection',compact('prix_prtc','prix_optns','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
-        'dateDepartDt','dateRetourDt',
-        'dateDepart','dateRetour',
-        'lieuDepart','lieuRetour'));
+    //     return view('protection',compact('prix_prtc','prix_optns','optnIdArray','protectionChoisi','voiture','minAge','nbJrs','protections','options',
+    //     'dateDepartDt','dateRetourDt',
+    //     'dateDepart','dateRetour',
+    //     'lieuDepart','lieuRetour'));
 
-    }
+    // }
     
 }

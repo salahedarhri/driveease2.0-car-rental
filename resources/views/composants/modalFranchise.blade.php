@@ -46,15 +46,13 @@ class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center
        <div class="flex flex-row justify-between place-items-center p-6 max-md:p-4">
          <p class="text-lg font-semibold text-teal-600 underline"> {{ $prtc->prix}} DH /Total</p>
 
-         <form method="POST" action="{{ route('actualiserFranchise') }}" class="w-fit">
-          @csrf
-          <input type="hidden" name="prtcChoisi" value="{{ $prtc->id }}">
           @if( isset($protectionChoisi) && $prtc == $protectionChoisi)
-            <button type="submit" class="py-2 px-3 font-semibold bg-neutral-500 hover:bg-neutral-600 rounded shadow transition text-white my-4 w-full" disabled>Sélectionnée</button>
+            <button class="py-2 px-3 font-semibold bg-neutral-500 hover:bg-neutral-600 rounded shadow transition text-white my-4 w-full" disabled>
+              Sélectionnée</button>
           @else
-            <button type="submit" class="py-2 px-3 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-full">Sélectionner</button>
+            <button wire:click="choisirProtection({{ $prtc->id }})" class="py-2 px-3 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-full">
+              Sélectionner</button>
           @endif
-        </form>
 
        </div>
 

@@ -63,13 +63,13 @@
         @if( isset($protectionChoisi))
             <div class="text-left max-md:text-center">
               <p class="text-base">{{ $protectionChoisi->type }}</p>
-              <p class="font-semibold  text-teal-600">{{ $prix_prtc }} Dh</p>
+              <p class="font-semibold  text-teal-600">{{ $prixPrtc }} Dh</p>
             </div>
     
-            @if( isset($optnIdArray))
+            @if( isset($optnsIds))
             <div class="text-center px-2 border-l border-l-mediumBlue">
-              <p class="">{{ count($optnIdArray) }} Options</p>
-              <p class="font-semibold  text-teal-600">{{ $prix_optns }} DH</p>
+              <p class="">{{ count($optnsIds) }} Options</p>
+              <p class="font-semibold  text-teal-600">{{ $prixOptns }} DH</p>
             </div>
             @else
             <div class="text-center px-2 border-l border-l-mediumBlue">
@@ -84,23 +84,6 @@
       </div>
     </div>
   
-    {{-- Total --}}
-    {{-- <div class="flex flex-col align-center p-2 font-montserrat hover:bg-slate-100 transition duration-300 text-sm sm:rounded-r-xl max-sm:rounded-b-xl">
-  
-      <p class="font-bold text-cyan-600 p-1 text-base"><i class="ri-bank-card-fill font-normal text-xl pr-2"></i>Résumé</p>
-  
-      <div class="p-4 max-sm:text-center">
-        @if(isset($voiture) && isset($protectionChoisi) && isset($optnIdArray)) 
-          <p class="text-base">Total :</p>  
-          <p class="font-semibold text-teal-600">{{ ($voiture->prix * $nbJrs) + $prix_prtc + $prix_optns }} Dh</p>
-        @elseif( isset($voiture) && isset($protectionChoisi))    
-          <p class="text-base">Total :</p>
-          <p class="font-semibold text-teal-600"> {{ ($voiture->prix * $nbJrs) + $prix_prtc }} Dh</p>
-        @else
-          <p> ---- </p>
-        @endif
-      </div>
-    </div> --}}
   
   </div>
 

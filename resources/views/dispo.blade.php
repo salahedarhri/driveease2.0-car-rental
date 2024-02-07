@@ -41,7 +41,7 @@
                     <p class="text-xl max-sm:text-lg text-mediumBlue"><b>{{ $car->prix}} DH</b>/Jour</p>
                     <p class="text-md max-sm:text-sm text-lightBlue pb-4 max-sm:pb-2">Total {{ $car->prix * $nbJrs }} DH</p>
                     
-                    <form action="{{ route('franchise')}}" method="post">
+                    <form action="{{ route('protection_&_options')}}" method="post">
                       @csrf
                       <input type="hidden" name="idVoiture" value="{{ $car->id }}">
                       <input type="submit" value="Sélectionner"
