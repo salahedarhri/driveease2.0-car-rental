@@ -28,7 +28,6 @@ class ChercherLieu extends Component {
         $this->suggestionsDepart = [];
         $this->lieuDepart = $lieu;
         $this->indicDepart = $id;
-
     }
 
     public function appliquerLieuRetour( $lieu, $id ){
@@ -38,25 +37,24 @@ class ChercherLieu extends Component {
     }
 
     public function render() {
-
         $suggestionsDepart = [];
         $suggestionsRetour = [];
 
         if( $this->indicDepart != null ){
             $lieuDepSelect = Lieu::find( $this->indicDepart);
-            $nomLieuDepSelect = $lieuDepSelect->nom;
-        }
-        if($this->indicDepart == null || $this->lieuDepart != $nomLieuDepSelect ){
-            $suggestionsDepart = $this->chercherLieu($this->lieuDepart, $suggestionsDepart);
-        }
+            $nomLieuDepSelect = $lieuDepSelect->nom;    }
 
+        if($this->indicDepart == null || $this->lieuDepart != $nomLieuDepSelect ){
+            $suggestionsDepart = $this->chercherLieu($this->lieuDepart, $suggestionsDepart);    }
+            
         if( $this->indicRetour != null ){
             $lieuRetSelect = Lieu::find( $this->indicRetour);
-            $nomLieuRetSelect = $lieuRetSelect->nom;
-        }
+            $nomLieuRetSelect = $lieuRetSelect->nom;    }
+
         if($this->indicRetour == null || $this->lieuRetour != $nomLieuRetSelect ){
-            $suggestionsRetour = $this->chercherLieu($this->lieuRetour, $suggestionsRetour);
-        }
+            $suggestionsRetour = $this->chercherLieu($this->lieuRetour, $suggestionsRetour);    }
+
+
 
         return view('livewire.chercher-lieu',[
              'lieuxDepart' => $suggestionsDepart,

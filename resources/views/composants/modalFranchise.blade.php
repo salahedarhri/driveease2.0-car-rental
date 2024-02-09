@@ -1,5 +1,4 @@
-<div x-show="open" x-transition.duration.500ms
-class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center max-md:px-4">
+<div class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center max-md:px-4">
 
      <!-- Franchise Modal -->
     @if( isset($protectionChoisi) && $prtc == $protectionChoisi)
@@ -44,13 +43,13 @@ class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center
         @endif
       </div>
        <div class="flex flex-row justify-between place-items-center p-6 max-md:p-4">
-         <p class="text-lg font-semibold text-teal-600 underline"> {{ $prtc->prix}} DH /Total</p>
+         <p class="text-lg text-teal-600 underline"><b>{{ $prtc->prix}} DH</b> /Total</p>
 
           @if( isset($protectionChoisi) && $prtc == $protectionChoisi)
-            <button class="py-2 px-3 font-semibold bg-neutral-500 hover:bg-neutral-600 rounded shadow transition text-white my-4 w-full" disabled>
+            <button class="py-2 px-3 font-semibold bg-neutral-500 hover:bg-neutral-600 rounded shadow transition text-white my-4 w-fit" disabled>
               Sélectionnée</button>
           @else
-            <button wire:click="choisirProtection({{ $prtc->id }})" class="py-2 px-3 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-full">
+            <button wire:click="choisirProtection({{ $prtc->id }})" class="py-2 px-3 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-fit">
               Sélectionner</button>
           @endif
 

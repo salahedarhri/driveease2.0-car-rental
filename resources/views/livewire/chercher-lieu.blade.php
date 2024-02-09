@@ -8,7 +8,6 @@
 
         @if ( count($lieuxDepart) > 0 )
             <div class="absolute z-10 mt-1 w-80 bg-white rounded shadow-xl p-2 font-cabin">
-
                 <div wire:loading wire:target="lieuDepart" class="p-2"><p class="text-sm">Chargement...</p></div>
                     @if( $lieuxDepart->where('type','Aéroport')->isNotEmpty())
                         <p wire:loading.remove wire:target="lieuDepart" class=" text-teal-600 underline text-sm">Aéroports : </p>
@@ -19,7 +18,6 @@
                                     <i class="font-normal ri-plane-line text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}</p>
                             @endforeach
                         </div>
-
                     @endif
                     @if( $lieuxDepart->where('type','Gare Routière')->isNotEmpty())
                         <p wire:loading.remove wire:target="lieuDepart" class=" text-teal-600 underline text-sm">Stations : </p>
@@ -31,11 +29,11 @@
                             @endforeach
                         </div>
                     @endif
-
             </div>
         @endif
 
         @error('lieuDepart') <p class="text-red-600 text-sm p-2">{{ $message }}</p>@enderror
+        @if(session('depart')) <p class="text-red-600 text-sm p-2">{{ session('depart') }}</p>@endif
     </label>
 
     {{-- Lieu de Retour --}}

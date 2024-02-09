@@ -2,36 +2,36 @@
     @include('composants.formulaireRecap')
 
     {{-- Chargement --}}
-    <div wire:loading class="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center">
-        <div class="flex flex-col items-center">
-            <span class="loading loading-spinner loading-lg"></span>
-            <p class="mt-2 font-semibold">Chargement...</p>
+    <div wire:loading class="fixed z-20 inset-0 bg-white bg-opacity-90 transition-all">
+        <div class="w-full h-screen flex flex-col justify-center place-items-center">
+            <span class="loading loading-spinner loading-lg text-teal-600"></span>
+            <p class="mt-2 font-semibold text-lg">Chargement...</p>
         </div>
     </div>
     
 
     {{-- Total avec Validation & Sticky Component--}}
     <div id="navbar-total" class="w-full bg-white shadow-xl">
-    <div class="flex flex-row justify-between max-md:justify-center place-items-center max-w-5xl mx-auto p-2 px-3 font-montserrat ">
-        <p class="text-xl max-md:hidden font-semibold ">Choisissez votre franchise et vos options</p>
+        <div class="flex flex-row justify-between max-md:justify-center place-items-center max-w-5xl mx-auto p-2 px-3 font-montserrat ">
+            <p class="text-xl max-md:hidden font-semibold ">Choisissez votre franchise et vos options</p>
 
-        <div class="flex flex-row place-items-center  gap-6 text-lg p-2">
-        @if(isset($voiture) && isset($protectionChoisi) && isset($optnsIds)) 
-            <div class="flex flex-row gap-1">
-            <p class="font-semibold">Total : </p>  
-            <p class="font-semibold text-teal-600">{{ ($voiture->prix * $nbJrs) + $prixPrtc + $prixOptns }} Dh</p>
+            <div class="flex flex-row place-items-center  gap-6 text-lg p-2">
+            @if(isset($voiture) && isset($protectionChoisi) && isset($optnsIds)) 
+                <div class="flex flex-row gap-1">
+                <p class="font-semibold">Total : </p>  
+                <p class="font-semibold text-teal-600">{{ ($voiture->prix * $nbJrs) + $prixPrtc + $prixOptns }} Dh</p>
+                </div>
+            @elseif( isset($voiture) && isset($protectionChoisi))    
+                <div class="flex flex-row gap-1">
+                <p class="font-semibold">Total :</p>
+                <p class="font-semibold text-teal-600"> {{ ($voiture->prix * $nbJrs) + $prixPrtc }} Dh</p>
+                </div>
+            @else
+                <p> ---- </p>
+            @endif
+            <button class="text-white bg-teal-600 hover:bg-teal-500 transition-all rounded-lg shadow-lg py-2 px-4 font-semibold">Valider</button>
             </div>
-        @elseif( isset($voiture) && isset($protectionChoisi))    
-            <div class="flex flex-row gap-1">
-            <p class="font-semibold">Total :</p>
-            <p class="font-semibold text-teal-600"> {{ ($voiture->prix * $nbJrs) + $prixPrtc }} Dh</p>
-            </div>
-        @else
-            <p> ---- </p>
-        @endif
-        <button class="text-white bg-teal-600 hover:bg-teal-500 transition-all rounded-lg shadow-lg py-2 px-4 font-semibold">Valider</button>
         </div>
-    </div>
     </div>
 
     <div class="w-full bg-slate-200 px-4">
@@ -101,11 +101,14 @@
                         @else
                         <button wire:click="choisirProtection({{ $prtc->id }})" class="p-2 font-semibold bg-teal-500 hover:bg-teal-600 rounded shadow transition text-white my-4 w-full">Sélectionner</button>
                         @endif
-                    <button class="text-sm font-semibold underline" @click="open =! open" >En savoir plus...</button>
+                    <button wire:key="modal-ouvrir-{{ $prtc->id }}" class="text-sm font-semibold underline" @click="open =!open" >En savoir plus...</button>
                     </div>
 
-                    {{-- Modal associé à l'option --}}
-                    @include('composants.modalFranchise')
+                    <div x-cloak x-show="open" >
+                        {{-- Modal associé à l'option --}}
+                        @include('composants.modalFranchise')   
+                    </div>
+
                 </div>
             </div>
             </div>
@@ -139,8 +142,11 @@
                         Retirer</button>
                 </div>
 
-                {{-- Modal associé à l'option  --}}
-                @include('composants.modalOptions')
+                <div x-cloak x-show="open">
+                    {{-- Modal associé à l'option  --}}
+                    @include('composants.modalOptions')
+                </div>
+
             @else
                 {{-- Affichage standard d'Option  --}}
                 <div  class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg">
@@ -159,8 +165,12 @@
                     <button wire:key="ajouter-{{ $optn->id }}" wire:click="AjouterOption({{ $optn->id }})"  class="py-2 px-4 bg-cyan-500 text-white font-semibold shadow rounded font-montserrat my-3 w-fit self-end">Sélectionner</button>
 
                 </div>
-                {{-- Modal associé à l'option --}}
-                @include('composants.modalOptions')
+
+                <div x-cloak x-show="open">
+                    {{-- Modal associé à l'option --}}
+                    @include('composants.modalOptions')
+                </div>
+
             @endif
             </div>
         @endforeach

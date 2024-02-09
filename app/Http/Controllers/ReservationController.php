@@ -22,6 +22,7 @@ class ReservationController extends Controller
             'after_or_equal' => 'La date de retour doit être postérieure ou égale à la date de départ.',
             'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
         ];
+
         $conditions = $request->validate([
             'minAge' => 'required',
             'lieuDepart' => 'required',
@@ -30,8 +31,6 @@ class ReservationController extends Controller
             'dateRetour' => ['required', 'date', "after:dateDepart"],
         ], $message);
         
-        //Data depuis la session ou depuis $request 
-
         $lieuDepart = $request->input('lieuDepart');
         $lieuRetour = $request->input('lieuRetour');
         $dateDepart = $request->input('dateDepart');
@@ -40,14 +39,17 @@ class ReservationController extends Controller
 
         $depart = Lieu::where('nom','like','%'.$lieuDepart.'%')
                         ->first();
-    
+
+        if($depart == null){    return redirect()->back()->with(['depart' => 'Veuillez choisir parmi nos suggestions, les villes concernées : Marrakech, Agadir et Casablanca']);}
+
+
         $voituresDisponibles = Car::where('ville', '=', $depart->ville)
-            ->where('minAge','<=',$minAge)
-            ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
-                $query->where('dateDepart', '<=', $dateRetour)
-                      ->where('dateRetour', '>=', $dateDepart);})
-            ->orderBy('prix','asc')
-            ->get();
+                                ->where('minAge','<=',$minAge)
+                                ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
+                                    $query->where('dateDepart', '<=', $dateRetour)
+                                        ->where('dateRetour', '>=', $dateDepart);})
+                                ->orderBy('prix','asc')
+                                ->get();
 
         //Formatter date pour affichage & manip.
         $dateDepart = Carbon::parse($dateDepart);
