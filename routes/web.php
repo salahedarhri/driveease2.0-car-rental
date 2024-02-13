@@ -9,7 +9,6 @@ use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminReservationController;
 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,20 +25,12 @@ Route::get('/', function () {   return view('landing'); })
     ->name('accueil');
 Route::get('/cars', [   CarController::class,'index'   ])
     ->name('cars');
-Route::get('/protection2', function(){  return view('protection2'); })
-    ->name('protection2');
 
  //Reservation
-Route::post('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
+Route::get('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
     ->name('voituresDisponibles');
 Route::post('/protection_&_options', [ReservationController::class, 'choisirProtection'])
     ->name('protection_&_options');
-// Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
-//     ->name('actualiserFranchise');
-// Route::post('/options', [ReservationController::class, 'choisirOptions'])
-//     ->name('choisirOptions');
-// Route::post('/option_remove', [ReservationController::class, 'retirerOption'])
-//     ->name('retirerOption');
 
 //Espace Client / Espace Admin (à revoir )
 Route::middleware('admin.check')->group(function () {
@@ -74,3 +65,11 @@ Route::prefix('admin')->group(  function(){
 });
 
 require __DIR__.'/auth.php';
+
+
+// Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
+//     ->name('actualiserFranchise');
+// Route::post('/options', [ReservationController::class, 'choisirOptions'])
+//     ->name('choisirOptions');
+// Route::post('/option_remove', [ReservationController::class, 'retirerOption'])
+//     ->name('retirerOption');

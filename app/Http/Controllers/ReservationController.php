@@ -13,38 +13,15 @@ use Carbon\Carbon;
 class ReservationController extends Controller
 {
     public function CheckDisponibilite(Request $request) {
-
-        $minDateDepart = Carbon::now()->addDay()->toDateString();
-
-        $message = [
-            'required' => 'Ce champ est obligatoire.',
-            'date' => 'La date doit être une date et heure valide.',
-            'after_or_equal' => 'La date de retour doit être postérieure ou égale à la date de départ.',
-            'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
-        ];
-
-        $conditions = $request->validate([
-            'minAge' => 'required',
-            'lieuDepart' => 'required',
-            'lieuRetour' => 'required',
-            'dateDepart' => ['required', 'date', "after_or_equal:{$minDateDepart}"],
-            'dateRetour' => ['required', 'date', "after:dateDepart"],
-        ], $message);
         
-        $lieuDepart = $request->input('lieuDepart');
-        $lieuRetour = $request->input('lieuRetour');
-        $dateDepart = $request->input('dateDepart');
-        $dateRetour = $request->input('dateRetour');
-        $minAge = $request->input('minAge');
+        // $dateDepart = session('dateDepart');
+        $dateDepart = session('dateDepart');
+        $dateRetour = session('dateRetour');
+        $lieuDepart = session('lieuDepart');
+        $lieuRetour = session('lieuRetour');
+        $minAge = session('minAge');
 
-        $depart = Lieu::where('nom','like','%'.$lieuDepart.'%')
-                        ->first();
-
-        if($depart == null){    return redirect()->back()->with(['depart' => 'Veuillez choisir parmi nos suggestions, les villes concernées : Marrakech, Agadir et Casablanca']);}
-
-
-        $voituresDisponibles = Car::where('ville', '=', $depart->ville)
-                                ->where('minAge','<=',$minAge)
+        $voituresDisponibles = Car::where('minAge','<=',$minAge)
                                 ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
                                     $query->where('dateDepart', '<=', $dateRetour)
                                         ->where('dateRetour', '>=', $dateDepart);})

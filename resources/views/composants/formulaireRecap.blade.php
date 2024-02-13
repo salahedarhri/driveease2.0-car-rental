@@ -32,14 +32,8 @@
         <i class="opacity-50 ri-edit-line text-2xl"></i>
       </div>
       @if(isset($voiture)) 
-        <form action="{{ route('voituresDisponibles')}}" method="post" class="flex flex-col align-center">
+        <form action="{{ route('voituresDisponibles')}}" method="GET" class="flex flex-col align-center">
           @csrf
-            <input type="hidden" name="dateDepart" value="{{ $dateDepart }}">
-            <input type="hidden" name="dateRetour" value="{{ $dateRetour }}">
-            <input type="hidden" name="lieuDepart" value="{{ $lieuDepart }}">
-            <input type="hidden" name="lieuRetour" value="{{ $lieuRetour }}">
-            <input type="hidden" name="minAge" value="{{ $minAge }}"> 
-  
           <button type="submit">
             <div class="flex flex-col justify-center align-center gap-1 text-center font-montserrat text-sm">
               <img src="{{ asset('images/voitures/'.$voiture->photo)}}" alt="Car Image" class="h-20 w-auto object-center object-contain">
