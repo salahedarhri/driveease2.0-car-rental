@@ -7,7 +7,7 @@
       <div  @click.away="open = false" class="flex flex-col max-w-xl bg-white shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
     @endif
        <div class="w-full flex justify-end p-1">
-         <button @click="open=false" ><i class="ri-close-line text-2xl hover:bg-red-500 hover:text-white rounded-full p-1"></i></button>
+         <button @click="open=false"><i class="ri-close-line text-3xl hover:bg-red-500 hover:text-white rounded-full p-1"></i></button>
        </div>
        <div class="flex flex-row justify-center place-items-center gap-2 p-2">
          <h4 class="text-xl font-semibold font-montserrat underline">Franchise {{ $prtc->type }}</h4>

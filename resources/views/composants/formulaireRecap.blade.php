@@ -26,7 +26,7 @@
     </div>
   
     {{-- Voiture --}}
-    <div class="p-2 sm:border-x max-sm:border-y border-opacity-50 border-slate-300 hover:bg-slate-100 transition duration-300">
+    <div class="flex flex-col p-2 sm:border-x max-sm:border-y border-opacity-50 border-slate-300 hover:bg-slate-100 transition duration-300">
       <div class="flex flex-row px-2 py-1 justify-between align-center text-cyan-600">
         <p class="font-bold  text-center font-montserrat"><i class="ri-roadster-fill font-normal text-2xl pr-2"></i>Voiture</p>   
         <i class="opacity-50 ri-edit-line text-2xl"></i>
@@ -43,7 +43,7 @@
           </button>
         </form>
       @else
-        <p class="font-cabin text-center">Aucune véhicule choisie pour le moment.<br>Veuillez choisir un véhicule</p>
+        <p class="font-cabin text-center px-2 py-4 max-w-sm self-center max-md:text-sm">Aucune véhicule choisie pour le moment.<br>Veuillez choisir un véhicule</p>
       @endif
     </div>
   
@@ -51,31 +51,29 @@
     <div class="flex flex-col align-center text-center p-2 sm:border-r max-sm:border-b border-opacity-50 border-slate-300 font-montserrat hover:bg-slate-100 transition duration-300 sm:rounded-r-xl max-sm:rounded-b-xl">
   
       <p class="font-bold text-cyan-600 p-1 text-left"><i class="ri-shield-line font-normal text-2xl pr-2"></i>Assurance</p>
-  
-      <div class="flex flex-row justify-between align-center p-2 text-sm max-md:gap-4 w-52 mx-auto">
-  
-        @if( isset($protectionChoisi))
-            <div class="text-left max-md:text-center">
-              <p class="text-base">{{ $protectionChoisi->type }}</p>
-              <p class="font-semibold  text-teal-600">{{ $prixPrtc }} Dh</p>
-            </div>
-    
-            @if( isset($optnsIds))
-            <div class="text-center px-2 border-l border-l-mediumBlue">
-              <p class="">{{ count($optnsIds) }} Options</p>
-              <p class="font-semibold  text-teal-600">{{ $prixOptns }} DH</p>
-            </div>
-            @else
-            <div class="text-center px-2 border-l border-l-mediumBlue">
-              <p class="">0 Option</p>
-              <p class="font-semibold  text-teal-600">---</p>
-            </div>
-            @endif
-  
-          @else
-            <p class="font-cabin text-center text-base">Vous pourrez choisir votre protection et vos options après avoir sélectionné votre véhicule</p>  
-          @endif
-      </div>
+
+      @if( isset($protectionChoisi))
+        <div class="flex flex-row justify-between align-center p-2 text-sm max-md:gap-4 w-52 mx-auto">
+              <div class="text-left max-md:text-center">
+                <p class="text-base">{{ $protectionChoisi->type }}</p>
+                <p class="font-semibold  text-teal-600">{{ $prixPrtc }} Dh</p>
+              </div>
+      
+              @if( isset($optnsIds))
+                <div class="text-center px-2 border-l border-l-mediumBlue">
+                  <p class="">{{ count($optnsIds) }} Options</p>
+                  <p class="font-semibold  text-teal-600">{{ $prixOptns }} DH</p>
+                </div>
+              @else
+                <div class="text-center px-2 border-l border-l-mediumBlue">
+                  <p class="">0 Option</p>
+                  <p class="font-semibold  text-teal-600">---</p>
+                </div>
+              @endif
+        </div>
+      @else
+        <p class="font-cabin text-center px-2 py-4 max-w-sm self-center text-base max-md:text-sm">Vous pourrez choisir votre protection et vos options après avoir sélectionné votre véhicule</p>  
+      @endif
     </div>
   
   

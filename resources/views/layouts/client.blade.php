@@ -10,8 +10,8 @@
    {{-- Tailwind + JS  --}}
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
-
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+
 </head>
 <body class="overflow-x-hidden antialiased">
 
@@ -35,7 +35,7 @@
                 <a href="{{ route('cars')}}" class="hover:text-lightBlue">Voitures</a>
             </li>
             <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
-                <a href="/protection2" wire:navigate class="hover:text-lightBlue">Protection</a>
+                <a href="{{ route('apropos') }}" class="hover:text-lightBlue">À propos</a>
             </li>
         </ul>
 

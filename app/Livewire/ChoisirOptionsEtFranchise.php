@@ -39,7 +39,6 @@ class ChoisirOptionsEtFranchise extends Component{
         $this->lieuRetour = session('lieuRetour');
         $this->nbJrs = session('nbJrs');
         $this->minAge = session('minAge');
-        
         $this->prtcChoisiId = session('prtc_choisi');
 
         if($request->has('idVoiture')){
@@ -93,15 +92,15 @@ class ChoisirOptionsEtFranchise extends Component{
 
         //Options 
         if( $this->optnsIds != null ){
-
             $optnsChoisi = Option::whereIn('id',$this->optnsIds)->get();
             $this->prixOptns = 0;
 
             foreach( $optnsChoisi as $optnChoisi){
-                $this->prixOptns += $optnChoisi->prix;
-            }
-
-        }else{  $optnsChoisi = null;    $this->prixOptns = 0;  }
+                $this->prixOptns += $optnChoisi->prix;  }
+        }else{
+            $optnsChoisi = null;
+            $this->prixOptns = 0;
+        }
 
         return view('livewire.choisir-options-et-franchise',[
             'protections' => $this->protections,
