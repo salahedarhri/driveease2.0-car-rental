@@ -29,8 +29,8 @@
   </div>
 </div>
 
-{{-- Carousel
-@include('composants.landingCarousel') --}}
+{{-- Carousel --}}
+@include('composants.landingCarousel')
 
 <!-- Newsletter -->
 @include('composants.landingNewsletter')
