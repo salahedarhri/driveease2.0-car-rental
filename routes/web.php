@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
 //Admin
@@ -24,7 +25,7 @@ use App\Livewire\ValiderReservation;
 //Pages standards
 Route::get('/', function () {   return view('landing'); })->name('accueil');
 Route::get('/à_propos', function () {   return view('about'); })->name('apropos');
-Route::get('/cars', [ CarController::class, 'index' ])->name('cars');
+Route::get('/voitures', [ CarController::class, 'index' ])->name('cars');
 
 //Reservation
 Route::get('/voituresDisponibles', [ ReservationController::class, 'CheckDisponibilite' ])

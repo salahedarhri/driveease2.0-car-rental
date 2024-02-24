@@ -16,7 +16,7 @@
 
     @foreach ($voituresDisponibles as $car)
 
-    <div x-cloak x-data="{ open: false }">
+    <div x-data="{ open: false }">
 
       <!-- Informations de Voiture   -->
       <div class="bg-white overflow-hidden flex flex-col sm:flex-row px-2 border-b-2">

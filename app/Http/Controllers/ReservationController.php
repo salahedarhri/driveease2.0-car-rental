@@ -73,20 +73,38 @@ class ReservationController extends Controller
 
         if($request->has('idVoiture')){
              $voiture= Car::find($request->idVoiture);
+             session([ 'idVoiture'=>$request->idVoiture ]);
+        }
+
+        if( session()->has('idVoiture') ){
+            $idVoiture = session('idVoiture');
+            $voiture = Car::find($idVoiture);
+        }
+
+        if( session()->has('optnsIds')){
+            $optnsIds = session('optnsIds');
+        }else{
+            $optnsIds = null;
         }
 
         $protections = Protection::all();
         $options = Option::all();
+ 
+        if( session()->has('prtc_choisi')){
+            $prtcChoisiId = session('prtc_choisi');
+            $protectionChoisi = Protection::find($prtcChoisiId);
+            $prix_prtc = $protectionChoisi->prix * $nbJrs;
+        }else{
+            $protectionChoisi = Protection::where('type','=','Basique')->first();
+            $prtc_choisi = $protectionChoisi->id;
+            $prix_prtc = $protectionChoisi->prix * $nbJrs;
+            session([ 'prtc_choisi'=>$prtc_choisi ]);
+        }
 
-        $protectionChoisi = Protection::where('type','=','Basique')->first();
-        $prtc_choisi = $protectionChoisi->id;
-        $prix_prtc = $protectionChoisi->prix * $nbJrs;
 
-        session([ 'voiture'=>$voiture  ]);
-        session([ 'prtc_choisi'=>$prtc_choisi  ]);
                 
         return view('prtc-et-optns',compact('prix_prtc','protectionChoisi','voiture','minAge','nbJrs',
-        'protections','options',
+        'protections','options','optnsIds',
         'dateDepartDt','dateRetourDt',
         'dateDepart','dateRetour',
         'lieuDepart','lieuRetour'));

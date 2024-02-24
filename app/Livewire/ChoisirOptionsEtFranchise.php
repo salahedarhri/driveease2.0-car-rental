@@ -43,7 +43,18 @@ class ChoisirOptionsEtFranchise extends Component{
 
         if($request->has('idVoiture')){
             $this->voiture = Car::find($request->idVoiture);
+            session(['idVoiture' =>$request->idVoiture]);
             session([ 'voiture'=>$this->voiture  ]);
+        }elseif( session()->has('idVoiture') ){
+            $idVoiture = session('idVoiture');
+            $this->voiture = Car::find($idVoiture);
+        }
+
+        if( session()->has('prtc_choisi')){
+            $this->prtcChoisiId = session('prtc_choisi');
+        }
+        if( session()->has('optnsIds')){
+            $this->optnsIds = session('optnsIds');
         }
 
         //Protection par défaut
@@ -55,7 +66,7 @@ class ChoisirOptionsEtFranchise extends Component{
 
     public function choisirProtection( $p ){
         
-        usleep(300000);
+        usleep(100000);
         $this->prtcChoisiId = $p;
 
         session([ 'prtc_choisi' =>   $this->prtcChoisiId ]);
@@ -64,7 +75,7 @@ class ChoisirOptionsEtFranchise extends Component{
 
     public function AjouterOption( $o ){
 
-        usleep(300000);
+        usleep(100000);
         $this->optnsIds[] = $o;
         $this->optnsIds = array_unique( $this->optnsIds );
 
@@ -73,7 +84,7 @@ class ChoisirOptionsEtFranchise extends Component{
 
     public function RetirerOption( $o ) {
 
-        usleep(300000);
+        usleep(100000);
         $index = array_search($o, $this->optnsIds);
     
         if ($index !== false) {

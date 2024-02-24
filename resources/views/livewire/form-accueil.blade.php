@@ -11,7 +11,7 @@
                         wire:model.live.debounce.100ms="lieuDepart" autocomplete="off" x-model="lieuDepart"
                         class="relative w-full p-3 cursor-pointer focus:ring-0 border-2 border-slate-300 focus:border-teal-500 max-lg:rounded-lg lg:rounded-l-xl">
                     @if ( count($lieuxDepart) > 0 )
-                    <div class="absolute z-30 mt-1 w-80 bg-white rounded shadow-xl p-2 font-cabin">
+                    <div wire:transition class="absolute z-30 mt-1 w-80 bg-white rounded shadow-xl p-2 font-cabin">
                         <div wire:loading wire:target="lieuDepart" class="p-2">
                             <p class="text-sm">Chargement...</p>
                         </div>
@@ -55,7 +55,7 @@
                         class="relative w-full p-3 cursor-pointer focus:ring-0 border-2 border-slate-300 focus:border-teal-500 max-lg:rounded-lg lg:border-l-0">
 
                     @if ( count($lieuxRetour) > 0 )
-                    <div class="absolute z-30 w-80 mt-1 bg-white rounded shadow-md p-2 font-cabin">
+                    <div wire:transition class="absolute z-30 w-80 mt-1 bg-white rounded shadow-md p-2 font-cabin">
 
                         <div wire:loading wire:target="lieuRetour" class="p-2">
                             <p class="text-sm">Chargement...</p>

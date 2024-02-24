@@ -36,6 +36,8 @@ class ValiderReservation extends Component{
     public $dateNsConducteur;
     public $numTelConducteur;
 
+    protected $prixTotal;
+
     protected $rules = [
         'prenomConducteur'=>'required',
         'nomConducteur'=>'required',
@@ -86,6 +88,10 @@ class ValiderReservation extends Component{
             foreach( $this->optnsChoisi as $optnChoisi){
                 $this->prixOptns += $optnChoisi->prix;
             }}
+
+        $this->prixTotal = $this->prixPrtc + $this->prixOptns;
+
+        session([ 'prixTotal' => $this->prixTotal ]);
 
         return view('livewire.resume',[
             'protectionChoisi' => $this->prtcChoisi,

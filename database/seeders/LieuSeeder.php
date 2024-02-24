@@ -18,8 +18,6 @@ class LieuSeeder extends Seeder
     {
             $locations = [
                 // Aéroports à Agadir
-                ['nom' => 'Aéroport Al Massira', 'ville' => 'Agadir', 'type' => 'Aéroport'],
-                ['nom' => 'Aéroport Inzegane', 'ville' => 'Agadir', 'type' => 'Aéroport'],
                 ['nom' => 'Aéroport Agadir–Al Massira', 'ville' => 'Agadir', 'type' => 'Aéroport'],
             
                 // Gares routières à Agadir

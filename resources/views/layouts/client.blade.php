@@ -10,7 +10,6 @@
 
   {{-- Tailwind + JS --}}
   @vite('resources/css/app.css')
-  @vite('resources/js/app.js')
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
 </head>
@@ -105,16 +104,18 @@
   {{-- Footer --}}
   <footer
     class="footer footer-center p-6 bg-gradient-to-r from-sky-700 to-sky-800 text-white rounded font-montserrat text-base">
-    <nav class="grid grid-flow-col gap-8 max-sm:gap-4">
+    <nav class="grid sm:grid-flow-col max-sm:grid-cols-1 gap-8 max-sm:gap-4">
       <a href="{{ route('apropos')}}" class="link link-hover hover:text-teal-500 transition">À propos</a>
       <a href="{{ route('cars')}}" class="link link-hover hover:text-teal-500 transition">Voitures</a>
       <a href="{{ route('accueil')}}" class="link link-hover hover:text-teal-500 transition">Accueil</a>
       <a href="{{ route('dashboard')}}" class="link link-hover hover:text-teal-500 transition">Espace Client</a>
     </nav>
     <aside>
-      <p class="font-semibold text-teal-100">DriveEase © 2024 - Ceci est une entreprise fictive</p>
+      <p class="font-semibold text-teal-100 max-sm:text-sm">DriveEase © 2024 - Ceci est une entreprise fictive</p>
     </aside>
   </footer>
+
+  @vite('resources/js/app.js')
 </body>
 
 </html>
