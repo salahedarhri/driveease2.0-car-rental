@@ -23,22 +23,26 @@ use App\Livewire\ValiderReservation;
 */
 
 //Pages standards
-Route::get('/', function () {   return view('landing'); })->name('accueil');
-Route::get('/à_propos', function () {   return view('about'); })->name('apropos');
-Route::get('/voitures', [ CarController::class, 'index' ])->name('cars');
+Route::get('/', function () {
+    return view('landing');
+})->name('accueil');
+Route::get('/à_propos', function () {
+    return view('about');
+})->name('apropos');
+Route::get('/voitures', [CarController::class, 'index'])->name('cars');
 
 //Reservation
-Route::get('/voituresDisponibles', [ ReservationController::class, 'CheckDisponibilite' ])
+Route::get('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
     ->name('voituresDisponibles');
-Route::post('/protection_&_options', [ ReservationController::class, 'choisirProtection' ])
+Route::post('/protection_&_options', [ReservationController::class, 'choisirProtection'])
     ->name('protection_&_options');
-Route::get('/resume', ValiderReservation::class )->name('resume');
+Route::get('/resume', ValiderReservation::class)->name('resume');
 
 //Checkout
-Route::post('/checkout', [ PaymentController::class, 'checkout'] )->name('checkout');
-Route::get('/success', [ PaymentController::class, 'success'] )->name('success');
-Route::get('/cancel', [ PaymentController::class, 'cancel'] )->name('cancel');
-Route::get('/webhook', [ PaymentController::class, 'webhook'] )->name('webhook');
+Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+Route::get('/success', [PaymentController::class, 'success'])->name('success');
+Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
+Route::post('/webhook', [PaymentController::class, 'webhook'])->name('webhook');
 
 //Espace Client / Espace Admin 
 Route::middleware('admin.check')->group(function () {

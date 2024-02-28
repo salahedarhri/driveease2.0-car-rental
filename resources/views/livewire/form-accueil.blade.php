@@ -44,6 +44,10 @@
                         </div>
                         @endif
                     </div>
+                    @elseif( count($lieuxDepart) == 0 && strlen($lieuDepart) > 4)
+                    <div wire:transition class="absolute z-30 mt-1 w-80 bg-white rounded shadow-xl p-2 font-cabin">
+                        <p class="text-sm p-2">Pas de résultats</p>
+                    </div>
                     @endif
 
                     @error('lieuDepart')<p class="text-red-600 text-sm p-2">{{ $message }}</p>@enderror
@@ -91,6 +95,10 @@
                         </div>
                         @endif
 
+                    </div>
+                    @elseif( count($lieuxRetour) == 0 && strlen($lieuRetour) > 4)
+                    <div wire:transition class="absolute z-30 mt-1 w-80 bg-white rounded shadow-xl p-2 font-cabin">
+                        <p class="text-sm p-2">Pas de résultats</p>
                     </div>
                     @endif
 
