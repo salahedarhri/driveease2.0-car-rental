@@ -63,10 +63,10 @@
       </div>
 
       @if( isset($protectionChoisi) && isset($voiture))
-      <form action="{{ route('protection_&_options')}}" method="post" class="w-full h-full ">
+      <form action="{{ route('protection_&_options')}}" method="post" class="w-full h-full">
         @csrf
         <button type="submit" class="w-full h-full">
-          <div class="flex flex-row justify-between align-center p-2 text-sm max-md:gap-4 w-52 mx-auto">
+          <div class="flex flex-row justify-between p-2 text-sm max-md:gap-4 w-52 mx-auto">
             <div class="text-left max-md:text-center">
               <p class="text-base">{{ $protectionChoisi->type }}</p>
               <p class="font-semibold  text-teal-600">{{ $prixPrtc }} Dh</p>

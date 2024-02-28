@@ -10,15 +10,13 @@
 @layer components {
   .formInput{
     @apply appearance-none border-slate-600 placeholder-slate-500 text-sm bg-no-repeat;
-  }
-}
+  }}
 
 /* Sticky Navbar */
 .sticky {
   position: fixed;
   top: 0;
-  width: 100%;
-}
+  width: 100%;  }
 
 .svgBackground{ 
   background-image:url(images/composants/landingSvg.svg);

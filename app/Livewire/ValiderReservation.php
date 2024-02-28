@@ -74,7 +74,6 @@ class ValiderReservation extends Component{
     }
 
     public function render(){
-
         
         // Protection
         $this->prtcChoisi = Protection::find( $this->prtcChoisiId );

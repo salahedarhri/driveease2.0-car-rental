@@ -51,7 +51,7 @@ class ReservationController extends Controller
         ]);
 
         //clean session from previous use
-        session()->forget('optnIdArray');
+        session()->forget('optnsIds');
         session()->forget('prtc_choisi');
     
         return view('dispo', compact('voituresDisponibles','nbJrs','minAge', 

@@ -32,10 +32,15 @@ Route::get('/voituresDisponibles', [ ReservationController::class, 'CheckDisponi
     ->name('voituresDisponibles');
 Route::post('/protection_&_options', [ ReservationController::class, 'choisirProtection' ])
     ->name('protection_&_options');
-Route::get('/resume', ValiderReservation::class )
-    ->name('resume');
+Route::get('/resume', ValiderReservation::class )->name('resume');
 
-//Espace Client / Espace Admin (à revoir )
+//Checkout
+Route::post('/checkout', [ PaymentController::class, 'checkout'] )->name('checkout');
+Route::get('/success', [ PaymentController::class, 'success'] )->name('success');
+Route::get('/cancel', [ PaymentController::class, 'cancel'] )->name('cancel');
+Route::get('/webhook', [ PaymentController::class, 'webhook'] )->name('webhook');
+
+//Espace Client / Espace Admin 
 Route::middleware('admin.check')->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');

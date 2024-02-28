@@ -30,6 +30,7 @@ export default {
                 lightBlue:'#51C3BC',
                 whiteBlue:'#EEEEEE',
                 bleuclair: '#e8f5ff',
+                stripe:'#6772e5',
             }
         },
     },
