@@ -13,16 +13,12 @@ class TrouverVoituresDispo extends Component {
     public $lieuRetour;
     public $dateDepart;
     public $dateRetour;
-    public $lieux_D_R = [] ;
-    public $indicDepart = null;
-    public $indicRetour = null;
-    public $suggestionsDepart = [];
-    public $suggestionsRetour = [];
+    public $indicDepart;
+    public $indicRetour;
+    public $suggestionsDepart;
+    public $suggestionsRetour;
+    public $lieux_All;
 
-    public function mount()
-    {
-        $this->lieux_D_R = Lieu::pluck('nom')->toArray();
-    }
 
     protected $rules = [
             'lieuDepart' => 'required',
@@ -39,37 +35,65 @@ class TrouverVoituresDispo extends Component {
             'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
         ];
 
-    public function chercherLieu( $lieu, $suggestions ){
+    public function mount(){
+        $this->lieux_All = Lieu::pluck('nom')->toArray();
+    }
 
-        $suggestions = [];
+    // public function chercherLieu( $lieu, $suggestions ){
 
-        if( $lieu!=null && strlen($lieu) >= 3){
-            $suggestions = Lieu::where('ville','like','%'.$lieu.'%')
-                                ->orWhere('nom', 'LIKE', '%'.$lieu.'%')
-                                ->limit(10)
-                                ->get();    }
+    //     $suggestions = [];
+
+    //     if( $lieu!=null && strlen($lieu) >= 3){
+    //         $suggestions = Lieu::where('ville','like','%'.$lieu.'%')
+    //                             ->orWhere('nom', 'LIKE', '%'.$lieu.'%')
+    //                             ->limit(10)
+    //                             ->get();    }
         
-        return $suggestions;
-    }
-    public function appliquerLieuDepart( $lieu, $id ){
+    //     return $suggestions;
+    // }
+
+    public function updatedLieuDepart(){
         $this->suggestionsDepart = [];
-        $this->lieuDepart = $lieu;
-        $this->indicDepart = $id;
+
+        if(strlen($this->lieuDepart) >= 3){
+            $this->suggestionsDepart = Lieu::where('ville','like','%'.$this->lieuDepart.'%')
+                                ->orWhere('nom', 'LIKE', '%'.$this->lieuDepart.'%')
+                                ->limit(10)
+                                ->get();
+        }
+        $this->indicDepart = count($this->suggestionsDepart) === 0;
     }
-    public function appliquerLieuRetour( $lieu, $id ){
+
+    
+    public function updatedLieuRetour(){
+        $this->suggestionsRetour = [];
+
+        if(strlen($this->lieuRetour) >= 3){
+            $this->suggestionsRetour = Lieu::where('ville','like','%'.$this->lieuRetour.'%')
+                                ->orWhere('nom', 'LIKE', '%'.$this->lieuRetour.'%')
+                                ->limit(10)
+                                ->get();
+        }
+        $this->indicRetour = count($this->suggestionsRetour) === 0;
+    }
+
+    public function appliquerLieuDepart( $lieu){
+        $this->suggestionsDepart = [];
+        $this->lieuDepart = $lieu;    
+    }
+    public function appliquerLieuRetour( $lieu){
         $this->suggestionsRetour= [];
-        $this->lieuRetour = $lieu;
-        $this->indicRetour = $id;
+        $this->lieuRetour = $lieu;    
     }
     public function validerDonnees(){
 
         $this->validate($this->rules, $this->message );
 
-        if( !in_array($this->lieuDepart,$this->lieux_D_R)){
+        if( !in_array($this->lieuDepart,$this->lieux_All)){
             return $this->addError('lieuDepart','Veuillez sélectionner une de nos suggestions, On couvre les villes suivantes: Agadir, Marrakech & Casablanca');
         }
 
-        if( !in_array($this->lieuRetour,$this->lieux_D_R)){
+        if( !in_array($this->lieuRetour,$this->lieux_All)){
             return $this->addError('lieuRetour','Veuillez sélectionner une de nos suggestions, On couvre les villes suivantes: Agadir, Marrakech & Casablanca');
         }
         
@@ -85,26 +109,24 @@ class TrouverVoituresDispo extends Component {
     }
     
     public function render(){
-        $suggestionsDepart = [];
-        $suggestionsRetour = [];
+        
+        // if( $this->indicDepart != null ){
+        //     $lieuDepSelect = Lieu::find( $this->indicDepart);
+        //     $nomLieuDepSelect = $lieuDepSelect->nom;    }
 
-        if( $this->indicDepart != null ){
-            $lieuDepSelect = Lieu::find( $this->indicDepart);
-            $nomLieuDepSelect = $lieuDepSelect->nom;    }
-
-        if($this->indicDepart == null || $this->lieuDepart != $nomLieuDepSelect ){
-            $suggestionsDepart = $this->chercherLieu($this->lieuDepart, $suggestionsDepart);    }
+        // if($this->indicDepart == null || $this->lieuDepart != $nomLieuDepSelect ){
+        //     $suggestionsDepart = $this->chercherLieu($this->lieuDepart, $suggestionsDepart);    }
             
-        if( $this->indicRetour != null ){
-            $lieuRetSelect = Lieu::find( $this->indicRetour);
-            $nomLieuRetSelect = $lieuRetSelect->nom;    }
+        // if( $this->indicRetour != null ){
+        //     $lieuRetSelect = Lieu::find( $this->indicRetour);
+        //     $nomLieuRetSelect = $lieuRetSelect->nom;    }
 
-        if($this->indicRetour == null || $this->lieuRetour != $nomLieuRetSelect ){
-            $suggestionsRetour = $this->chercherLieu($this->lieuRetour, $suggestionsRetour);    }
+        // if($this->indicRetour == null || $this->lieuRetour != $nomLieuRetSelect ){
+        //     $suggestionsRetour = $this->chercherLieu($this->lieuRetour, $suggestionsRetour);    }
 
         return view('livewire.form-accueil',[
-            'lieuxDepart' => $suggestionsDepart,
-            'lieuxRetour' => $suggestionsRetour,
+            'lieuxDepart' => $this->suggestionsDepart,
+            'lieuxRetour' => $this->suggestionsRetour,
         ]);
     }
 }
