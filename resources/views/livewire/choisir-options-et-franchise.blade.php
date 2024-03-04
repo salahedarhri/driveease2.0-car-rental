@@ -1,6 +1,7 @@
 <div>
     @include('composants.formulaireRecap')
 
+
     {{-- Chargement --}}
     <div wire:loading class="fixed z-20 inset-0 bg-white bg-opacity-90 transition-all">
         <div class="w-full h-screen flex flex-col justify-center place-items-center">

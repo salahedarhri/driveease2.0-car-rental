@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('location_options', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('option');
-            $table->string('urlPhoto');
-            $table->longText('description');
+            $table->string('status');
             $table->decimal('prix');
+            $table->tinyText('details');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('location_options');
+        Schema::dropIfExists('transactions');
     }
 };

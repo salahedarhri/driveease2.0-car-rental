@@ -39,19 +39,6 @@ class TrouverVoituresDispo extends Component {
         $this->lieux_All = Lieu::pluck('nom')->toArray();
     }
 
-    // public function chercherLieu( $lieu, $suggestions ){
-
-    //     $suggestions = [];
-
-    //     if( $lieu!=null && strlen($lieu) >= 3){
-    //         $suggestions = Lieu::where('ville','like','%'.$lieu.'%')
-    //                             ->orWhere('nom', 'LIKE', '%'.$lieu.'%')
-    //                             ->limit(10)
-    //                             ->get();    }
-        
-    //     return $suggestions;
-    // }
-
     public function updatedLieuDepart(){
         $this->suggestionsDepart = [];
 
@@ -110,20 +97,6 @@ class TrouverVoituresDispo extends Component {
     
     public function render(){
         
-        // if( $this->indicDepart != null ){
-        //     $lieuDepSelect = Lieu::find( $this->indicDepart);
-        //     $nomLieuDepSelect = $lieuDepSelect->nom;    }
-
-        // if($this->indicDepart == null || $this->lieuDepart != $nomLieuDepSelect ){
-        //     $suggestionsDepart = $this->chercherLieu($this->lieuDepart, $suggestionsDepart);    }
-            
-        // if( $this->indicRetour != null ){
-        //     $lieuRetSelect = Lieu::find( $this->indicRetour);
-        //     $nomLieuRetSelect = $lieuRetSelect->nom;    }
-
-        // if($this->indicRetour == null || $this->lieuRetour != $nomLieuRetSelect ){
-        //     $suggestionsRetour = $this->chercherLieu($this->lieuRetour, $suggestionsRetour);    }
-
         return view('livewire.form-accueil',[
             'lieuxDepart' => $this->suggestionsDepart,
             'lieuxRetour' => $this->suggestionsRetour,

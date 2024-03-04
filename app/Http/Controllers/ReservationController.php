@@ -4,17 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Car;
-use App\Models\Lieu;
 use App\Models\Protection;
 use App\Models\Option;
 use Carbon\Carbon;
 
 
-class ReservationController extends Controller
-{
+class ReservationController extends Controller{
+    
     public function CheckDisponibilite(Request $request) {
         
-        // $dateDepart = session('dateDepart');
         $dateDepart = session('dateDepart');
         $dateRetour = session('dateRetour');
         $lieuDepart = session('lieuDepart');
@@ -29,6 +27,7 @@ class ReservationController extends Controller
                                 ->get();
 
         //Formatter date pour affichage & manip.
+        Carbon::setLocale(config('app.locale'));
         $dateDepart = Carbon::parse($dateDepart);
         $dateRetour = Carbon::parse($dateRetour);
 
@@ -98,6 +97,7 @@ class ReservationController extends Controller
             $protectionChoisi = Protection::where('type','=','Basique')->first();
             $prtc_choisi = $protectionChoisi->id;
             $prix_prtc = $protectionChoisi->prix * $nbJrs;
+
             session([ 'prtc_choisi'=>$prtc_choisi ]);
         }
 

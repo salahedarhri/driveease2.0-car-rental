@@ -44,7 +44,7 @@ class ChoisirOptionsEtFranchise extends Component{
         if($request->has('idVoiture')){
             $this->voiture = Car::find($request->idVoiture);
             session(['idVoiture' =>$request->idVoiture]);
-            session([ 'voiture'=>$this->voiture  ]);
+            
         }elseif( session()->has('idVoiture') ){
             $idVoiture = session('idVoiture');
             $this->voiture = Car::find($idVoiture);
@@ -117,7 +117,6 @@ class ChoisirOptionsEtFranchise extends Component{
             'protections' => $this->protections,
             'options' => $this->options,
             'protectionChoisi' => $this->prtcChoisi,
-            'voiture' => $this->voiture,
             'optnsIds' =>$this->optnsIds,
   
         ]);

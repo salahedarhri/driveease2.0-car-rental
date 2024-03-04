@@ -12,8 +12,7 @@ use App\Models\Car;
 class PaymentController extends Controller
 {
 
-  public function checkout()
-  {
+  public function checkout(){
 
     \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
@@ -74,18 +73,17 @@ class PaymentController extends Controller
     return redirect($session->url);
   }
 
-  public function success()
-  {
+  public function success(){
+
     return view('paiement.succes');
   }
 
-  public function cancel()
-  {
+  public function cancel(){
+
     return view('paiement.annulation');
   }
 
-  public function webhook()
-  {
+  public function webhook(){
     $endpoint_secret = env('STRIPE_WEBHOOK_SECRET');
 
     $payload = @file_get_contents('php://input');

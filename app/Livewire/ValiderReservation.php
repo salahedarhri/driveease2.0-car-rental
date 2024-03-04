@@ -3,24 +3,31 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Livewire\Attributes\Layout;
 use App\Models\Protection;
 use App\Models\Option;
 use App\Models\Car;
+use Carbon\Carbon;
+use App\Models\Reservation;
 
 class ValiderReservation extends Component{
     public $dateDepart; 
+    public $dateDepartString; 
     public $dateRetour; 
+    public $dateRetourString; 
+
     public $dateDepartDt; 
     public $dateRetourDt; 
     public $lieuDepart; 
     public $lieuRetour;
     public $nbJrs; 
     public $minAge; 
+
+    //Voiture
+    private $idVoiture;
     public $voiture;
 
     //Protection
-    public $prtcChoisiId;
+    private $prtcChoisiId;
     public $prtcChoisi;
     public $prixPrtc;
 
@@ -41,7 +48,7 @@ class ValiderReservation extends Component{
     protected $rules = [
         'prenomConducteur'=>'required',
         'nomConducteur'=>'required',
-        'numTelConducteur'=>'required|regex:/(01)[0-9]{9}/',
+        'numTelConducteur'=>'required',
         'dateNsConducteur'=>'required|date',
         'emailConducteur'=>'required|email',
     ];
@@ -50,14 +57,12 @@ class ValiderReservation extends Component{
         'required' => 'Ce champ est obligatoire.',
         'date' => 'La date doit être une date et heure valide.',
         'email' => 'L\'email doit être un email valide.',
-        'regex:/(01)[0-9]{9}/' => 'Le numéro doit être un numéro de téléphone valide.',
     ];
 
     public function validerConducteur(){
         $this->validate( $this->rules, $this->message );
-
-        dump(session()->all());
     }
+
 
     public function mount(){
         $this->dateDepart = session('dateDepart');
@@ -67,17 +72,20 @@ class ValiderReservation extends Component{
         $this->lieuDepart = session('lieuDepart');
         $this->lieuRetour = session('lieuRetour');
         $this->nbJrs = session('nbJrs');
-        $this->voiture = session('voiture');
+        $this->idVoiture = session('idVoiture');
         $this->minAge = session('minAge');
         $this->prtcChoisiId = session('prtc_choisi');
         $this->optnsIds = session('optnsIds');
     }
 
     public function render(){
+
+        //Voiture
+        $this->voiture = Car::find( $this->idVoiture );
         
         // Protection
         $this->prtcChoisi = Protection::find( $this->prtcChoisiId );
-        $this->prixPrtc = $this->prtcChoisi->prix * $this->nbJrs;
+        $this->prixPrtc = (float)$this->prtcChoisi->prix * $this->nbJrs;
 
         //Options
         if( !empty($this->optnsIds)){
@@ -86,19 +94,16 @@ class ValiderReservation extends Component{
 
             foreach( $this->optnsChoisi as $optnChoisi){
                 $this->prixOptns += $optnChoisi->prix;
-            }}
+            }
+        }
 
-        $this->prixTotal = $this->prixPrtc + $this->prixOptns;
 
-        session([ 'prixTotal' => $this->prixTotal ]);
 
         return view('livewire.resume',[
             'protectionChoisi' => $this->prtcChoisi,
-            'voiture' => $this->voiture,
             'options' => $this->optnsChoisi,
             'nbJrs' => $this->nbJrs,
 
-        ])->extends('layouts.client')
-        ->section('content');  
+        ])->extends('layouts.client')->section('content');  
     }
 }
