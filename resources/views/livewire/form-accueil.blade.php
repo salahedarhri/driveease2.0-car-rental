@@ -110,7 +110,6 @@
                     @error('dateRetour') <p class="text-red-600 text-sm p-2">{{ $message }}</p> @enderror
                 </label>
             </div>
-
         </div>
         <div class="flex flex-row align-middle justify-between pt-2 text-sm mx-2">
             <div class="flex flex-row gap-2 place-items-center">

@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
-
-            // $table->foreignId('idConducteur')->constrained('conducteurs')->onUpdate('cascade')->onDelete('cascade');
-            // $table->foreignId('idCar')->constrained('cars')->onUpdate('cascade')->onDelete('cascade');
-            // $table->foreignId('idProtection')->constrained('protection_options')->onUpdate('cascade')->onDelete('cascade');
-
+            $table->foreignId('idConducteur')->constrained('conducteurs')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('idCar')->constrained('cars')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('idProtection')->constrained('protection_options')->onUpdate('cascade')->onDelete('cascade');
             $table->dateTime('dateDepart');
             $table->dateTime('dateRetour');
             $table->tinyText('lieuDepart');

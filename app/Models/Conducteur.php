@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Conducteur extends Model
 {
+    protected $table = 'conducteurs';
+
     use HasFactory;
 
     protected $fillable = [

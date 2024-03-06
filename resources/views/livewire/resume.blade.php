@@ -110,7 +110,7 @@
 
   {{-- Conducteur --}}
   <div class="w-full bg-slate-100 ">
-    <div class="max-w-7xl mx-auto pt-6 px-3 pb-8 ">
+    <div class="max-w-7xl mx-auto pt-6 px-3 ">
 
       <div class="flex flex-row justify-between max-sm:flex-col max-sm:justify-center max-sm:text-center">
         <p class="text-2xl font-bold font-montserrat pb-6">Détails du conducteur</p>
@@ -119,7 +119,7 @@
 
       <form wire:submit.prevent="validerConducteur"
         class="grid grid-cols-2 max-sm:grid-cols-1 gap-8 justify-center align-center max-w-4xl mx-auto font-montserrat md:p-7 max-md:p-3 rounded">
-
+        @csrf
         <label for="prenomConducteur" class="flex flex-col gap-1 font-semibold">Prénom*
           <input type="text" wire:model="prenomConducteur"
             class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
@@ -153,7 +153,7 @@
 
   {{-- Paiement --}}
   <div class="w-full bg-slate-100">
-    <div class="max-w-7xl mx-auto sm:p-8 max-sm:px-4 max-sm:py-8">
+    <div class="max-w-7xl mx-auto sm:py-8 sm:px-3 max-sm:px-4 max-sm:py-8">
 
       <p class="text-2xl font-bold font-montserrat pb-8 max-sm:text-center">Modes de paiement</p>
 
@@ -169,6 +169,13 @@
               class="font-semibold text-white bg-gradient-to-r from-teal-500 via-teal-400 to-cyan-500 rounded-lg shadow py-3 px-6 w-fit mx-auto">
               Payer À L'agence
             </button>
+            @if( session('success'))
+              <div role="alert" class="alert alert-success">
+                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>{{ session('success')}}</span>
+              </div>
+            @endif
+
           </div>
         </div>
       </form>

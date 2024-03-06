@@ -6,15 +6,15 @@ use Livewire\Component;
 use App\Models\Protection;
 use App\Models\Option;
 use App\Models\Car;
-use Carbon\Carbon;
+use App\Models\Conducteur;
 use App\Models\Reservation;
+
+use App\Mail\WelcomeMail;
+use Illuminate\Support\Facades\Mail;
 
 class ValiderReservation extends Component{
     public $dateDepart; 
-    public $dateDepartString; 
     public $dateRetour; 
-    public $dateRetourString; 
-
     public $dateDepartDt; 
     public $dateRetourDt; 
     public $lieuDepart; 
@@ -23,11 +23,11 @@ class ValiderReservation extends Component{
     public $minAge; 
 
     //Voiture
-    private $idVoiture;
+    public $idVoiture;
     public $voiture;
 
     //Protection
-    private $prtcChoisiId;
+    public $prtcChoisiId;
     public $prtcChoisi;
     public $prixPrtc;
 
@@ -48,19 +48,46 @@ class ValiderReservation extends Component{
     protected $rules = [
         'prenomConducteur'=>'required',
         'nomConducteur'=>'required',
-        'numTelConducteur'=>'required',
+        'numTelConducteur'=>'required|unique:App\Models\Conducteur,num_tel',
         'dateNsConducteur'=>'required|date',
-        'emailConducteur'=>'required|email',
+        'emailConducteur'=>'required|email|unique:App\Models\Conducteur,email',
     ];
 
     protected $message = [
         'required' => 'Ce champ est obligatoire.',
         'date' => 'La date doit être une date et heure valide.',
         'email' => 'L\'email doit être un email valide.',
+        'numTelConducteur.unique' => 'Ce numéro de téléphone est déjà utilisé.',
+        'emailConducteur.unique' => 'Cette adresse email est déjà utilisée.',
     ];
 
     public function validerConducteur(){
         $this->validate( $this->rules, $this->message );
+
+        //Conducteur
+        $conducteur = new Conducteur;
+        $conducteur->nom = $this->nomConducteur ;
+        $conducteur->prenom = $this->prenomConducteur ;
+        $conducteur->date_naissance = $this->dateNsConducteur ;
+        $conducteur->email = $this->emailConducteur ;
+        $conducteur->num_tel = $this->numTelConducteur ;
+        $conducteur->save();
+
+        //Reservation
+        $reservation = new Reservation;
+        $reservation->idConducteur = $conducteur->id;
+        $reservation->idCar = $this->idVoiture;
+        $reservation->idProtection = $this->prtcChoisiId;
+        $reservation->lieuDepart = $this->lieuDepart ;
+        $reservation->lieuRetour = $this->lieuRetour ;
+        $reservation->dateDepart = $this->dateDepart ;
+        $reservation->dateRetour = $this->dateRetour ;
+        $reservation->minAge = $this->minAge ;
+        $reservation->save();
+
+        Mail::to($conducteur->email)->send( new WelcomeMail($conducteur, $reservation));
+
+        return redirect()->back()->with('success','Réservation crée avec succès, Veuillez visiter votre espace Gmail !');
     }
 
 
@@ -96,8 +123,6 @@ class ValiderReservation extends Component{
                 $this->prixOptns += $optnChoisi->prix;
             }
         }
-
-
 
         return view('livewire.resume',[
             'protectionChoisi' => $this->prtcChoisi,
