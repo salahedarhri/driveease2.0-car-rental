@@ -11,15 +11,15 @@ class Reservation extends Model
     use HasFactory;
 
     public function user(){
-    return $this->belongsTo(User::class, 'idUser','id');
+    return $this->belongsTo(User::class);
     }
 
     public function car(){
-        return $this->belongsTo(Car::class, 'idCar','id');
+        return $this->belongsTo(Car::class);
         }
 
     public function protection(){
-        return $this->belongsTo(Protection::class,'idProtection','id');
+        return $this->belongsTo(Protection::class);
     }
 
 }

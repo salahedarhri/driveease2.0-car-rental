@@ -21,7 +21,7 @@ class ValiderReservation extends Component{
     public $lieuRetour;
     public $nbJrs; 
     public $minAge; 
-
+    
     //Voiture
     public $idVoiture;
     public $voiture;
@@ -43,7 +43,7 @@ class ValiderReservation extends Component{
     public $dateNsConducteur;
     public $numTelConducteur;
 
-    protected $prixTotal;
+    public $prixTotal;
 
     protected $rules = [
         'prenomConducteur'=>'required',
@@ -62,6 +62,7 @@ class ValiderReservation extends Component{
     ];
 
     public function validerConducteur(){
+
         $this->validate( $this->rules, $this->message );
 
         //Conducteur
@@ -85,9 +86,13 @@ class ValiderReservation extends Component{
         $reservation->minAge = $this->minAge ;
         $reservation->save();
 
-        Mail::to($conducteur->email)->send( new WelcomeMail($conducteur, $reservation));
+        session([
+            'reservation' => $reservation->id,
+        ]);
 
-        return redirect()->back()->with('success','Réservation crée avec succès, Veuillez visiter votre espace Gmail !');
+        // Mail::to($conducteur->email)->send( new WelcomeMail($conducteur, $reservation));
+
+        return redirect()->route('email')->with('success','Réservation crée avec succès, Veuillez visiter votre espace Gmail !');
     }
 
 

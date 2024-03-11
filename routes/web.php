@@ -26,6 +26,7 @@ use App\Livewire\ValiderReservation;
 Route::get('/', function () {
     return view('landing');
 })->name('accueil');
+
 Route::get('/à_propos', function () {
     return view('about');
 })->name('apropos');
@@ -36,6 +37,8 @@ Route::get('/voituresDisponibles', [ReservationController::class, 'CheckDisponib
     ->name('voituresDisponibles');
 Route::post('/protection_&_options', [ReservationController::class, 'choisirProtection'])
     ->name('protection_&_options');
+Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])
+    ->name('email');
 Route::get('/resume', ValiderReservation::class)->name('resume');
 
 //Checkout

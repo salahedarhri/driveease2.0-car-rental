@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Car;
 use App\Models\Protection;
 use App\Models\Option;
+
+use App\Models\Conducteur;
+use App\Models\Reservation;
 use Carbon\Carbon;
 
 
@@ -31,7 +34,7 @@ class ReservationController extends Controller{
         $dateDepart = Carbon::parse($dateDepart);
         $dateRetour = Carbon::parse($dateRetour);
 
-        $nbJrs = $dateRetour->diffInDays($dateDepart);
+        $nbJrs = max(1, $dateRetour->diffInDays($dateDepart));
 
         //Date pour affichage
         $dateDepartDt = $dateDepart->format('d-m-Y H:i');
@@ -109,6 +112,19 @@ class ReservationController extends Controller{
         'dateDepart','dateRetour',
         'lieuDepart','lieuRetour'));
     }   
+
+    public function renduEmail(){
+        $reservationId = session('reservation');
+
+        $reservation = Reservation::find( $reservationId );
+        $conducteur = Conducteur::find( $reservation->idConducteur );
+        $voiture = Car::find($reservation->idCar);
+
+        return view('emails.emailReservation',[
+            'conducteur' => $conducteur,
+            'reservation' => $reservation,
+        ]);
+    }
 
     // public function actualiserFranchise(Request $request){
 

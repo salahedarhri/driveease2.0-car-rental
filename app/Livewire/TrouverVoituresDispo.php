@@ -31,8 +31,8 @@ class TrouverVoituresDispo extends Component {
     protected $message = [
             'required' => 'Ce champ est obligatoire.',
             'date' => 'La date doit être une date et heure valide.',
-            'after_or_equal' => 'La date de retour doit être postérieure ou égale à la date de départ.',
-            'dateDepart.after_or_equal' => 'La date de départ doit être au moins un jour après la date actuelle.',
+            'after_or_equal:now' => 'La date de retour doit être postérieure ou égale à la date de départ.',
+            'dateDepart.after_or_equal:now' => 'La date de départ doit être au moins un jour après la date actuelle.',
         ];
 
     public function mount(){

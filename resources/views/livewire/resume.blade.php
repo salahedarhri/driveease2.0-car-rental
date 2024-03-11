@@ -1,6 +1,14 @@
 <div>
   @include('composants.formulaireRecap')
 
+  {{-- Chargement --}}
+  <div wire:loading class="fixed z-20 inset-0 bg-white bg-opacity-90 transition-all">
+    <div class="w-full h-screen flex flex-col justify-center place-items-center">
+        <span class="loading loading-spinner loading-lg text-teal-600"></span>
+          <p class="mt-2 font-semibold text-lg">Chargement...</p>
+    </div>
+  </div>
+
   {{-- Titre + total --}}
   <div id="navbar-total" class="w-full bg-white z-50 shadow-xl">
     <div class="flex flex-row justify-between max-md:justify-center place-items-center max-w-7xl mx-auto p-2 px-3 font-montserrat ">
@@ -122,30 +130,29 @@
         @csrf
         <label for="prenomConducteur" class="flex flex-col gap-1 font-semibold">Prénom*
           <input type="text" wire:model="prenomConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
-          @error('prenomConducteur') <p class="text-red-600 text-sm p-1">{{ $message }}</p>@enderror
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 @error('prenomConducteur') border-red-500 @enderror">
+          @error('prenomConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
         <label for="nomConducteur" class="flex flex-col gap-1 font-semibold">Nom*
           <input type="text" wire:model="nomConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
-          @error('nomConducteur') <p class="text-red-600 text-sm p-1">{{ $message }}</p>@enderror
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 @error('nomConducteur') border-red-500 @enderror">
+          @error('nomConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
         <label for="dateNsConducteur" class="flex flex-col gap-1 font-semibold">Date de naissance*
           <input type="date" wire:model="dateNsConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
-          @error('dateNsConducteur') <p class="text-red-600 text-sm p-1">{{ $message }}</p>@enderror
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 @error('dateNsConducteur') border-red-500 @enderror">
+          @error('dateNsConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
         <label for="emailConducteur" class="flex flex-col gap-1 font-semibold">Email*
           <input type="email" wire:model="emailConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
-          @error('emailConducteur') <p class="text-red-600 text-sm p-1">{{ $message }}</p>@enderror
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 @error('emailConducteur') border-red-500 @enderror">
+          @error('emailConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
         <label for="numTelConducteur" class="col-span-2 flex flex-col gap-1 font-semibold sm:w-80 max-sm:w-full max-sm:col-span-1 mx-auto"><p class="font-semibold">Numéro de téléphone* <i class="text-teal-600">(Maroc)</i></p>
           <input type="tel" pattern="[0-9]{10}" wire:model="numTelConducteur" placeholder="06XXXXXXXX"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
-          @error('numTelConducteur') <p class="text-red-600 text-sm p-1">{{ $message }}</p>@enderror
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 @error('emailConducteur') border-red-500 @enderror">
+          @error('numTelConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
-
 
     </div>
 
