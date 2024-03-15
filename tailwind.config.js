@@ -31,6 +31,7 @@ export default {
                 whiteBlue:'#EEEEEE',
                 bleuclair: '#e8f5ff',
                 stripe:'#6772e5',
+                bleufonce:'#1b1b22',
             }
         },
     },
