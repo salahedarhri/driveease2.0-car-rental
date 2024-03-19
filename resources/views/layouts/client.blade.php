@@ -20,7 +20,7 @@
 
   {{-- Navbar --}}
   <div class="w-full bg-gradient-to-r from-sky-700 to-sky-800">
-    <nav class="font-montserrat flex justify-between px-6 md:py-2 max-md:py-1 max-w-7xl mx-auto  text-white">
+    <nav class="font-montserrat flex justify-between px-6 md:py-2 max-md:py-1 max-md:px-2 max-w-7xl mx-auto  text-white">
 
       <div class="flex items-center">
         <a href="{{ route('accueil')}}">
@@ -70,12 +70,11 @@
       {{-- Medium / Small Screen --}}
       <div class="md:hidden flex items-center align-center justify-center">
         <div class="dropdown dropdown-end p-0 mr-3">
-          <div tabindex="0" role="button" class="m-1"><i class="ri-account-circle-fill text-slate-100 text-3xl"></i>
+          <div tabindex="0" role="button" class="m-1"><i class="ri-account-circle-fill text-slate-100 text-3xl active:text-teal-400"></i>
           </div>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-1 shadow bg-base-100 rounded-box w-48 text-darkBlue">
             @auth
-            <li><a class="font-semibold tracking-wide" href="{{ route('dashboard') }}" class="bg-emerald-200">Espace
-                Client</a></li>
+            <li><a class="font-semibold tracking-wide" href="{{ route('dashboard') }}" class="bg-emerald-200">Espace Client</a></li>
             @endauth
             @guest
             <li><a class="font-semibold tracking-wide" href="{{ route('login') }}">Connexion</a></li>
@@ -105,12 +104,12 @@
 
   {{-- Footer --}}
   <footer
-    class="footer footer-center p-6 bg-gradient-to-r from-sky-700 to-sky-800 text-white rounded font-montserrat text-base">
-    <nav class="grid sm:grid-flow-col max-sm:grid-cols-1 gap-8 max-sm:gap-4">
-      <a href="{{ route('apropos')}}" class="link link-hover hover:text-teal-500 transition">À propos</a>
-      <a href="{{ route('cars')}}" class="link link-hover hover:text-teal-500 transition">Voitures</a>
-      <a href="{{ route('accueil')}}" class="link link-hover hover:text-teal-500 transition">Accueil</a>
-      <a href="{{ route('dashboard')}}" class="link link-hover hover:text-teal-500 transition">Espace Client</a>
+    class="footer footer-center p-6 bg-gradient-to-b from-sky-700 to-sky-800 text-white font-montserrat text-base z-20 shadow-lg">
+    <nav class="grid sm:grid-flow-col max-sm:grid-cols-1 gap-8">
+      <a href="{{ route('apropos') }}" class="link link-hover hover:text-teal-500 transition">À propos</a>
+      <a href="{{ route('cars') }}" class="link link-hover hover:text-teal-500 transition">Voitures</a>
+      <a href="{{ route('accueil') }}" class="link link-hover hover:text-teal-500 transition">Accueil</a>
+      <a href="{{ route('dashboard') }}" class="link link-hover hover:text-teal-500 transition">Espace Client</a>
     </nav>
     <aside>
       <p class="font-semibold text-teal-100 max-sm:text-sm">DriveEase © 2024 - Ceci est une entreprise fictive</p>

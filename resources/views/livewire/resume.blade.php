@@ -128,30 +128,30 @@
       <form wire:submit.prevent="validerConducteur"
         class="grid grid-cols-2 max-sm:grid-cols-1 gap-8 justify-center align-center max-w-4xl mx-auto font-montserrat md:p-7 max-md:p-3 rounded">
         @csrf
-        <label for="prenomConducteur" class="flex flex-col gap-1 font-semibold">Prénom*
+        <label for="prenomConducteur" class="flex flex-col gap-1 font-semibold">Prénom *
           <input type="text" wire:model="prenomConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 ">
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-300 font-normal border-2 placeholder-gray-300 shadow">
           @error('prenomConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
-        <label for="nomConducteur" class="flex flex-col gap-1 font-semibold">Nom*
+        <label for="nomConducteur" class="flex flex-col gap-1 font-semibold">Nom *
           <input type="text" wire:model="nomConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 ">
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-300 font-normal border-2 placeholder-gray-300 shadow">
           @error('nomConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
-        <label for="dateNsConducteur" class="flex flex-col gap-1 font-semibold">Date de naissance*
+        <label for="dateNsConducteur" class="flex flex-col gap-1 font-semibold">Date de naissance *
           <input type="date" wire:model="dateNsConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300 ">
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-300 font-normal border-2 placeholder-gray-300 shadow">
           @error('dateNsConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
-        <label for="emailConducteur" class="flex flex-col gap-1 font-semibold">Email*
+        <label for="emailConducteur" class="flex flex-col gap-1 font-semibold">Email *
           <input type="email" wire:model="emailConducteur"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-300 font-normal border-2 placeholder-gray-300 shadow">
           @error('emailConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
         <label for="numTelConducteur" class="col-span-2 flex flex-col gap-1 font-semibold sm:w-80 max-sm:w-full max-sm:col-span-1 mx-auto">
-          <p class="font-semibold">Numéro de téléphone* <i class="text-teal-600">(Maroc)</i></p>
+          <p class="font-semibold">Numéro de téléphone * <i class="text-teal-600">(Maroc)</i></p>
           <input type="tel" pattern="[0-9]{10}" wire:model="numTelConducteur" placeholder="06XXXXXXXX"
-            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-400 font-normal border-2 placeholder-gray-300">
+            class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-300 font-normal border-2 placeholder-gray-300 shadow">
           @error('numTelConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
 

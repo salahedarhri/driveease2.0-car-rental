@@ -49,13 +49,14 @@ class ValiderReservation extends Component{
         'prenomConducteur'=>'required',
         'nomConducteur'=>'required',
         'numTelConducteur'=>'required|unique:App\Models\Conducteur,num_tel',
-        'dateNsConducteur'=>'required|date',
+        'dateNsConducteur'=>'required|date|before:today',
         'emailConducteur'=>'required|email|unique:App\Models\Conducteur,email',
     ];
 
     protected $message = [
         'required' => 'Ce champ est obligatoire.',
         'date' => 'La date doit être une date et heure valide.',
+        'before:today' => 'La date doit être une date valide.',
         'email' => 'L\'email doit être un email valide.',
         'numTelConducteur.unique' => 'Ce numéro de téléphone est déjà utilisé.',
         'emailConducteur.unique' => 'Cette adresse email est déjà utilisée.',
@@ -67,11 +68,11 @@ class ValiderReservation extends Component{
 
         //Conducteur
         $conducteur = new Conducteur;
-        $conducteur->nom = $this->nomConducteur ;
-        $conducteur->prenom = $this->prenomConducteur ;
-        $conducteur->date_naissance = $this->dateNsConducteur ;
-        $conducteur->email = $this->emailConducteur ;
-        $conducteur->num_tel = $this->numTelConducteur ;
+        $conducteur->nom = trim($this->nomConducteur );
+        $conducteur->prenom = trim($this->prenomConducteur );
+        $conducteur->date_naissance = trim($this->dateNsConducteur );
+        $conducteur->email = trim($this->emailConducteur );
+        $conducteur->num_tel = trim($this->numTelConducteur );
         $conducteur->save();
 
         //Reservation
@@ -79,11 +80,11 @@ class ValiderReservation extends Component{
         $reservation->idConducteur = $conducteur->id;
         $reservation->idCar = $this->idVoiture;
         $reservation->idProtection = $this->prtcChoisiId;
-        $reservation->lieuDepart = $this->lieuDepart ;
-        $reservation->lieuRetour = $this->lieuRetour ;
-        $reservation->dateDepart = $this->dateDepart ;
-        $reservation->dateRetour = $this->dateRetour ;
-        $reservation->minAge = $this->minAge ;
+        $reservation->lieuDepart = trim($this->lieuDepart );
+        $reservation->lieuRetour = trim($this->lieuRetour );
+        $reservation->dateDepart = trim($this->dateDepart );
+        $reservation->dateRetour = trim($this->dateRetour );
+        $reservation->minAge = trim($this->minAge );
         $reservation->save();
 
         session([

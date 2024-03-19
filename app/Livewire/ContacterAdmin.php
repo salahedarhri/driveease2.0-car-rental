@@ -3,6 +3,9 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Message;
+
+use function PHPUnit\Framework\isEmpty;
 
 class ContacterAdmin extends Component
 {
@@ -16,9 +19,9 @@ class ContacterAdmin extends Component
     protected $rules = [
         'prenomContact'=>'required',
         'nomContact'=>'required',
-        'numTelContact'=>'required',
         'emailContact'=>'required|email',
         'msgContact'=>'required',
+        'dateNsConducteur'=>'required|date',
     ];
 
     protected $message = [
@@ -29,7 +32,19 @@ class ContacterAdmin extends Component
     public function validerContact(){
         $this->validate( $this->rules, $this->message );
 
+        $message = new Message;
+        $message->nom = trim($this->nomContact);
+        $message->prenom = trim($this->prenomContact);
+        $message->email = trim($this->emailContact);
+        $message->message = trim($this->msgContact);
+
+        if( !isEmpty($this->numTelContact)){
+            $message->telephone = trim($this->numTelContact);
+        }
+
+        $message->save();
         
+        session()->flash('message', 'Votre message a été envoyé avec succès!');
     }
 
     public function render()

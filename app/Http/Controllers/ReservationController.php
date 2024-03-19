@@ -30,7 +30,7 @@ class ReservationController extends Controller{
                                 ->get();
 
         //Formatter date pour affichage & manip.
-        Carbon::setLocale(config('app.locale'));
+        // Carbon::setLocale(config('app.locale'));
         $dateDepart = Carbon::parse($dateDepart);
         $dateRetour = Carbon::parse($dateRetour);
 

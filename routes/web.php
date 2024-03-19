@@ -27,7 +27,7 @@ Route::get('/', function () {
     return view('landing');
 })->name('accueil');
 
-Route::get('/à_propos', function () {
+Route::get('/apropos', function () {
     return view('about');
 })->name('apropos');
 Route::get('/voitures', [CarController::class, 'index'])->name('cars');
