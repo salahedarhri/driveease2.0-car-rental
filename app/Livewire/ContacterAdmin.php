@@ -5,8 +5,6 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Message;
 
-use function PHPUnit\Framework\isEmpty;
-
 class ContacterAdmin extends Component
 {
 
@@ -38,7 +36,7 @@ class ContacterAdmin extends Component
         $message->email = trim($this->emailContact);
         $message->message = trim($this->msgContact);
 
-        if( !isEmpty($this->numTelContact)){
+        if( !empty($this->numTelContact)){
             $message->telephone = trim($this->numTelContact);
         }
 

@@ -1,4 +1,4 @@
-<div>
+<div x-data="{ navbar:false ,sticky:$refs.filtres.offsetTop }" @scroll.window="navbar=(window.pageYOffset > sticky)?true:false">
     @include('composants.formulaireRecap')
 
 
@@ -12,7 +12,7 @@
 
 
     {{-- Total avec Validation & Sticky Component--}}
-    <div id="navbar-total" class="w-full bg-white shadow-xl">
+    <div x-ref="filtres" x-bind:class="navbar?'fixed top-0':''" class="w-full bg-white shadow-xl">
         <div
             class="flex flex-row justify-between max-md:justify-center place-items-center max-w-5xl mx-auto p-2 px-3 font-montserrat ">
             <p class="text-xl max-md:hidden font-semibold ">Choisissez votre franchise et vos options</p>

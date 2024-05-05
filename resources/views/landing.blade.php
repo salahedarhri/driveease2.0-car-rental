@@ -33,7 +33,7 @@
 @include('composants.landingCarousel')
 
 <!-- Newsletter -->
-@include('composants.landingNewsletter')
+@livewire('NewsletterAccueil')
 
 <!-- fourth part -->
 <div class="w-full bg-slate-200">

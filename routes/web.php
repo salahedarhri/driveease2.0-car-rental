@@ -48,7 +48,7 @@ Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 Route::post('/webhook', [PaymentController::class, 'webhook'])->name('webhook');
 
 //Espace Client / Espace Admin 
-Route::middleware('admin.check')->group(function () {
+Route::middleware('admincheck')->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('admin.dashboard');
     })->name('admin.dashboard');
@@ -70,7 +70,7 @@ Route::middleware('auth')->group(function () {
 });
 
 //Admin Routing
-Route::group(['prefix' => 'admin', 'middleware' => 'admin.check'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'admincheck'], function () {
     Route::resource('utilisateurs', AdminUserController::class);
     Route::resource('voitures', AdminCarController::class);
     Route::resource('reservations', AdminReservationController::class);
