@@ -3,7 +3,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Lieu;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ReservationController;
 
 class TrouverVoituresDispo extends Component {
@@ -92,7 +91,15 @@ class TrouverVoituresDispo extends Component {
             'minAge' => $this->minAge,
         ]);
 
-        return redirect()->action([ ReservationController::class,'CheckDisponibilite']);
+        // return redirect()->action([ ReservationController::class,'CheckDisponibilite']);
+
+        return redirect()->route('VoituresDisponibles',[
+            'dateDepart'=> $this->dateDepart,
+            'dateRetour'=> $this->dateRetour,
+            'lieuDepart'=> $this->lieuDepart,
+            'lieuRetour'=> $this->lieuRetour,
+            'minAge'=> $this->minAge,
+        ]);
     }
     
     public function render(){

@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\AdminCarController;
 use App\Http\Controllers\Admin\AdminReservationController;
 //Livewire
 use App\Livewire\ValiderReservation;
+use App\Livewire\VoituresDisponibles;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,13 +34,15 @@ Route::get('/apropos', function () {
 Route::get('/voitures', [CarController::class, 'index'])->name('cars');
 
 //Reservation
-Route::get('/voituresDisponibles', [ReservationController::class, 'CheckDisponibilite'])
-    ->name('voituresDisponibles');
+Route::get('/voituresDispo', [ReservationController::class, 'CheckDisponibilite'])
+    ->name('voituresDispo');
 Route::post('/protection_&_options', [ReservationController::class, 'choisirProtection'])
     ->name('protection_&_options');
 Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])
     ->name('email');
 Route::get('/resume', ValiderReservation::class)->name('resume');
+
+Route::get('/voituresDisponibles/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}', VoituresDisponibles::class )->name('VoituresDisponibles');
 
 //Checkout
 Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');

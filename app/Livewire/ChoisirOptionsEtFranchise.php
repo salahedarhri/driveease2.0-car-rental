@@ -2,10 +2,9 @@
 
 namespace App\Livewire;
 
-use Illuminate\Http\Request;
 use Livewire\Component;
 use App\Models\Car;
-use App\Models\Lieu;
+use Carbon\Carbon;
 use App\Models\Protection;
 use App\Models\Option;
 
@@ -14,41 +13,54 @@ class ChoisirOptionsEtFranchise extends Component{
     public $dateDepart, $dateRetour ;
     public $dateDepartDt, $dateRetourDt;
     public $lieuDepart, $lieuRetour;
-    public $nbJrs, $minAge, $voiture;
-
-    //Tous les Protections et Options
-    public $protections,$options;
+    public $nbJrs, $minAge, $idVoiture;
 
     // Protection et Option Choisi
-    public $prtcChoisi, $prixPrtc;
-    public $prtcChoisiId = null;
+    public $prtcChoisi;
+    public $prixPrtc;
     public $prixOptns;
-    public $optnsIds = []; 
 
-    public function mount (Request $request){
+    //pour retourner aux sections précédentes
+    public $prtcChoisiId = null;
+    public $optnsIds = [];
+     
 
-        $this->protections = Protection::all();
-        $this->options = Option::all();
+    public function mount($dateDepart, $dateRetour, $lieuDepart, $lieuRetour, $minAge, $idVoiture){
+
+        $this->dateDepart = $dateDepart;
+        $this->dateRetour = $dateRetour;
+        $this->lieuDepart = $lieuDepart;
+        $this->lieuRetour = $lieuRetour;
+        $this->minAge = $minAge;
+        $this->idVoiture = $idVoiture;
+
+        $dateDepartCarbon = Carbon::parse($this->dateDepart);
+        $dateRetourCarbon = Carbon::parse($this->dateRetour);
+
+        $this->nbJrs = max(1, $dateRetourCarbon->diffInDays($dateDepartCarbon));
+
+        $this->dateDepartDt = $dateDepartCarbon->format('d-m-Y H:i');
+        $this->dateRetourDt = $dateRetourCarbon->format('d-m-Y H:i');
 
         //Informations pour récapitulatif
-        $this->dateDepart = session('dateDepart');
-        $this->dateRetour = session('dateRetour');
-        $this->dateDepartDt = session('dateDepartDt');
-        $this->dateRetourDt = session('dateRetourDt');
-        $this->lieuDepart = session('lieuDepart');
-        $this->lieuRetour = session('lieuRetour');
-        $this->nbJrs = session('nbJrs');
-        $this->minAge = session('minAge');
-        $this->prtcChoisiId = session('prtc_choisi');
+        // $this->dateDepart = session('dateDepart');
+        // $this->dateRetour = session('dateRetour');
+        // $this->dateDepartDt = session('dateDepartDt');
+        // $this->dateRetourDt = session('dateRetourDt');
+        // $this->lieuDepart = session('lieuDepart');
+        // $this->lieuRetour = session('lieuRetour');
+        // $this->nbJrs = session('nbJrs');
+        // $this->minAge = session('minAge');
+        // $this->prtcChoisiId = session('prtc_choisi');
 
-        if($request->has('idVoiture')){
-            $this->voiture = Car::find($request->idVoiture);
-            session(['idVoiture' =>$request->idVoiture]);
+        if($idVoiture){
+            $this->voiture = Car::find($idVoiture);
             
         }elseif( session()->has('idVoiture') ){
             $idVoiture = session('idVoiture');
             $this->voiture = Car::find($idVoiture);
         }
+
 
         if( session()->has('prtc_choisi')){
             $this->prtcChoisiId = session('prtc_choisi');
@@ -119,6 +131,6 @@ class ChoisirOptionsEtFranchise extends Component{
             'protectionChoisi' => $this->prtcChoisi,
             'optnsIds' =>$this->optnsIds,
   
-        ]);
+        ])->extends('layouts.client')->section('content');
     }
 }
