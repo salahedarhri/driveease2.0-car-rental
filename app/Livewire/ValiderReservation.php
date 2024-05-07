@@ -8,6 +8,7 @@ use App\Models\Option;
 use App\Models\Car;
 use App\Models\Conducteur;
 use App\Models\Reservation;
+use Carbon\Carbon;
 
 use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Mail;
@@ -62,6 +63,41 @@ class ValiderReservation extends Component{
         'emailConducteur.unique' => 'Cette adresse email est déjà utilisée.',
     ];
 
+    public function mount($dateDepart, $dateRetour, $lieuDepart, $lieuRetour, $minAge, $voiture){
+        $this->dateDepart = $dateDepart;
+        $this->dateRetour = $dateRetour;
+        $this->lieuDepart = $lieuDepart;
+        $this->lieuRetour = $lieuRetour;
+        $this->minAge = $minAge;
+
+        $dateDepartCarbon = Carbon::parse($this->dateDepart);
+        $dateRetourCarbon = Carbon::parse($this->dateRetour);
+
+        $this->nbJrs = max(1, $dateRetourCarbon->diffInDays($dateDepartCarbon));
+
+        $this->dateDepartDt = $dateDepartCarbon->format('d-m-Y H:i');
+        $this->dateRetourDt = $dateRetourCarbon->format('d-m-Y H:i');
+
+        if($voiture){
+            $this->voiture = Car::where('slug',$voiture)->first();   
+        }
+
+        $this->prtcChoisiId = session('prtc_choisi');
+        $this->optnsIds = session('optnsIds');
+    }
+
+    public function RetournerProtection(){
+
+        return redirect()->route('Protection&Options',[
+            'dateDepart'=> $this->dateDepart,
+            'dateRetour'=> $this->dateRetour,
+            'lieuDepart'=> $this->lieuDepart,
+            'lieuRetour'=> $this->lieuRetour,
+            'minAge'=> $this->minAge,
+            'voiture'=>$this->voiture->slug,
+        ]);
+    }
+
     public function validerConducteur(){
 
         $this->validate( $this->rules, $this->message );
@@ -87,28 +123,11 @@ class ValiderReservation extends Component{
         $reservation->minAge = trim($this->minAge );
         $reservation->save();
 
-        session([
-            'reservation' => $reservation->id,
-        ]);
+        session(['reservation' => $reservation->id ]);
 
         // Mail::to($conducteur->email)->send( new WelcomeMail($conducteur, $reservation));
 
         return redirect()->route('email')->with('success','Réservation crée avec succès, Veuillez visiter votre espace Gmail !');
-    }
-
-
-    public function mount(){
-        $this->dateDepart = session('dateDepart');
-        $this->dateRetour = session('dateRetour');
-        $this->dateDepartDt = session('dateDepartDt');
-        $this->dateRetourDt = session('dateRetourDt');
-        $this->lieuDepart = session('lieuDepart');
-        $this->lieuRetour = session('lieuRetour');
-        $this->nbJrs = session('nbJrs');
-        $this->idVoiture = session('idVoiture');
-        $this->minAge = session('minAge');
-        $this->prtcChoisiId = session('prtc_choisi');
-        $this->optnsIds = session('optnsIds');
     }
 
     public function render(){

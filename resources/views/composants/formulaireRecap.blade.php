@@ -27,17 +27,14 @@
     </div>
 
     {{-- Voiture --}}
-    <div
-      class="flex flex-col p-2 sm:border-x max-sm:border-y border-opacity-50 border-slate-300 hover:bg-slate-100 transition duration-300">
+    <div class="flex flex-col p-2 sm:border-x max-sm:border-y border-opacity-50 border-slate-300 hover:bg-slate-100 transition duration-300">
       <div class="flex flex-row px-2 py-1 justify-between align-center text-cyan-600">
         <p class="font-bold  text-center font-montserrat"><i
             class="ri-roadster-fill font-normal text-2xl pr-2"></i>Voiture</p>
         <i class="opacity-50 ri-edit-line text-2xl"></i>
       </div>
       @if(isset($voiture))
-      <form action="{{ route('voituresDisponibles')}}" method="GET" class="flex flex-col align-center">
-        @csrf
-        <button type="submit">
+        <button wire:click="RetournerVoitures" class="cursor-pointer">
           <div class="flex flex-col justify-center align-center gap-1 text-center font-montserrat text-sm">
             <img src="{{ asset('images/voitures/'.$voiture->photo)}}" alt="Car Image"
               class="h-20 w-auto object-center object-contain">
@@ -45,7 +42,6 @@
             <p class="font-semibold text-teal-600">{{ $voiture->prix * $nbJrs }} DH</p>
           </div>
         </button>
-      </form>
       @else
       <p class="font-cabin text-center px-2 py-4 max-w-sm self-center max-md:text-sm">Aucune véhicule choisie pour le
         moment.<br>Veuillez choisir un véhicule</p>
@@ -63,9 +59,7 @@
       </div>
 
       @if( isset($protectionChoisi) && isset($voiture))
-      <form action="{{ route('protection_&_options')}}" method="post" class="w-full h-full">
-        @csrf
-        <button type="submit" class="w-full h-full">
+        <button wire:click="RetournerProtection" class="w-full h-full">
           <div class="flex flex-row justify-between p-2 text-sm max-md:gap-4 w-52 mx-auto">
             <div class="text-left max-md:text-center">
               <p class="text-base">{{ $protectionChoisi->type }}</p>
@@ -85,7 +79,6 @@
             @endif
           </div>
         </button>
-      </form>
       @else
       <p class="font-cabin text-center px-2 py-4 max-w-sm self-center text-base max-md:text-sm">Vous pourrez choisir
         votre protection et vos options après avoir sélectionné votre véhicule</p>

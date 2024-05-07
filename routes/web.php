@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminReservationController;
 //Livewire
 use App\Livewire\ValiderReservation;
 use App\Livewire\VoituresDisponibles;
+use App\Livewire\ChoisirOptionsEtFranchise;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,9 +41,11 @@ Route::post('/protection_&_options', [ReservationController::class, 'choisirProt
     ->name('protection_&_options');
 Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])
     ->name('email');
-Route::get('/resume', ValiderReservation::class)->name('resume');
+// Route::get('/resume', ValiderReservation::class)->name('resume');
 
 Route::get('/voituresDisponibles/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}', VoituresDisponibles::class )->name('VoituresDisponibles');
+Route::get('/protectionEtOptions/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ChoisirOptionsEtFranchise::class )->name('Protection&Options');
+Route::get('/resumeReservation/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ValiderReservation::class )->name('finaliserReservation');
 
 //Checkout
 Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');

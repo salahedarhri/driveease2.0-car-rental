@@ -6,7 +6,6 @@ use Livewire\Component;
 use App\Models\Car;
 use Carbon\Carbon;
 
-
 class VoituresDisponibles extends Component
 {
     public $dateDepart;
@@ -39,6 +38,21 @@ class VoituresDisponibles extends Component
         $this->nbArticles += 12;
     }
 
+    public function ChoisirVoiture($slug){
+        $voiture = Car::where('slug',$slug)->first();
+
+        if($voiture){
+            return redirect()->route('Protection&Options',[
+            'dateDepart'=> $this->dateDepart,
+            'dateRetour'=> $this->dateRetour,
+            'lieuDepart'=> $this->lieuDepart,
+            'lieuRetour'=> $this->lieuRetour,
+            'minAge'=> $this->minAge,
+            'voiture'=> $slug,
+            ]);
+        }
+    }
+
     public function render()
     {
         $voitures = Car::where('minAge', '<=', $this->minAge)
@@ -52,6 +66,14 @@ class VoituresDisponibles extends Component
 
         return view('livewire.voitures-disponibles',[
             'voituresDisponibles' => $voitures,
+            'dateDepart' => $this->dateDepart,
+            'dateRetour' => $this->dateRetour,
+            'lieuDepart' => $this->lieuDepart,
+            'lieuRetour' => $this->lieuRetour,
+            'minAge' => $this->minAge,
+            'nbJrs' => $this->nbJrs,
+            'dateDepartDt' => $this->dateDepartDt,
+            'dateRetourDt' => $this->dateRetourDt,
         ])->extends('layouts.client')->section('content');
     }
 }

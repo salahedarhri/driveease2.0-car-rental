@@ -32,7 +32,14 @@
                 @else
                 <p> ---- </p>
                 @endif
-                <a href="{{ route('resume') }}"
+                <a href="{{ route('finaliserReservation',[
+                        'dateDepart'=> $dateDepart,
+                        'dateRetour'=> $dateRetour,
+                        'lieuDepart'=> $lieuDepart,
+                        'lieuRetour'=> $lieuRetour,
+                        'minAge'=> $minAge,
+                        'voiture' => $voiture,
+                ]) }}"
                     class="text-white bg-teal-600 hover:bg-teal-500 transition-all rounded-lg shadow-lg py-2 px-4 font-semibold">Valider</a>
             </div>
         </div>
