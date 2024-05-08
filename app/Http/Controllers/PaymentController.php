@@ -3,27 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use App\Models\Transaction;
 use App\Models\Protection;
 use App\Models\Option;
 use App\Models\Car;
+use Carbon\Carbon;
 
 class PaymentController extends Controller
 {
 
-  public function checkout(){
+  public function checkout(Request $request){
 
     \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
 
-    $nbJrs = session('nbJrs');
-    $idVoiture = session('idVoiture');
+    $dateDepart = $request->route('dateDepart');
+    $dateRetour = $request->route('dateRetour');
+    $slugVoiture = $request->route('voiture');
     $prtcChoisi = session('prtc_choisi');
     $optnsIds = session('optnsIds');
 
+    $dateDepartCarbon = Carbon::parse($dateDepart);
+    $dateRetourCarbon = Carbon::parse($dateRetour);
+
+    $nbJrs = max(1, $dateRetourCarbon->diffInDays($dateDepartCarbon));
+
     $lineItems = [];
 
-    $voiture = Car::find($idVoiture)->first();
+    $voiture = Car::where('slug',$slugVoiture)->first();
 
     $prtc = Protection::find($prtcChoisi)->first();
 

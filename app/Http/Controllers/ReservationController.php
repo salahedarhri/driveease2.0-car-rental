@@ -13,118 +13,120 @@ use Carbon\Carbon;
 
 
 class ReservationController extends Controller{
-    
-    public function CheckDisponibilite(Request $request) {
-        
-        $dateDepart = session('dateDepart');
-        $dateRetour = session('dateRetour');
-        $lieuDepart = session('lieuDepart');
-        $lieuRetour = session('lieuRetour');
-        $minAge = session('minAge');
-
-        $voituresDisponibles = Car::where('minAge','<=',$minAge)
-                                ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
-                                    $query->where('dateDepart', '<=', $dateRetour)
-                                        ->where('dateRetour', '>=', $dateDepart);})
-                                ->orderBy('prix','asc')
-                                ->get();
-
-        //Formatter date pour affichage & manip.
-        // Carbon::setLocale(config('app.locale'));
-        $dateDepart = Carbon::parse($dateDepart);
-        $dateRetour = Carbon::parse($dateRetour);
-
-        $nbJrs = max(1, $dateRetour->diffInDays($dateDepart));
-
-        //Date pour affichage
-        $dateDepartDt = $dateDepart->format('d-m-Y H:i');
-        $dateRetourDt = $dateRetour->format('d-m-Y H:i');
-
-        //store data in session
-        session([
-            'lieuRetour' => $lieuRetour,
-            'lieuDepart' => $lieuDepart,
-            'dateDepart' => $dateDepart,
-            'dateRetour' => $dateRetour,
-            'dateDepartDt' => $dateDepartDt,
-            'dateRetourDt' => $dateRetourDt,
-            'nbJrs' => $nbJrs,
-            'minAge' => $minAge,
-        ]);
-
-        //clean session from previous use
-        session()->forget('optnsIds');
-        session()->forget('prtc_choisi');
-    
-        return view('dispo', compact('voituresDisponibles','nbJrs','minAge', 
-        'dateDepart', 'dateRetour', 
-        'lieuDepart', 'lieuRetour',
-        'dateDepartDt','dateRetourDt'));
-    }
-
-    public function choisirProtection(Request $request){
-
-        $dateDepart = session('dateDepart');
-        $dateRetour = session('dateRetour');
-        $dateDepartDt = session('dateDepartDt');
-        $dateRetourDt = session('dateRetourDt');
-        $lieuDepart = session('lieuDepart');
-        $lieuRetour = session('lieuRetour');
-        $nbJrs = session('nbJrs');
-        $minAge = session('minAge');
-
-        if($request->has('idVoiture')){
-             $voiture= Car::find($request->idVoiture);
-             session([ 'idVoiture'=>$request->idVoiture ]);
-        }
-
-        if( session()->has('idVoiture') ){
-            $idVoiture = session('idVoiture');
-            $voiture = Car::find($idVoiture);
-        }
-
-        if( session()->has('optnsIds')){
-            $optnsIds = session('optnsIds');
-        }else{
-            $optnsIds = null;
-        }
-
-        $protections = Protection::all();
-        $options = Option::all();
- 
-        if( session()->has('prtc_choisi')){
-            $prtcChoisiId = session('prtc_choisi');
-            $protectionChoisi = Protection::find($prtcChoisiId);
-            $prix_prtc = $protectionChoisi->prix * $nbJrs;
-        }else{
-            $protectionChoisi = Protection::where('type','=','Basique')->first();
-            $prtc_choisi = $protectionChoisi->id;
-            $prix_prtc = $protectionChoisi->prix * $nbJrs;
-
-            session([ 'prtc_choisi'=>$prtc_choisi ]);
-        }
-
-
-                
-        return view('prtc-et-optns',compact('prix_prtc','protectionChoisi','voiture','minAge','nbJrs',
-        'protections','options','optnsIds',
-        'dateDepartDt','dateRetourDt',
-        'dateDepart','dateRetour',
-        'lieuDepart','lieuRetour'));
-    }   
-
     public function renduEmail(){
         $reservationId = session('reservation');
 
-        $reservation = Reservation::find( $reservationId );
+        $reservation = Reservation::with('options')->find( $reservationId );
         $conducteur = Conducteur::find( $reservation->idConducteur );
         $voiture = Car::find($reservation->idCar);
+        $options = $reservation->options;
 
         return view('emails.emailReservation',[
             'conducteur' => $conducteur,
             'reservation' => $reservation,
+            'voiture' => $voiture,
+            'options' => $options,
         ]);
     }
+    
+    // public function CheckDisponibilite(Request $request) {
+        
+    //     $dateDepart = session('dateDepart');
+    //     $dateRetour = session('dateRetour');
+    //     $lieuDepart = session('lieuDepart');
+    //     $lieuRetour = session('lieuRetour');
+    //     $minAge = session('minAge');
+
+    //     $voituresDisponibles = Car::where('minAge','<=',$minAge)
+    //                             ->whereDoesntHave('reservations', function ($query) use ($dateDepart, $dateRetour) {
+    //                                 $query->where('dateDepart', '<=', $dateRetour)
+    //                                     ->where('dateRetour', '>=', $dateDepart);})
+    //                             ->orderBy('prix','asc')
+    //                             ->get();
+
+    //     //Formatter date pour affichage & manip.
+    //     // Carbon::setLocale(config('app.locale'));
+    //     $dateDepart = Carbon::parse($dateDepart);
+    //     $dateRetour = Carbon::parse($dateRetour);
+
+    //     $nbJrs = max(1, $dateRetour->diffInDays($dateDepart));
+
+    //     //Date pour affichage
+    //     $dateDepartDt = $dateDepart->format('d-m-Y H:i');
+    //     $dateRetourDt = $dateRetour->format('d-m-Y H:i');
+
+    //     //store data in session
+    //     session([
+    //         'lieuRetour' => $lieuRetour,
+    //         'lieuDepart' => $lieuDepart,
+    //         'dateDepart' => $dateDepart,
+    //         'dateRetour' => $dateRetour,
+    //         'dateDepartDt' => $dateDepartDt,
+    //         'dateRetourDt' => $dateRetourDt,
+    //         'nbJrs' => $nbJrs,
+    //         'minAge' => $minAge,
+    //     ]);
+
+    //     //clean session from previous use
+    //     session()->forget('optnsIds');
+    //     session()->forget('prtc_choisi');
+    
+    //     return view('dispo', compact('voituresDisponibles','nbJrs','minAge', 
+    //     'dateDepart', 'dateRetour', 
+    //     'lieuDepart', 'lieuRetour',
+    //     'dateDepartDt','dateRetourDt'));
+    // }
+
+    // public function choisirProtection(Request $request){
+
+    //     $dateDepart = session('dateDepart');
+    //     $dateRetour = session('dateRetour');
+    //     $dateDepartDt = session('dateDepartDt');
+    //     $dateRetourDt = session('dateRetourDt');
+    //     $lieuDepart = session('lieuDepart');
+    //     $lieuRetour = session('lieuRetour');
+    //     $nbJrs = session('nbJrs');
+    //     $minAge = session('minAge');
+
+    //     if($request->has('idVoiture')){
+    //          $voiture= Car::find($request->idVoiture);
+    //          session([ 'idVoiture'=>$request->idVoiture ]);
+    //     }
+
+    //     if( session()->has('idVoiture') ){
+    //         $idVoiture = session('idVoiture');
+    //         $voiture = Car::find($idVoiture);
+    //     }
+
+    //     if( session()->has('optnsIds')){
+    //         $optnsIds = session('optnsIds');
+    //     }else{
+    //         $optnsIds = null;
+    //     }
+
+    //     $protections = Protection::all();
+    //     $options = Option::all();
+ 
+    //     if( session()->has('prtc_choisi')){
+    //         $prtcChoisiId = session('prtc_choisi');
+    //         $protectionChoisi = Protection::find($prtcChoisiId);
+    //         $prix_prtc = $protectionChoisi->prix * $nbJrs;
+    //     }else{
+    //         $protectionChoisi = Protection::where('type','=','Basique')->first();
+    //         $prtc_choisi = $protectionChoisi->id;
+    //         $prix_prtc = $protectionChoisi->prix * $nbJrs;
+
+    //         session([ 'prtc_choisi'=>$prtc_choisi ]);
+    //     }
+                
+    //     return view('prtc-et-optns',compact('prix_prtc','protectionChoisi','voiture','minAge','nbJrs',
+    //     'protections','options','optnsIds',
+    //     'dateDepartDt','dateRetourDt',
+    //     'dateDepart','dateRetour',
+    //     'lieuDepart','lieuRetour'));
+    // }   
+
+
 
     // public function actualiserFranchise(Request $request){
 

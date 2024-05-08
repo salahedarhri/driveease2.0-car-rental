@@ -82,16 +82,6 @@ class TrouverVoituresDispo extends Component {
         if( !in_array($this->lieuRetour,$this->lieux_All)){
             return $this->addError('lieuRetour','Veuillez sélectionner une de nos suggestions, On couvre les villes suivantes: Agadir, Marrakech & Casablanca');
         }
-        
-        session([
-            'lieuRetour' => $this->lieuRetour,
-            'lieuDepart' => $this->lieuDepart,
-            'dateDepart' => $this->dateDepart,
-            'dateRetour' => $this->dateRetour,
-            'minAge' => $this->minAge,
-        ]);
-
-        // return redirect()->action([ ReservationController::class,'CheckDisponibilite']);
 
         return redirect()->route('VoituresDisponibles',[
             'dateDepart'=> $this->dateDepart,

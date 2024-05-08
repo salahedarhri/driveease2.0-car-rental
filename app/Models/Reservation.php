@@ -22,4 +22,8 @@ class Reservation extends Model
         return $this->belongsTo(Protection::class);
     }
 
+    public function options(){
+        return $this->belongsToMany(Option::class);
+    }
+
 }

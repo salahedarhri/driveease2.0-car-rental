@@ -48,7 +48,7 @@ Route::get('/protectionEtOptions/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRet
 Route::get('/resumeReservation/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ValiderReservation::class )->name('finaliserReservation');
 
 //Checkout
-Route::post('/checkout', [PaymentController::class, 'checkout'])->name('checkout');
+Route::post('/checkout/{dateDepart}/{dateRetour}/{voiture}', [PaymentController::class, 'checkout'])->name('checkout');
 Route::get('/success', [PaymentController::class, 'success'])->name('success');
 Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 Route::post('/webhook', [PaymentController::class, 'webhook'])->name('webhook');

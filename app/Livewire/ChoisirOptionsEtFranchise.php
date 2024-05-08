@@ -58,7 +58,13 @@ class ChoisirOptionsEtFranchise extends Component{
     }
 
     public function RetournerVoitures(){
-        session()->forget(['optnsIds', 'prtc_choisi']);
+        if(session()->has('optnsIds')){
+            session()->forget('optnsIds');
+        }
+
+        if(session()->has('prtc_choisi')){
+            session()->forget('prtc_choisi');
+        }
 
         return redirect()->route('VoituresDisponibles',[
             'dateDepart'=> $this->dateDepart,

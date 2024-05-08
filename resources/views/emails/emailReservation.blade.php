@@ -24,6 +24,15 @@
                 <li>Voiture : {{ $reservation->idCar }}</li>
                 <li>Protection : {{ $reservation->idProtection }}</li>
                 <li>Conducteur : {{ $reservation->idConducteur }}</li>
+                @if(!empty($options))
+                    <li>Options Sélectionnées : </li>
+                    <ul class="ml-4">
+                        @foreach ($options as $option)
+                        <li>{{ $option->option }}</li>
+                            
+                        @endforeach
+                    </ul>
+                @endif
             </ul>
         </div>
 

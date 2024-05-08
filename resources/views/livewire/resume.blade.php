@@ -199,7 +199,7 @@
               bénéficiez d'une remise immédiate de <b class="text-teal-600">5%</b>.<br>Cette méthode garantit la
               disponibilité du véhicule et offre la possibilité de remboursement en cas de besoin.</p>
 
-            <form action="{{ route('checkout')}}" method="post" class="w-full flex justify-center align-center">
+            <form action="{{ route('checkout',['dateDepart'=>$dateDepart,'dateRetour'=>$dateRetour,'voiture'=>$voiture->slug])}}" method="post" class="w-full flex justify-center align-center">
               @csrf
               <button
                 class="font-semibold text-white bg-gradient-to-r from-indigo-600 via-stripe to-purple-600 rounded-lg shadow py-3 px-6 w-fit mx-auto">

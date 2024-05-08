@@ -38,7 +38,7 @@
                         'lieuDepart'=> $lieuDepart,
                         'lieuRetour'=> $lieuRetour,
                         'minAge'=> $minAge,
-                        'voiture' => $voiture,
+                        'voiture' => $voiture->slug,
                 ]) }}"
                     class="text-white bg-teal-600 hover:bg-teal-500 transition-all rounded-lg shadow-lg py-2 px-4 font-semibold">Valider</a>
             </div>
