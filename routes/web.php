@@ -2,17 +2,18 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CarController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
-//Admin
-use App\Http\Controllers\Admin\AdminUserController;
-use App\Http\Controllers\Admin\AdminCarController;
-use App\Http\Controllers\Admin\AdminReservationController;
+
 //Livewire
 use App\Livewire\ValiderReservation;
 use App\Livewire\VoituresDisponibles;
 use App\Livewire\ChoisirOptionsEtFranchise;
+use App\Livewire\Admin\AdminDashboard;
+use App\Livewire\Admin\CarsManagement;
+use App\Livewire\Admin\ModifierVoiture;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,24 +26,12 @@ use App\Livewire\ChoisirOptionsEtFranchise;
 */
 
 //Pages standards
-Route::get('/', function () {
-    return view('landing');
-})->name('accueil');
-
-Route::get('/apropos', function () {
-    return view('about');
-})->name('apropos');
-Route::get('/voitures', [CarController::class, 'index'])->name('cars');
+Route::get('/', function () { return view('landing');})->name('accueil');
+Route::get('/apropos', function () { return view('about');})->name('apropos');
+Route::get('/voitures', [ CarController::class, 'index'])->name('cars');
 
 //Reservation
-Route::get('/voituresDispo', [ReservationController::class, 'CheckDisponibilite'])
-    ->name('voituresDispo');
-Route::post('/protection_&_options', [ReservationController::class, 'choisirProtection'])
-    ->name('protection_&_options');
-Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])
-    ->name('email');
-// Route::get('/resume', ValiderReservation::class)->name('resume');
-
+Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])->name('email');
 Route::get('/voituresDisponibles/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}', VoituresDisponibles::class )->name('VoituresDisponibles');
 Route::get('/protectionEtOptions/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ChoisirOptionsEtFranchise::class )->name('Protection&Options');
 Route::get('/resumeReservation/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ValiderReservation::class )->name('finaliserReservation');
@@ -53,21 +42,6 @@ Route::get('/success', [PaymentController::class, 'success'])->name('success');
 Route::get('/cancel', [PaymentController::class, 'cancel'])->name('cancel');
 Route::post('/webhook', [PaymentController::class, 'webhook'])->name('webhook');
 
-//Espace Client / Espace Admin 
-Route::middleware('admincheck')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->name('admin.dashboard');
-});
-
-Route::get('/dashboard', function () {
-    if (auth()->user()->is_admin) {
-        return view('admin.dashboard');
-    } else {
-        return view('dashboard');
-    }
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 //Laravel Breeze
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -75,24 +49,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//Admin Routing
-Route::group(['prefix' => 'admin', 'middleware' => 'admincheck'], function () {
-    Route::resource('utilisateurs', AdminUserController::class);
-    Route::resource('voitures', AdminCarController::class);
-    Route::resource('reservations', AdminReservationController::class);
-});
+//Espace Client / Espace Admin 
+Route::get('/dashboard', [Controller::class,'dashboard'])->middleware(['auth','verified'])->name('dashboard');
 
-Route::prefix('admin')->group(function () {
-    Route::get('utilisateurs', [AdminUserController::class, 'index'])->name('admin.utilisateurs.index');
-    Route::get('voitures', [AdminCarController::class, 'index'])->name('admin.voitures.index');
+Route::group(['prefix'=>'admin','middleware'=>['admincheck']],  function(){
+    Route::get('dashboard', AdminDashboard::class)->name('adminPanel');
+    Route::get('voitures', CarsManagement::class)->name('adminCars');
+    Route::get('voiture/{id}', ModifierVoiture::class )->name('manageCar');
 });
 
 require __DIR__ . '/auth.php';
-
-
-// Route::post('/franchise_refresh', [ReservationController::class, 'actualiserFranchise'])
-//     ->name('actualiserFranchise');
-// Route::post('/options', [ReservationController::class, 'choisirOptions'])
-//     ->name('choisirOptions');
-// Route::post('/option_remove', [ReservationController::class, 'retirerOption'])
-//     ->name('retirerOption');

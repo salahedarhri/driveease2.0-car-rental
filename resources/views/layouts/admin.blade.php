@@ -15,31 +15,37 @@
   @vite('resources/js/app.js')
   
 </head>
-<body class="bg-slate-100 min-h-screen text-black">
+<body class="antialiased bg-slate-100 min-h-screen text-black">
 
   {{-- Barre de côté --}}
-  <div class="fixed left-0 top-0 w-64 h-full max-md:hidden bg-gradient-to-b from-mediumBlue to-darkBlue p-4">
-    <a href="/" class="flex items-center pb-4 border-b border-b-gray-100">
+  <div class="fixed left-0 top-0 w-64 h-full max-md:hidden bg-gradient-to-b from-mediumBlue to-darkBlue p-4 pr-0 font-montserrat">
+    <a href="{{ route('accueil') }}" class="flex items-center pb-4 border-b border-b-gray-100">
       <img src="{{ asset('images/composants/logo.png') }}" alt="logo" class="w-16 h-auto invert">
       <span class="text-xl font-bold text-white ml-3 hover:text-lightBlue transition-all">DriveEase</span>
     </a>
     <ul>
       <li>
-        <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-          <i class="ri-home-2-line mr-3 text-xl"></i>
-          <span class="">Dashboard</span></a></li>
+        <a href="{{ route('adminPanel') }}" class="flex items-center py-2 px-4 text-white hover:bg-white hover:text-mediumBlue rounded-l-xl transition-all mt-2">
+          <i class="ri-home-2-fill mr-3 text-xl"></i>
+          <span class="text-md">Dashboard</span></a>
+      </li>
       <li>
-        <a href="{{route('admin.utilisateurs.index')}}" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-          <i class="ri-account-circle-line mr-3 text-xl"></i>
-          <span class="">Utilisateurs</span></a></li>
-      <li>
-        <a href=" {{route('admin.voitures.index')}} " class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-          <i class="ri-car-line mr-3 text-xl"></i>
-          <span class="">Voitures</span></a></li>
-      <li>
-        <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-          <i class="ri-book-2-line mr-3 text-xl"></i>
-          <span class="">Réservations</span></a></li>
+        <a href="{{ route('adminCars') }}" class="flex items-center py-2 px-4 text-white hover:bg-white hover:text-mediumBlue rounded-l-xl transition-all">
+          <i class="ri-car-fill mr-3 text-xl"></i>
+          <span class="text-md">Voitures</span></a>
+      </li>
+    {{-- <li>
+      <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
+        <i class="ri-home-2-line mr-3 text-xl"></i>
+        <span class="">Dashboard</span></a></li> --}}
+    {{-- <li>
+      <a href="{{route('admin.utilisateurs.index')}}" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
+        <i class="ri-account-circle-line mr-3 text-xl"></i>
+        <span class="">Utilisateurs</span></a></li> --}}
+    {{-- <li>
+      <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
+        <i class="ri-book-2-line mr-3 text-xl"></i>
+        <span class="">Réservations</span></a></li> --}}
     </ul>
   </div>
 
@@ -52,9 +58,9 @@
         <div class="dropdown dropdown-bottom md:hidden">
           <label tabindex="0" class="btn m-1 bg-slate-100 hover:bg-slate-300 border-slate-100 hover:border-slate-500"><i class="ri-menu-fill text-lg"></i></label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-cyan-900 text-white">
-            <li><a href="{{ route('admin.utilisateurs.index')}}"><i class="ri-account-circle-line mr-3 text-2xl"></i>Utilisateurs</a></li>
+            {{-- <li><a href="{{ route('admin.utilisateurs.index')}}"><i class="ri-account-circle-line mr-3 text-2xl"></i>Utilisateurs</a></li>
             <li><a href="{{ route('admin.voitures.index')}}"><i class="ri-car-line mr-3 text-2xl"></i>Voitures</a></li>
-            <li><a><i class="ri-book-2-line mr-3 text-2xl"></i>Reservations</a></li>
+            <li><a><i class="ri-book-2-line mr-3 text-2xl"></i>Reservations</a></li> --}}
           </ul>
         </div>
 
@@ -77,7 +83,9 @@
               <i class="ri-account-circle-fill text-4xl text-cyan-800"></i>
             </label>
             <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-white">
-              <li><a>Profil</a></li>
+              <li>
+                <a href="{{ route('profile.edit') }}" class="hover:text-black">Profil</a>
+              </li>
               <li>
                 <form method="POST" action="{{ route('logout') }}">
                 @csrf <input type="submit" value="Se déconnecter"></form>
@@ -91,7 +99,7 @@
 
     {{-- Main --}}
     <div class="font-tables">
-      @yield('content')
+      {{ $slot }}
     </div>
 
 
