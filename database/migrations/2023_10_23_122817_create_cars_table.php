@@ -14,18 +14,15 @@ return new class extends Migration
         Schema::create('cars', function (Blueprint $table) {
             $table->id();
             $table->string('modele');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->double('prix',10,1);
             $table->boolean('disponibilite')->default(true);
-
             $table->string('transmission');
             $table->string('moteur');
             $table->string('ville');
             $table->integer('nbPers');
             $table->integer('minAge');
             $table->boolean('climatisation')->default(true);
-            $table->string('protection');
-
             $table->string('slug')->unique();
             $table->string('photo');
             $table->timestamps();

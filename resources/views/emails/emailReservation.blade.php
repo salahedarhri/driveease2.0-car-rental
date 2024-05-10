@@ -29,7 +29,6 @@
                     <ul class="ml-4">
                         @foreach ($options as $option)
                         <li>{{ $option->option }}</li>
-                            
                         @endforeach
                     </ul>
                 @endif
@@ -38,7 +37,7 @@
 
         <p class="mb-4">Merci de nous avoir choisis pour votre location de voiture.</p>
         
-        <p class="mb-4">Cordialement,<br>DriveEase</p>
+        <p class="mb-4">Cordialement,<br>DriveEase</br></p>
     </div>
 </body>
 </html>
