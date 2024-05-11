@@ -44,8 +44,8 @@ class CarsManagement extends Component
     ];
 
     protected $message = [
-        'required' => 'Le champ :attribute est requis.',
-        'string' => 'Le champ :attribute doit être une chaîne de caractères.',
+        'required' => 'Ce champ est requis.',
+        'string' => 'Ce champ doit être une chaîne de caractères.',
         'max' => [
             'string' => 'Le champ :attribute ne doit pas dépasser :max caractères.',
             'numeric' => 'Le champ :attribute ne doit pas dépasser :max.',
@@ -73,7 +73,7 @@ class CarsManagement extends Component
             $voiture->transmission = trim($this->transmission);
             $voiture->nbPers = trim($this->nbPers);
             $voiture->minAge = trim($this->minAge);
-            $voiture->climatisation = ( $this->climatisation == 'Oui')?true:false;
+            $voiture->climatisation = ($this->climatisation == 'Oui')?true:false;
             $voiture->disponibilite = true;
             $voiture->slug = Str::slug("$this->modele");
 
@@ -93,6 +93,8 @@ class CarsManagement extends Component
             }
 
             session()->flash('success','Voiture ajouté avec succès !');
+
+            $this->resetChamps();
 
         }catch(\Exception $e){
             session()->flash('error', $e->getMessage());
@@ -118,6 +120,19 @@ class CarsManagement extends Component
             session()->flash('error',$e->getMessage());
             dump($e->getMessage());
         }
+    }
+
+    public function resetChamps(){
+         $this->modele = '';
+         $this->prix = '';
+         $this->moteur = '';
+         $this->transmission = '';
+         $this->photo = '';
+         $this->ville = '';
+         $this->nbPers = '';
+         $this->minAge = '';
+         $this->climatisation = '';
+         $this->description = '';
     }
 
     public function render(){

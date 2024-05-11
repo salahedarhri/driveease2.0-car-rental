@@ -15,24 +15,38 @@
   @vite('resources/js/app.js')
   
 </head>
-<body class="antialiased bg-slate-100 min-h-screen text-black">
+<body x-data="{ nav:'{{ request()->route()->getName() }}' }" class="antialiased bg-slate-100 min-h-screen text-black">
 
   {{-- Barre de côté --}}
   <div class="fixed left-0 top-0 w-64 h-full max-md:hidden bg-gradient-to-b from-mediumBlue to-darkBlue p-4 pr-0 font-montserrat">
-    <a href="{{ route('accueil') }}" class="flex items-center pb-4 border-b border-b-gray-100">
+    <a wire:navigate href="{{ route('accueil') }}" class="flex items-center pb-4 border-b border-b-gray-100">
       <img src="{{ asset('images/composants/logo.png') }}" alt="logo" class="w-16 h-auto invert">
       <span class="text-xl font-bold text-white ml-3 hover:text-lightBlue transition-all">DriveEase</span>
     </a>
     <ul>
       <li>
-        <a href="{{ route('adminPanel') }}" class="flex items-center py-2 px-4 text-white hover:bg-white hover:text-mediumBlue rounded-l-xl transition-all mt-2">
+        <a wire:navigate href="{{ route('adminPanel') }}" class="flex items-center py-2 px-4 text-white rounded-l-xl transition-all mt-2"
+        x-bind:class="{ 'bg-gradient-to-r from-mediumBlue to-lightBlue': nav==='adminPanel' }">
           <i class="ri-home-2-fill mr-3 text-xl"></i>
-          <span class="text-md">Dashboard</span></a>
+          <span class="text-md" x-bind:class="{ 'font-semibold': nav==='adminPanel' }">Dashboard</span></a>
       </li>
       <li>
-        <a href="{{ route('adminCars') }}" class="flex items-center py-2 px-4 text-white hover:bg-white hover:text-mediumBlue rounded-l-xl transition-all">
+        <a wire:navigate href="{{ route('adminCars') }}" class="flex items-center py-2 px-4 text-white rounded-l-xl transition-all"
+        x-bind:class="{ 'bg-gradient-to-r from-mediumBlue to-lightBlue': nav==='adminCars' }">
           <i class="ri-car-fill mr-3 text-xl"></i>
-          <span class="text-md">Voitures</span></a>
+          <span class="text-md" x-bind:class="{ 'font-semibold': nav==='adminCars' }">Voitures</span></a>
+      </li>
+      <li>
+        <a wire:navigate href="{{ route('adminNewsletters') }}" class="flex items-center py-2 px-4 text-white rounded-l-xl transition-all"
+        x-bind:class="{ 'bg-gradient-to-r from-mediumBlue to-lightBlue': nav==='adminNewsletters' }">
+          <i class="ri-mail-fill mr-3 text-xl"></i>
+          <span class="text-md" x-bind:class="{ 'font-semibold': nav==='adminNewsletters' }">Newsletters</span></a>
+      </li>
+      <li>
+        <a wire:navigate href="{{ route('adminLieux') }}" class="flex items-center py-2 px-4 text-white rounded-l-xl transition-all"
+        x-bind:class="{ 'bg-gradient-to-r from-mediumBlue to-lightBlue': nav==='adminLieux' }">
+          <i class="ri-map-pin-fill mr-3 text-xl"></i>
+          <span class="text-md" x-bind:class="{ 'font-semibold': nav==='adminLieux' }">Lieux</span></a>
       </li>
     {{-- <li>
       <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">

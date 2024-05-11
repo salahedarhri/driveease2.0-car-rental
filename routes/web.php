@@ -14,6 +14,10 @@ use App\Livewire\ChoisirOptionsEtFranchise;
 use App\Livewire\Admin\AdminDashboard;
 use App\Livewire\Admin\CarsManagement;
 use App\Livewire\Admin\ModifierVoiture;
+use App\Livewire\Admin\NewslettersManagement;
+use App\Livewire\Admin\LieuxManagement;
+use App\Livewire\Admin\ModifierLieu;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,8 +58,14 @@ Route::get('/dashboard', [Controller::class,'dashboard'])->middleware(['auth','v
 
 Route::group(['prefix'=>'admin','middleware'=>['admincheck']],  function(){
     Route::get('dashboard', AdminDashboard::class)->name('adminPanel');
+    //Voitures
     Route::get('voitures', CarsManagement::class)->name('adminCars');
     Route::get('voiture/{id}', ModifierVoiture::class )->name('manageCar');
+    //Newsletter
+    Route::get('newsletters', NewslettersManagement::class)->name('adminNewsletters');
+    //Lieux
+    Route::get('lieux', LieuxManagement::class)->name('adminLieux');
+    Route::get('lieu/{id}', ModifierLieu::class )->name('manageLieu');
 });
 
 require __DIR__ . '/auth.php';

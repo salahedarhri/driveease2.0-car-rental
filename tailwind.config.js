@@ -31,6 +31,8 @@ export default {
                 bleuclair: '#e8f5ff',
                 stripe:'#6772e5',
                 bleufonce:'#1b1b22',
+                third:'#88c6db',
+
             }
         },
     },
@@ -40,6 +42,6 @@ export default {
         
 
     daisyui: {
-        themes: ["corporate"],
+        themes: ["pastel"],
         },
 };
