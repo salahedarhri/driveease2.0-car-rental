@@ -48,18 +48,7 @@
           <i class="ri-map-pin-fill mr-3 text-xl"></i>
           <span class="text-md" x-bind:class="{ 'font-semibold': nav==='adminLieux' }">Lieux</span></a>
       </li>
-    {{-- <li>
-      <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-        <i class="ri-home-2-line mr-3 text-xl"></i>
-        <span class="">Dashboard</span></a></li> --}}
-    {{-- <li>
-      <a href="{{route('admin.utilisateurs.index')}}" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-        <i class="ri-account-circle-line mr-3 text-xl"></i>
-        <span class="">Utilisateurs</span></a></li> --}}
-    {{-- <li>
-      <a href="#" class="flex items-center py-2 px-4 text-gray-300 hover:bg-slate-500 hover:text-white rounded transition-all">
-        <i class="ri-book-2-line mr-3 text-xl"></i>
-        <span class="">Réservations</span></a></li> --}}
+
     </ul>
   </div>
 
@@ -96,7 +85,7 @@
             <label tabindex="0" class="btn bg-slate-100 hover:bg-slate-300 border-slate-100 hover:border-slate-500 px-2">
               <i class="ri-account-circle-fill text-4xl text-cyan-800"></i>
             </label>
-            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-white">
+            <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-white font-montserrat font-semibold text-darkBlue">
               <li>
                 <a href="{{ route('profile.edit') }}" class="hover:text-black">Profil</a>
               </li>
