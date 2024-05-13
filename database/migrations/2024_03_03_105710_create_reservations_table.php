@@ -18,10 +18,13 @@ return new class extends Migration
             $table->foreignId('idProtection')->constrained('protection_options')->onUpdate('cascade')->onDelete('cascade');
             $table->dateTime('dateDepart');
             $table->dateTime('dateRetour');
-            $table->tinyText('lieuDepart');
-            $table->tinyText('lieuRetour');
+            $table->string('lieuDepart');
+            $table->string('lieuRetour');
+            $table->tinyText('Commentaire')->nullable();
+            $table->string('statut')->default('En attente de confirmation');
             $table->integer('minAge');
-
+            $table->string('moyenPaiement');
+            $table->foreignId('idTransaction')->nullable()->constrained('transactions')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

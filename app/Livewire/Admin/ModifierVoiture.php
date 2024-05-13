@@ -89,8 +89,6 @@ class ModifierVoiture extends Component
 
             $voiture->climatisation = ($this->climatisation == 'Oui')? true:false;
             $voiture->slug = Str::slug("$voiture->modele");
-            $voiture->Disponibilite = true;
-
             
             if(File::exists(public_path('images/voitures/'.$this->photoModify)) && $this->photo){
                 File::delete(public_path('images/voitures/'.$this->photoModify));

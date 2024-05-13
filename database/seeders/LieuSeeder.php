@@ -21,13 +21,10 @@ class LieuSeeder extends Seeder
                 ['nom' => 'Aéroport Agadir–Al Massira', 'ville' => 'Agadir', 'type' => 'Aéroport'],
             
                 // Gares routières à Agadir
-                ['nom' => 'Gare Routière Agadir', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
+                ['nom' => 'Gare Routière Voyageurs Agadir', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
                 ['nom' => 'Gare Routière Inzegane', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
-                ['nom' => 'Gare Routière Tikiouine', 'ville' => 'Agadir', 'type' => 'Gare Routière'],
             
                 // Aéroports à Marrakech
-                ['nom' => 'Aéroport Marrakech Menara', 'ville' => 'Marrakech', 'type' => 'Aéroport'],
-                ['nom' => 'Aéroport de Marrakech-Ménara', 'ville' => 'Marrakech', 'type' => 'Aéroport'],
                 ['nom' => 'Aéroport Marrakech-Menara International', 'ville' => 'Marrakech', 'type' => 'Aéroport'],
             
                 // Gares routières à Marrakech
@@ -37,7 +34,6 @@ class LieuSeeder extends Seeder
             
                 // Aéroports à Casablanca
                 ['nom' => 'Aéroport Mohammed V', 'ville' => 'Casablanca', 'type' => 'Aéroport'],
-                ['nom' => 'Aéroport International Mohammed V', 'ville' => 'Casablanca', 'type' => 'Aéroport'],
                 ['nom' => 'Aéroport de Casablanca-Anfa', 'ville' => 'Casablanca', 'type' => 'Aéroport'],
             
                 // Gares routières à Casablanca

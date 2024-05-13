@@ -74,7 +74,6 @@ class CarsManagement extends Component
             $voiture->nbPers = trim($this->nbPers);
             $voiture->minAge = trim($this->minAge);
             $voiture->climatisation = ($this->climatisation == 'Oui')?true:false;
-            $voiture->disponibilite = true;
             $voiture->slug = Str::slug("$this->modele");
 
             $voiturePhoto = $voiture->slug.'-photo.jpg';
@@ -93,7 +92,6 @@ class CarsManagement extends Component
             }
 
             session()->flash('success','Voiture ajouté avec succès !');
-
             $this->resetChamps();
 
         }catch(\Exception $e){

@@ -118,7 +118,6 @@ class ValiderReservation extends Component{
     }
 
     public function validerConducteur(){
-
         $this->validate( $this->rules, $this->message );
 
         $this->dateDepart = $this->dateDepartCarbon->toDateTimeString();
@@ -143,11 +142,10 @@ class ValiderReservation extends Component{
         $reservation->dateDepart = trim($this->dateDepart);
         $reservation->dateRetour = trim($this->dateRetour);
         $reservation->minAge = trim($this->minAge);
+        $reservation->moyenPaiement = 'En Agence';
         $reservation->save();
 
         $reservation->options()->attach($this->optnsChoisi);
-
-
         session(['reservation' => $reservation->id ]);
 
         // Mail::to($conducteur->email)->send( new WelcomeMail($conducteur, $reservation));

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('status');
-            $table->decimal('prix');
+            $table->decimal('prixTotal');
             $table->tinyText('details');
             $table->timestamps();
         });

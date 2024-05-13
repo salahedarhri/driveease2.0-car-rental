@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('modele');
             $table->string('description')->nullable();
             $table->double('prix',10,1);
-            $table->boolean('disponibilite')->default(true);
             $table->string('transmission');
             $table->string('moteur');
             $table->string('ville');

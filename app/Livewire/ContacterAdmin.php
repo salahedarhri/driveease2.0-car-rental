@@ -19,7 +19,6 @@ class ContacterAdmin extends Component
         'nomContact'=>'required',
         'emailContact'=>'required|email',
         'msgContact'=>'required',
-        'dateNsConducteur'=>'required|date',
     ];
 
     protected $message = [
@@ -41,8 +40,17 @@ class ContacterAdmin extends Component
         }
 
         $message->save();
+        $this->resetChamps();
         
         session()->flash('message', 'Votre message a été envoyé avec succès!');
+    }
+
+    public function resetChamps(){
+        $this->nomContact = '';
+        $this->prenomContact = '';
+        $this->emailContact = '';
+        $this->msgContact = '';
+        $this->numTelContact = '';
     }
 
     public function render()

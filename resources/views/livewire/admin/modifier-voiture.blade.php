@@ -63,7 +63,10 @@
             </div>
             <label for="photo"><p class="text-base font-bold text-mediumBlue">Nouvelle photo :</p>
                 <input type="file" accept="image/png, image/jpeg" wire:model="photo" value="{{ $photo }}"
-                        class="file:text-white file:bg-mediumBlue file:border-none file:font-cabin hover:saturate-150 file:transition file:rounded file:py-1 file:px-3 w-full shadow focus:ring-mediumBlue p-1 focus:border-mediumBlue border border-lightBlue rounded-lg  placeholder-slate-400 transition" >
+                        class="file:text-white file:bg-mediumBlue file:border-none file:font-cabin hover:saturate-150 file:transition file:rounded file:py-1 file:px-3 w-full shadow focus:ring-mediumBlue p-1 focus:border-mediumBlue border border-lightBlue rounded-lg  placeholder-slate-400 transition">
+                @if($photo)
+                    <img class="object-center object-contain" src="{{ $photo->temporaryUrl() }}" alt="image preview">
+                @endif
                 @error('photo') <span class="text-red-500 font-cabin text-sm py-1 px-2">{{ $message }}</span> @enderror 
             </label>
             <label for="ville"><p class="text-base font-bold text-mediumBlue">Ville :</p>

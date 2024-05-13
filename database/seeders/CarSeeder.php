@@ -28,8 +28,6 @@ class CarSeeder extends Seeder
                 'modele'=>$modele,
                 'description'=> $faker->sentence,
                 'prix'=> $faker->randomFloat(0,200, 700),
-                'disponibilite'=> $faker->boolean,
-
                 'transmission'=> $faker->randomElement(['Auto','Manuelle']),
                 'moteur'=> $faker->randomElement(['Diesel','Hybride','Gasoil','Electrique']),
                 'ville'=> $faker->randomElement(['Agadir','Marrakech','Casablanca']),
