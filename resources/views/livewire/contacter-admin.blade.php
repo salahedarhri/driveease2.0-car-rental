@@ -2,7 +2,7 @@
 
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <div class="grid grid-cols-2 max-md:grid-cols-1 justify-center align-center px-4 py-8 gap-8">
-        <div class="w-full max-w-lg mx-auto">
+        <div class="w-full max-w-lg mx-auto bg-teal-600 p-3 bg-opacity-20 rounded-xl shadow-lg">
 
             @if (session()->has('message'))
                 <div role="alert" class="alert alert-success font-montserrat py-3 my-6">
@@ -11,10 +11,10 @@
                 </div>
             @endif
 
-            <p class="font-montserrat text-xl text-center pb-6 bg-mediumBlue text-transparent bg-clip-text">Contactez-nous En Ligne</p>
+            <p class="font-montserrat text-xl text-center pt-3 pb-6 bg-gradient-to-r from-mediumBlue to-teal-500 font-semibold text-transparent bg-clip-text">Contactez-nous En Ligne</p>
             <p class="font-cabin text-sm text-end pb-1 ">* : Champ Obligatoire</p>
 
-            <form wire:submit.prevent="validerContact" class="w-full flex flex-col gap-6 max-sm:gap-4 py-3 font-montserrat opacity-90">
+            <form wire:submit.prevent="validerContact" class="w-full flex flex-col gap-6 max-sm:gap-4 py-3 font-montserrat">
                 <label for="nomContact">
                     <input type="text" name="nomContact" placeholder="Nom *" wire:model="nomContact"
                     class="w-full shadow focus:ring-teal-400  focus:border-teal-500 border border-slate-300 rounded-lg  placeholder-slate-400 transition">
@@ -52,22 +52,22 @@
                 <h2 class="font-bold underline text-teal-600 text-lg">Agadir</h2>
                 <p>Rue Mohammed V, Agadir, Maroc</p>
                 <p><b>Tél :</b> +212 5 28 45 67 89</p>
-                <p><b>Email :</b>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=agadir@locationvoituresexpress.com" target="_blank">agadir@locationvoituresexpress.com</a></p>
+                <p ><b>Email :</b><br>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=agadir@locationvoituresexpress.com" target="_blank" class="max-sm:text-sm decoration-teal-600 hover:underline transition">agadir@locationvoituresexpress.com</a></p>
             </div>
             <div class="flex flex-col text-center py-3 gap-2 text-base">
                 <h2 class="font-bold underline text-teal-600 text-lg">Marrakech</h2>
                 <p>Avenue Mohammed VI, Marrakech, Maroc</p>
                 <p><b>Tél :</b> +212 5 24 56 78 90</p>
-                <p><b>Email :</b>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marrakech@locationvoituresexpress.com" target="_blank">marrakech@locationvoituresexpress.com</a></p>
+                <p><b>Email :</b><br>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=marrakech@locationvoituresexpress.com" target="_blank" class="max-sm:text-sm decoration-teal-600 hover:underline transition">marrakech@locationvoituresexpress.com</a></p>
             </div>
             <div class="flex flex-col text-center py-3 gap-2 text-base">
                 <h2 class="font-bold underline text-teal-600 text-lg">Casablanca</h2>
                 <p>Boulevard Mohamed V, Casablanca, Maroc</p>
                 <p><b>Tél :</b> +212 5 22 34 56 78</p>
-                <p><b>Email :</b>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=casablanca@locationvoituresexpress.com" target="_blank">casablanca@locationvoituresexpress.com</a></p>
+                <p><b>Email :</b><br>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=casablanca@locationvoituresexpress.com" target="_blank" class="max-sm:text-sm decoration-teal-600 hover:underline transition">casablanca@locationvoituresexpress.com</a></p>
             </div>
             
 

@@ -1,4 +1,3 @@
-/* Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,300;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap');
 
@@ -6,23 +5,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Mesh Gradient Background */
-@layer components {
-  .formInput{
-    @apply appearance-none border-slate-600 placeholder-slate-500 text-sm bg-no-repeat;
-  }}
-
 /* Sticky Navbar */
 .sticky {
   position: fixed;
   top: 0;
   width: 100%;  }
 
-.svgBackground{ 
-  background-image:url(images/composants/landingSvg.svg);
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: cover;
+[x-cloak] { display: none !important; }
+
+.font-swap{
+  font-display:swap;
 }
 
-[x-cloak] { display: none !important; }
+@keyframes moving {
+  0%{ transform: translateX(-2%)}
+  50%{ transform: translateX(2%)}
+  100%{ transform: translateX(-2%)}
+}
+
+@media (min-width: 768px) {
+  .voiture-accueil{
+    animation: moving 7s ease-in-out infinite;
+  }
+}
+
+
+#nprogress .bar { background: #3d9aad !important; }

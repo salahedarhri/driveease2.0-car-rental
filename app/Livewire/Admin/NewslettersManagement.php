@@ -40,10 +40,7 @@ class NewslettersManagement extends Component
         try{
             $newsletter = New Newsletter;
             $newsletter->email = $this->emailAdd;
-
             $newsletter->save();
-
-
             session()->flash('success','l\'email est ajouté avec succès !');
 
         }catch(\Exception $e){

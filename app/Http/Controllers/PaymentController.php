@@ -38,6 +38,7 @@ class PaymentController extends Controller
         'currency' => 'mad',
         'product_data' => [
           'name' => $voiture->modele . ' pour ' . $nbJrs . ' Jours',
+          // 'images' =>[asset('images/voitures/'.$voiture->photo)],
         ],
         'unit_amount' => $voiture->prix * $nbJrs * 100,
       ], 'quantity' => 1,
@@ -48,6 +49,7 @@ class PaymentController extends Controller
         'currency' => 'mad',
         'product_data' => [
           'name' => 'Protection ' . $prtc->type . ' pour ' . $nbJrs . ' Jours',
+          // 'images' => [asset('images/options/option2.png')],
         ],
         'unit_amount' => $prtc->prix * $nbJrs * 100,
       ], 'quantity' => 1,
@@ -62,6 +64,7 @@ class PaymentController extends Controller
             'currency' => 'mad',
             'product_data' => [
               'name' => $optn->option,
+              // 'images' => [asset('images/options/'.$optn->urlPhoto)],
             ],
             'unit_amount' => $optn->prix * 100,
           ], 'quantity' => 1,
@@ -69,24 +72,26 @@ class PaymentController extends Controller
       }
     }
 
-    $session = \Stripe\Checkout\Session::create([
-      'line_items' => $lineItems,
-      'mode' => 'payment',
-      'success_url' => route('success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-      'cancel_url' => route('cancel'),
-    ]);
+    try{
+      $session = \Stripe\Checkout\Session::create([
+        'line_items' => $lineItems,
+        'mode' => 'payment',
+        'success_url' => route('success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+        'cancel_url' => route('cancel'),
+      ]);
+    }catch(\Exception $e){
+      dd($e);
+    }
 
     return redirect($session->url);
   }
 
   public function success(){
-
-    return view('paiement.succes');
+    return redirect()->route('accueil')->with('success','Paiement réussi !');
   }
 
   public function cancel(){
-
-    return view('paiement.annulation');
+    return redirect()->route('accueil')->with('error','Paiement annulé.');
   }
 
   public function webhook(){
@@ -114,8 +119,8 @@ class PaymentController extends Controller
     switch ($event->type) {
       case 'payment_intent.succeeded':
         $paymentIntent = $event->data->object;
-        // ... handle other event types
-      default:
+
+        default:
         echo 'Received unknown event type ' . $event->type;
     }
 

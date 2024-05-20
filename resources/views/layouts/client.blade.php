@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="winter">
+<html lang="fr" data-theme="pastel">
 
 <head>
   <meta charset="UTF-8">
@@ -13,10 +13,9 @@
   @vite('resources/js/app.js')
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-
 </head>
 
-<body class="overflow-x-hidden antialiased">
+<body class="overflow-x-hidden antialiased font-swap">
 
   {{-- Navbar --}}
   <div class="w-full bg-gradient-to-r from-sky-700 to-sky-800">
@@ -36,9 +35,9 @@
         <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
           <a href="{{ route('accueil')}}" class="hover:text-lightBlue">Accueil</a>
         </li>
-        <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
-          <a href="{{ route('cars')}}" class="hover:text-lightBlue">Voitures</a>
-        </li>
+        {{-- <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
+          <a href="#" class="hover:text-lightBlue">Voitures</a>
+        </li> --}}
         <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
           <a href="{{ route('apropos') }}" class="hover:text-lightBlue">À propos</a>
         </li>
@@ -91,8 +90,8 @@
             </svg></label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-40 text-darkBlue">
             <li><a class="font-semibold tracking-wide" href="{{ route('accueil') }}">Accueil</a></li>
-            <li><a class="font-semibold tracking-wide" href="{{ route('cars') }}">Voitures</a></li>
-            <li><a class="font-semibold tracking-wide" href="#">À propos</a></li>
+            {{-- <li><a class="font-semibold tracking-wide" href="#">Voitures</a></li> --}}
+            <li><a class="font-semibold tracking-wide" href="{{ route('apropos') }}">À propos</a></li>
 
           </ul>
         </div>
@@ -107,7 +106,7 @@
     class="footer footer-center p-6 bg-gradient-to-b from-sky-700 to-sky-800 text-white font-montserrat text-base z-20 shadow-lg">
     <nav class="grid sm:grid-flow-col max-sm:grid-cols-1 gap-8">
       <a href="{{ route('apropos') }}" class="link link-hover hover:text-teal-500 transition">À propos</a>
-      <a href="{{ route('cars') }}" class="link link-hover hover:text-teal-500 transition">Voitures</a>
+      {{-- <a href="#" class="link link-hover hover:text-teal-500 transition">Voitures</a> --}}
       <a href="{{ route('accueil') }}" class="link link-hover hover:text-teal-500 transition">Accueil</a>
       <a href="{{ route('dashboard') }}" class="link link-hover hover:text-teal-500 transition">Espace Client</a>
     </nav>

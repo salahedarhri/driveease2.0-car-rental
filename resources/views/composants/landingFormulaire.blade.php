@@ -21,7 +21,8 @@
         defaultHour:12,
         defaultMinute:30,
         locale:"fr",
-      });
+        disableMobile: "true",
+    });
 
       flatpickr('#dateTime2' , {
         enableTime: true,
@@ -32,6 +33,7 @@
         defaultHour:12,
         defaultMinute:30,
         locale:"fr",
-      });
+        disableMobile: "true",
+    });
   </script>
 @endonce

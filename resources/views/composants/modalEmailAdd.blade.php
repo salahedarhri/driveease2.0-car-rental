@@ -7,7 +7,7 @@
             <button @click="openModalAdd=false" ><i class="ri-close-line text-2xl hover:bg-cyan-500 hover:text-white rounded-full p-1 transition-all"></i></button>
         </div>
 
-        <p class="pb-4  text-center text-xl font-semibold text-mediumBlueDarker">Ajouter un email Newsletter</p>
+        <p class="pb-2 text-center text-xl font-semibold font-montserrat text-mediumBlue">Ajouter un email Newsletter</p>
 
         {{-- Succès & Erreur --}}
         @if (session()->has('success'))

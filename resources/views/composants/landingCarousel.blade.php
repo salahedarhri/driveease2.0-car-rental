@@ -1,26 +1,26 @@
-<div class="w-full bg-slate-100">
+<div x-data="{ luxe: false, routiere: false, utilitaire: false }" class="w-full bg-slate-100">
 
-  <!-- large screen-->
-  <div
+  {{-- Large screen --}}
+  <div x-intersect:enter="luxe = true; routiere = true; utilitaire = true"
     class="font-cabin grid grid-cols-3 gap-4 max-md:grid-cols-1 justify-center items-center max-w-7xl mx-auto px-8 py-12 text-sky-800">
-    <!-- Luxe -->
-    <div class="w-full py-2 bg-white rounded-xl shadow">
+     {{-- Luxe  --}}
+    <div x-show="luxe" x-transition.duration.300ms.delay.300ms class="w-full py-2 bg-white rounded-xl shadow">
       <img src="{{ asset('images/composants/luxe.png') }}" class="aspect-auto object-contain h-48 mx-auto"
         alt="voiture luxe">
       <p class="text-xl text-center montserrat font-semibold text-sky-500 p-3">Luxe</p>
       <p class="px-6 pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua.</p>
     </div>
-    <!-- Routiere -->
-    <div class="w-full py-2 bg-white rounded-xl shadow">
+     {{-- Routiere  --}}
+    <div x-show="routiere" x-transition.duration.300ms.delay.600ms class="w-full py-2 bg-white rounded-xl shadow">
       <img src="{{ asset('images/composants/routier.png') }}" class="aspect-auto object-contain h-48 mx-auto"
         alt="voiture routiere">
       <p class="text-xl text-center montserrat font-semibold text-sky-500 p-3">Routière</p>
       <p class="px-6 pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua.</p>
     </div>
-    <!-- Utilitaire -->
-    <div class="w-full py-2 bg-white rounded-xl shadow">
+     {{-- Utilitaire  --}}
+    <div x-show="utilitaire" x-transition.duration.300ms.delay.900ms class="w-full py-2 bg-white rounded-xl shadow">
       <img src="{{ asset('images/composants/utilitaire.png') }}" class="aspect-auto object-contain h-48 mx-auto"
         alt="voiture utilitaire">
       <p class="text-xl text-center montserrat font-semibold text-sky-500 p-3">Utilitaire</p>
@@ -28,7 +28,7 @@
         labore et dolore magna aliqua.</p>
     </div>
   </div>
-  <!-- mobile screen-->
+  
   {{-- <div class="bg-sky-100 max-w-md flex flex-col justify-center items-center mx-auto md:hidden">
     <div class="max-w-4xl mx-auto relative" x-data="{ activeSlide: 1, slides: [1, 2, 3] }">
       <!-- Slides -->

@@ -1,9 +1,9 @@
 <div class="w-full bg-gradient-to-r from-sky-700 to-teal-700">
     <div class="max-w-7xl mx-auto md:py-8">
-      <div  class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center">
+      <div x-data="{ shown2:false }" class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center">
   
-        <div class="svgBackground p-4 ">
-          <img src="{{ asset('images/composants/newsletter.png') }}" alt="landing car photo" class="aspect-auto my-auto">
+        <div x-intersect:enter="shown2=true" x-intersect:leave="shown2=false" class="svgBackground p-4">
+          <img x-show="shown2" x-transition.duration.700ms src="{{ asset('images/composants/newsletter.png') }}" alt="landing car photo" class="aspect-auto my-auto">
         </div>
 
   
