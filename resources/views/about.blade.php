@@ -25,8 +25,8 @@
   {{-- Des voitures au bout de vos doigts --}}
   <div class="w-full bg-slate-200">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
-      <p class="w-fit mx-auto md:text-3xl max-md:text-2xl font-montserrat font-semibold text-center py-3 text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-cyan-600 to-teal-500">
-        Des voitures au bout de vos doigts</p>
+      <h2 class="w-fit mx-auto md:text-3xl max-md:text-2xl font-montserrat font-semibold text-center py-3 text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-cyan-600 to-teal-500">
+        À Propos</h2>
       <div class="w-full flex flex-col justify-center align-center gap-6 py-6">
 
         <div class="w-full grid md:grid-cols-2 grid-cols-1 justify-center align-center bg-white rounded-xl shadow-xl">
@@ -58,7 +58,7 @@
   {{-- Nos Avantages --}}
   <div class="w-full bg-white">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
-      <p class="text-2xl font-montserrat font-semibold text-center py-3">Nos Avantages</p>
+      <p class="text-2xl font-montserrat font-semibold text-center py-3 text-mediumBlue">Nos Avantages</p>
       <div class="w-full grid md:grid-cols-3 max-md:grid-cols-1 justify-between align-center px-4 py-12 max-md:p-4 gap-4">
 
         <div class="w-full flex flex-col gap-3 p-3 justify-end text-center place-items-center max-w-sm mx-auto">
@@ -87,14 +87,14 @@
   {{-- Comment procéder --}}
   <div class="w-full bg-slate-200">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
-      <p class="text-2xl font-montserrat font-semibold text-center py-3">Comment procéder ?</p>
+      <p class="text-2xl font-montserrat font-semibold text-center py-3 text-mediumBlue">Comment procéder ?</p>
       <p class="font-cabin text-center lg:text-lg py-6">Grâce à notre processus de réservation en ligne rapide et intuitif, vous pouvez facilement trouver la voiture parfaite pour votre voyage, choisir vos dates et options, et finaliser votre réservation en un rien de temps.<br>
          Plus de tracas de longues files d'attente ou de paperasserie interminable - avec DriveEase, vous pouvez prendre la route en un instant, et profiter pleinement de votre voyage</p>
 
 
       <div class="grid md:grid-cols-2 max-md:grid-cols-1 justify-center align-center py-8 max-md:py-4 gap-4">
 
-        <img src="{{ asset('images/composants/selection-voitures.png')}}" alt="selection-voitures.png" class="object-center object-cover align-center my-auto">
+        <img src="{{ asset('images/composants/selection-voitures.png')}}" alt="selection-voitures.png" class="voiture-accueil object-center object-cover align-center my-auto">
 
         <div class="flex flex-col justify-center align-center gap-8 max-md:max-w-md mx-auto">
           <div class="flex md:flex-row flex-col gap-3 place-items-center md:place-items-start">
@@ -132,7 +132,7 @@
   <div class="w-full bg-white">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
       <p class="text-sm font-montserrat font-semibold text-center py-1 text-teal-500">DriveEase</p>
-      <p class="text-3xl font-montserrat font-semibold text-center py-1 ">Nos Contacts</p>
+      <p class="text-3xl font-montserrat font-semibold text-center py-1 text-mediumBlue">Nos Contacts</p>
 
       @livewire('ContacterAdmin')
 

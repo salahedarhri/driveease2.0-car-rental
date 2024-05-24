@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-// use App\Http\Controllers\CarController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ReservationController;
@@ -32,7 +31,7 @@ use App\Livewire\Admin\ModifierLieu;
 //Pages standards
 Route::get('/', function () { return view('landing');})->name('accueil');
 Route::get('/apropos', function () { return view('about');})->name('apropos');
-// Route::get('/voitures', [ CarController::class, 'index'])->name('cars');
+Route::get('/voitures', function(){ return view('cars'); })->name('cars');
 
 //Reservation
 Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])->name('email');

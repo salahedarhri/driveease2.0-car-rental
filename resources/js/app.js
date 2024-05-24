@@ -7,11 +7,25 @@ window.Alpine = Alpine;
 Alpine.start();
 Alpine.plugin(intersect)
 
-// import { gsap } from "gsap";
-// import { ScrollTrigger } from "gsap/ScrollTrigger";
-// import { Observer } from "gsap/Observer";
-// import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+const scrollers = document.querySelectorAll(".scroller");
 
-// gsap.registerPlugin(ScrollTrigger);
-// gsap.registerPlugin(Observer);
-// gsap.registerPlugin(ScrollToPlugin);
+if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  addAnimation();
+}
+
+function addAnimation() {
+  scrollers.forEach((scroller) => {
+    scroller.setAttribute("data-animated", true);
+
+    const scrollerInner = scroller.querySelector(".scroller__inner");
+    const scrollerContent = Array.from(scrollerInner.children);
+
+    scrollerContent.forEach((item) => {
+      const duplicatedItem = item.cloneNode(true);
+      duplicatedItem.setAttribute("aria-hidden", true);
+      scrollerInner.appendChild(duplicatedItem);
+    });
+  });
+}
+
+
