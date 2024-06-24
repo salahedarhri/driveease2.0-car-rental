@@ -1,40 +1,32 @@
-<div x-data="{ navbar:false ,sticky:$refs.filtres.offsetTop }" @scroll.window="navbar=(window.pageYOffset > sticky)?true:false">
+<article x-data="{ navbar:false ,sticky:$refs.filtres.offsetTop }" @scroll.window="navbar=(window.pageYOffset > sticky)?true:false">
   @include('composants.formulaireRecap')
 
-  {{-- Chargement --}}
-  <div wire:loading class="fixed z-20 inset-0 bg-white bg-opacity-90 transition-all">
-    <div class="w-full h-screen flex flex-col justify-center place-items-center">
-        <span class="loading loading-spinner loading-lg text-teal-600"></span>
-          <p class="mt-2 font-semibold text-lg">Chargement...</p>
-    </div>
-  </div>
-
   {{-- Titre + total --}}
-  <div x-ref="filtres" x-bind:class="navbar?'fixed top-0':''" class="w-full bg-white z-50 shadow-xl">
+  <section x-ref="filtres" x-bind:class="navbar?'fixed top-0':''" class="w-full bg-white z-50 shadow-xl">
     <div class="flex flex-row justify-between max-md:justify-center place-items-center max-w-7xl mx-auto p-2 px-3 font-montserrat ">
-      <p class="text-xl max-md:hidden font-semibold">Récapitulatif de votre réservation</p>
+      <h1 class="text-xl max-md:hidden font-semibold">Récapitulatif de votre réservation</h1>
 
       <div class="flex flex-row place-items-center  gap-6 text-xl p-2">
         @if(isset($voiture) && isset($protectionChoisi) && isset($optnsIds))
           <div class="flex flex-row gap-1">
-            <p class="font-semibold">Total : </p>
+            <span class="font-semibold">Total : </span>
             <p class="font-bold text-teal-600">{{ ($voiture->prix * $nbJrs) + $prixPrtc + $prixOptns }} DH</p>
           </div>
         @elseif( isset($voiture) && isset($protectionChoisi))
           <div class="flex flex-row gap-1">
-            <p class="font-semibold">Total :</p>
+            <span class="font-semibold">Total :</span>
             <p class="font-bold text-teal-600">{{ ($voiture->prix * $nbJrs) + $prixPrtc }} DH</p>
           </div>
         @else
-          <p> ---- </p>
+          <span> ---- </span>
         @endif
       </div>
     </div>
 
-  </div>
+  </section>
 
   {{-- Résumé --}}
-  <div class="w-full bg-slate-100">
+  <section class="w-full bg-slate-200">
     <div class="max-w-7xl mx-auto p-4">
 
       <p class="text-2xl font-bold font-montserrat pb-4 max-sm:text-center">Résumé</p>
@@ -47,18 +39,18 @@
         </div>
         <div class="w-full grid grid-cols-2 max-md:grid-cols-1 py-4">
 
-          <div class="w-full bg-slate-100 py-4 px-2 rounded shadow">
+          <div class="w-full bg-slate-100 py-4 px-3 rounded shadow">
             @if( isset($voiture))
-            <img src="{{ asset('images/voitures/'.$voiture->photo)}}" alt="Car Image"
-              srcset="aspect-square object-center object-contain">
-            <p class="text-lg font-bold font-montserrat pl-4 py-4">{{ $voiture->modele }}</p>
+            <img src="{{ asset('images/voitures/'.$voiture->photo)}}" alt="{{ $voiture->photo }}"
+              class="object-center object-contain w-full">
+            <span class="text-lg font-bold font-montserrat text-center">{{ $voiture->modele }}</span>
 
-            <div class="flex flex-row gap-3 font-cabin md:text-base max-md:text-xs align-center md:pl-2 max-md:w-fit max-md:mx-auto">
-              <p><img src="{{ asset('images/icons/personne.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>{{ $voiture->nbPers }}</p>
-              <p><img src="{{ asset('images/icons/transmission.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>{{ $voiture->transmission }}</p>
-              <p><img src="{{ asset('images/icons/identity-card.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>{{ $voiture->minAge }}</p>
+            <div class="flex flex-row gap-3 font-cabin md:text-base max-md:text-xs align-center py-2">
+              <span class="text-md"><img src="{{ asset('images/icons/personne.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>{{ $voiture->nbPers }}</span>
+              <span class="text-md"><img src="{{ asset('images/icons/transmission.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>{{ $voiture->transmission }}</span>
+              <span class="text-md"><img src="{{ asset('images/icons/identity-card.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>{{ $voiture->minAge }}</span>
               @if( $voiture->climatisation == true )
-              <p><img src="{{ asset('images/icons/climatisation.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>Climatisation</p>
+              <span class="text-md"><img src="{{ asset('images/icons/climatisation.svg')}}" class="md:w-7 md:h-7 w-6 h-6 align-middle inline-block mr-1"></img>Climatisation</span>
               @endif
             </div>
             @endif
@@ -114,10 +106,10 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
   {{-- Conducteur --}}
-  <div class="w-full bg-slate-100 ">
+  <section class="w-full bg-slate-200">
     <div class="max-w-7xl mx-auto pt-6 px-3 ">
 
       <div class="flex flex-row justify-between max-sm:flex-col max-sm:justify-center max-sm:text-center">
@@ -157,10 +149,18 @@
 
     </div>
 
-  </div>
+  </section>
+
+    {{-- Chargement --}}
+ <section wire:loading class="fixed z-20 inset-0 bg-white bg-opacity-90 transition-all">
+    <div class="w-full h-screen flex flex-col justify-center place-items-center">
+        <span class="loading loading-spinner loading-lg text-teal-600"></span>
+          <p class="mt-2 font-semibold text-lg">Chargement...</p>
+    </div>
+ </section>
 
   {{-- Paiement --}}
-  <div class="w-full bg-slate-100">
+  <section class="w-full bg-slate-200">
     <div class="max-w-7xl mx-auto sm:py-8 sm:px-3 max-sm:px-4 max-sm:py-8">
 
       <p class="text-2xl font-bold font-montserrat pb-8 max-sm:text-center">Modes de paiement</p>
@@ -211,9 +211,9 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-</div>
+</article>
 
 
 

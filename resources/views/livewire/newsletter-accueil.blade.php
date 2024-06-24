@@ -1,9 +1,11 @@
-<div class="w-full bg-gradient-to-r from-sky-700 to-teal-700">
+<div class="w-full bg-slate-200
+ {{-- bg-gradient-to-r from-sky-700 to-teal-700 --}}
+ ">
     <div class="max-w-7xl mx-auto md:py-8">
       <div x-data="{ shown2:false }" class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center">
   
         <div x-intersect:enter="shown2=true" x-intersect:leave="shown2=false" class="svgBackground p-4">
-          <img x-show="shown2" x-transition.duration.700ms src="{{ asset('images/composants/newsletter.png') }}" alt="landing car photo" class="aspect-auto my-auto">
+          <img x-show="shown2" loading="lazy" x-transition.duration.700ms src="{{ asset('images/composants/newsletter.png') }}" alt="landing car photo" class="aspect-auto my-auto">
         </div>
 
   
@@ -29,17 +31,17 @@
                 </div>
             @endif
 
-          <p class="text-white text-2xl max-md:text-lg font-semibold py-4 max-md:pb-2">Souscrivez pour recevoir nos
-            dernières nouveautés</p>
+          <h2 class="text-mediumBlue text-3xl font-bold py-4 max-md:pb-2">Souscrivez pour recevoir nos dernières nouveautés</h2>
+          <p class="text-darkBlue py-4 font-cabin text-base"><b class="text-cyan-600">Ne manquez plus aucune offre!</b> Inscrivez-vous à la newsletter de DriveEase pour recevoir les dernières promotions, des astuces de voyage, et des informations exclusives directement dans votre boîte mail. Rejoignez notre communauté et restez toujours informé!</p>
   
-          <form wire:submit.prevent="AjouterEmail" class="flex flex-col gap-1 bg-white p-2 m-1 max-w-md justify-evenly rounded shadow-xl max-md:mx-auto" novalidate>
+          <form wire:submit.prevent="AjouterEmail" class="flex flex-col gap-2 bg-white p-2 m-1 max-w-md justify-evenly rounded shadow-lg max-md:mx-auto" novalidate>
             
             <div class="flex flex-row w-full gap-1 items-center">
                 <input type="email" name="emailNewsletter" wire:model.lazy="emailNewsletter" placeholder="Votre adresse email"
-                class="w-full p-2 rounded-md border-teal-400 shadow-sm text-md" >
+                class="w-full p-2 border-2 focus:ring-0 rounded-md border-cyan-400 shadow-sm text-md" >
                 <button type="submit"
-                class="bg-teal-500 hover:bg-teal-600 transition-all text-white rounded shadow-md font-semibold uppercase py-2 px-3 cursor-pointer">
-                Envoyer
+                class="bg-cyan-500 hover:bg-teal-600 transition-all text-white rounded font-semibold uppercase py-1 px-2 cursor-pointer">
+                <i class="ri-mail-send-line text-2xl"></i>
               </button>
             </div>
 

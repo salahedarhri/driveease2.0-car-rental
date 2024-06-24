@@ -32,13 +32,13 @@
 
       {{-- Medium / Big Screen --}}
       <ul class="flex flex-row place-items-center gap-8 py-0 max-md:hidden font-montserrat font-semibold">
-        <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
+        <li class="md:px-1 lg:px-2 transition-all hover:underline">
           <a href="{{ route('accueil') }}" class="hover:text-lightBlue">Accueil</a>
         </li>
-        <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
+        <li class="md:px-1 lg:px-2 transition-all hover:underline">
           <a href="{{ route('cars') }}" class="hover:text-lightBlue">Voitures</a>
         </li>
-        <li class="md:px-1 lg:px-2 hover:translate-x-2 transition-transform duration-300 ease-in-out hover:underline">
+        <li class="md:px-1 lg:px-2 transition-all hover:underline">
           <a href="{{ route('apropos') }}" class="hover:text-lightBlue">À propos</a>
         </li>
       </ul>
@@ -46,7 +46,7 @@
       <div class="flex flex-row items-center max-md:hidden">
         @auth
         <a href="{{ route('dashboard') }}"
-          class="font-semibold text-base px-3 py-1 hover:text-lightBlue hover:underline rounded hover:translate-x-2 transition-transform duration-300 ease-in-out">Espace
+          class="font-semibold text-base px-3 py-1 hover:text-lightBlue hover:underline rounded">Espace
           Client</a>
         @endauth
         @guest

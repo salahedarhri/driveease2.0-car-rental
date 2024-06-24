@@ -2,7 +2,7 @@
 
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <div class="grid grid-cols-2 max-md:grid-cols-1 justify-center align-center px-4 py-8 gap-8">
-        <div class="w-full max-w-lg mx-auto bg-teal-600 p-3 bg-opacity-20 rounded-xl shadow-lg">
+        <div class="w-full max-w-lg mx-auto bg-teal-100 p-3 bg-opacity-70 rounded-xl shadow-lg">
 
             @if (session()->has('message'))
                 <div role="alert" class="alert alert-success font-montserrat py-3 my-6">
@@ -41,7 +41,7 @@
                     @error('msgContact') <p class="text-red-500 font-cabin text-sm py-1 px-2">{{ $message }}</p>@enderror
                 </label>
 
-                <button type="submit" class="text-white font-cabin uppercase font-semibold px-4 py-2 bg-teal-500 rounded shadow w-fit mx-auto hover:bg-teal-600 transition">Envoyer</button>
+                <button type="submit" class="text-white font-cabin uppercase font-semibold px-4 py-2 bg-teal-500 rounded shadow w-fit mx-auto hover:saturate-150 transition">Envoyer</button>
             </form>
 
         </div>

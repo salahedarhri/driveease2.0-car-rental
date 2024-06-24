@@ -1,6 +1,6 @@
 <div class="w-full bg-gradient-to-r from-sky-700 to-sky-800 px-4 pb-4 pt-2">
 
-  <div class="grid grid-cols-3 max-sm:grid-cols-1 max-w-4xl mx-auto font-cabin bg-white rounded-xl">
+  <section class="grid grid-cols-3 max-sm:grid-cols-1 max-w-4xl mx-auto font-cabin bg-white rounded-xl">
 
     {{-- Date et Lieu --}}
     <div class="max-sm:text-center p-2 hover:bg-slate-100 transition duration-300 sm:rounded-l-xl max-sm:rounded-t-xl">
@@ -86,6 +86,6 @@
     </div>
 
 
-  </div>
+  </section>
 
 </div>

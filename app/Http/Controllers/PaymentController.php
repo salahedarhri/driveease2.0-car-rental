@@ -14,7 +14,7 @@ class PaymentController extends Controller
 
   public function checkout(Request $request){
 
-    \Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+    \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
 
     $dateDepart = $request->route('dateDepart');
     $dateRetour = $request->route('dateRetour');

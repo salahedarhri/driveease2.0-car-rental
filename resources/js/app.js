@@ -1,11 +1,14 @@
 import './bootstrap'
 import 'remixicon/fonts/remixicon.css'
+
 import Alpine from 'alpinejs'
 import intersect from '@alpinejs/intersect'
+import focus from '@alpinejs/focus'
 
 window.Alpine = Alpine;
 Alpine.start();
 Alpine.plugin(intersect)
+Alpine.plugin(focus)
 
 const scrollers = document.querySelectorAll(".scroller");
 

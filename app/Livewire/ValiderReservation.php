@@ -156,8 +156,11 @@ class ValiderReservation extends Component{
     public function render(){
         
         // Protection
-        $this->prtcChoisi = Protection::find( $this->prtcChoisiId );
-        $this->prixPrtc = (float)$this->prtcChoisi->prix * $this->nbJrs;
+        if( $this->prtcChoisiId ){
+            $this->prtcChoisi = Protection::find( $this->prtcChoisiId );
+            $this->prixPrtc = (float)$this->prtcChoisi->prix * $this->nbJrs;
+        }
+
 
         //Options
         if( !empty($this->optnsIds)){

@@ -56,7 +56,7 @@
   </div>
 
   {{-- Nos Avantages --}}
-  <div class="w-full bg-white">
+  {{-- <div class="w-full bg-white">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
       <p class="text-2xl font-montserrat font-semibold text-center py-3 text-mediumBlue">Nos Avantages</p>
       <div class="w-full grid md:grid-cols-3 max-md:grid-cols-1 justify-between align-center px-4 py-12 max-md:p-4 gap-4">
@@ -82,10 +82,10 @@
       </div>
     </div>
 
-  </div>
+  </div> --}}
 
   {{-- Comment procéder --}}
-  <div class="w-full bg-slate-200">
+  <div class="w-full bg-white">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
       <p class="text-2xl font-montserrat font-semibold text-center py-3 text-mediumBlue">Comment procéder ?</p>
       <p class="font-cabin text-center lg:text-lg py-6">Grâce à notre processus de réservation en ligne rapide et intuitif, vous pouvez facilement trouver la voiture parfaite pour votre voyage, choisir vos dates et options, et finaliser votre réservation en un rien de temps.<br>
@@ -129,7 +129,7 @@
   </div>
 
   {{-- Nos contacts --}}
-  <div class="w-full bg-white">
+  <div class="w-full bg-slate-200">
     <div class="max-w-7xl mx-auto max-md:p-4 md:p-6">
       <p class="text-sm font-montserrat font-semibold text-center py-1 text-teal-500">DriveEase</p>
       <p class="text-3xl font-montserrat font-semibold text-center py-1 text-mediumBlue">Nos Contacts</p>

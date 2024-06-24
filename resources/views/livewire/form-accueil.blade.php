@@ -4,7 +4,7 @@
         <div class="grid lg:grid-cols-2 grid-cols-1 justify-center max-lg:gap-2 font-cabin">
             <div class="flex flex-row max-sm:flex-col w-full max-lg:gap-2">
                 {{-- Lieu de Départ --}}
-                <label for="lieuDepart" class="w-full" x-data="{ lieuDepart:''}">
+                <label for="lieuDepart" class="w-full" x-data="{ lieuDepart:''}" x-trap="focus">
                     <input name="lieuDepart" type="text" placeholder="Ville, Aéroport, Gare,..." wire:model.live.debounce.50ms="lieuDepart" autocomplete="off" x-model="lieuDepart"
                      class="relative w-full p-3 cursor-pointer focus:ring-0 border-2 focus:border-teal-500 max-lg:rounded-lg lg:rounded-l-xl @error('lieuDepart') border-red-500 @else border-slate-300 @enderror">
                     
@@ -17,11 +17,11 @@
                         <div class="absolute z-30 mt-1 w-80 bg-white rounded shadow-xl p-1">
                             
                             <div wire:loading wire:target="lieuDepart" class="p-2">
-                                <p>Chargement...</p>
+                                <p class="text-sm">Chargement...</p>
                             </div>
 
                             @if( $lieuxDepart->where('type','Aéroport')->isNotEmpty())
-                                <div wire:transition wire:loading.remove wire:target="lieuDepart">
+                                <div wire:transition wire:loading.remove wire:target="lieuDepart" class="w-full">
                                     @foreach ($lieuxDepart->where('type','Aéroport') as $lieu)
                                         <p wire:click="appliquerLieuDepart('{{ addslashes($lieu->nom) }}')" x-on:click="lieuDepart='{{ addslashes($lieu->nom) }}'"
                                             class="truncate px-2 py-2 cursor-pointer hover:bg-teal-100"><i class="ri-plane-line text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}
@@ -30,7 +30,7 @@
                                 </div>
                             @endif
                             @if( $lieuxDepart->where('type','Gare Routière')->isNotEmpty())
-                                <div wire:transition wire:loading.remove wire:target="lieuDepart">
+                                <div wire:transition wire:loading.remove wire:target="lieuDepart" class="w-full">
                                     @foreach ($lieuxDepart->where('type','Gare Routière') as $lieu)
                                         <p wire:click="appliquerLieuDepart('{{ addslashes($lieu->nom) }}')" x-on:click="lieuDepart='{{ addslashes($lieu->nom) }}'"
                                             class="truncate px-2 py-2 cursor-pointer hover:bg-teal-100"><i class="ri-bus-fill text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}
@@ -56,33 +56,33 @@
                             <p class="p-2">Pas de résultats.</p>
                         </div>
                     @elseif( !empty($lieuxRetour))
-                    <div wire:transition class="absolute z-30 w-80 mt-1 bg-white rounded shadow-md p-1">
+                        <div wire:transition class="absolute z-30 w-80 mt-1 bg-white rounded shadow-md p-1">
 
-                        <div wire:loading wire:target="lieuRetour" class="p-2">
-                            <p class="text-md">Chargement...</p>
-                        </div>
-
-                        @if( $lieuxRetour->where('type','Aéroport')->isNotEmpty())
-                            <div wire:loading.remove wire:target="lieuRetour">
-                                @foreach ($lieuxRetour->where('type','Aéroport') as $lieu)
-                                <p wire:loading.remove wire:click="appliquerLieuRetour('{{ addslashes($lieu->nom) }}')" x-on:click="lieuRetour='{{ addslashes($lieu->nom) }}'"
-                                    class="truncate px-2 py-2 cursor-pointer hover:bg-teal-100"><i class="font-normal ri-plane-line text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}
-                                </p>
-                                @endforeach
+                            <div wire:loading wire:target="lieuRetour" class="p-2">
+                                <p class="text-sm">Chargement...</p>
                             </div>
-                        @endif
 
-                        @if( $lieuxRetour->where('type','Gare Routière')->isNotEmpty())
-                            <div wire:loading.remove wire:target="lieuRetour">
-                                @foreach ($lieuxRetour->where('type','Gare Routière') as $lieu)
+                            @if( $lieuxRetour->where('type','Aéroport')->isNotEmpty())
+                                <div wire:loading.remove wire:target="lieuRetour">
+                                    @foreach ($lieuxRetour->where('type','Aéroport') as $lieu)
                                     <p wire:loading.remove wire:click="appliquerLieuRetour('{{ addslashes($lieu->nom) }}')" x-on:click="lieuRetour='{{ addslashes($lieu->nom) }}'"
-                                        class="truncate px-2 py-2 cursor-pointer hover:bg-teal-100"><i class="font-normal ri-bus-fill text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}
+                                        class="truncate px-2 py-2 cursor-pointer hover:bg-teal-100"><i class="font-normal ri-plane-line text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}
                                     </p>
-                                @endforeach
-                            </div>
-                        @endif
+                                    @endforeach
+                                </div>
+                            @endif
 
-                    </div>
+                            @if( $lieuxRetour->where('type','Gare Routière')->isNotEmpty())
+                                <div wire:loading.remove wire:target="lieuRetour">
+                                    @foreach ($lieuxRetour->where('type','Gare Routière') as $lieu)
+                                        <p wire:loading.remove wire:click="appliquerLieuRetour('{{ addslashes($lieu->nom) }}')" x-on:click="lieuRetour='{{ addslashes($lieu->nom) }}'"
+                                            class="truncate px-2 py-2 cursor-pointer hover:bg-teal-100"><i class="font-normal ri-bus-fill text-xl text-teal-500 mr-3"></i>{{ $lieu->nom }}
+                                        </p>
+                                    @endforeach
+                                </div>
+                            @endif
+
+                        </div>
 
                     @endif
 

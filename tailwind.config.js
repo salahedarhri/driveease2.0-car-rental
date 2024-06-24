@@ -21,7 +21,8 @@ export default {
             fontFamily: {
                 cabin:['Cabin'],
                 tables:['Roboto'],
-                montserrat:['Montserrat']
+                montserrat:['Montserrat'],
+                poppins:['Poppins'],
             },
             colors:{ 
                 darkBlue:'#053B50',
