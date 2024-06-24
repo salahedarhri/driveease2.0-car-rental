@@ -15,25 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         $this->call(CarSeeder::class);
         $this->call(ProtectionSeeder::class);
         $this->call(OptionSeeder::class);
         $this->call(LieuSeeder::class);
-   
-        User::factory(50)->create();
-
-        User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@mail.com',
-            'password' => Hash::make('selesama'),
-            'is_admin' => true,
-        ]);
-
-        User::factory()->create([
-            'name' => 'client',
-            'email' => 'client@mail.com',
-            'password' => Hash::make('selesama'),
-        ]);
     }
 }

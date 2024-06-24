@@ -29,14 +29,23 @@ class CarSeeder extends Seeder
                 'description'=> $faker->sentence,
                 'prix'=> $faker->randomFloat(0,200, 700),
                 'transmission'=> $faker->randomElement(['Auto','Manuelle']),
-                'moteur'=> $faker->randomElement(['Diesel','Hybride','Gasoil','Electrique']),
-                'ville'=> $faker->randomElement(['Agadir','Marrakech','Casablanca']),
+                'moteur'=> $faker->randomElement(
+                    ['Diesel','Hybride','Gasoil','Electrique']),
+                'ville'=> $faker->randomElement(
+                    ['Agadir','Marrakech','Casablanca']),
                 'nbPers'=> $faker->numberBetween(4,7),
                 'minAge'=> $faker->numberBetween(18,26),
                 'climatisation'=> $faker->boolean,
 
                 'slug'=>$slug,
-                'photo'=>$faker->randomElement(['car (1).png', 'car (2).png', 'car (3).png', 'car (4).png']),
+                'photo'=>$faker->randomElement([
+                    'black-toyota-corolla-altis-car-400w.png',
+                    'blue-four-wheel-drive-hyundai-tucson-car-400w.png',
+                    'blue-shiny-bmw-car-400w.png',
+                    'red-hyundai-car-400w.png',
+                    'white-four-wheel-drive-mercedes-car-400w.png',
+                    'white-toyota-corolla-car-400w.png',
+                ]),
             ]);
 
         }
