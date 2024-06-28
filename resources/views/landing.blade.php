@@ -2,9 +2,9 @@
 
 @section('content')
 
+<article x-data="{ imageLanding:false }" class="w-full bg-slate-200">
   {{-- First Section : done --}}
-  <section x-data="{ shown:false }" class="w-full bg-slate-200">
-    <div class="max-w-7xl mx-auto pb-8">
+    <section class="max-w-7xl mx-auto pb-8">
       <div class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center">
         <div class="px-4 md:pt-12 max-md:pt-6 max-md:text-center">
           <span class="text-sm px-2 text-teal-500">____Bienvenue chez DriveEase</span>
@@ -14,16 +14,15 @@
             vous permet de trouver et de réserver la voiture parfaite en quelques clics.
           </p>
         </div>
-        <div x-intersect:enter="shown=true" class="px-4">
-          <img loading="eager" x-show="shown" x-transition.duration.500.delay.500 src="{{ asset('images/composants/landing.png') }}" alt="Blue renault car facing sideways" 
+        <div x-intersect:enter="imageLanding=true" class="px-4">
+          <img loading="eager" x-show="imageLanding" x-transition.duration.500.delay.500 src="{{ asset('images/composants/landing.png') }}" alt="Blue renault car facing sideways" 
           class="voiture-accueil aspect-auto my-auto">
         </div>
       </div>
 
       @include('composants.landingFormulaire')
 
-    </div>
-  </section>
+    </section>
 
   {{-- Second Section : done --}}
   <section class="w-full bg-white flex flex-col gap-4 place-items-center text-center font-montserrat md:py-12 max-md:py-8">
@@ -62,59 +61,5 @@
 
   </section>
 
-
+</article>
 @endsection
-
-  {{-- <div x-data="{ luxe: false, routiere: false, utilitaire: false }" class="w-full bg-slate-200">
-
-    <div x-intersect:enter="luxe = true; routiere = true; utilitaire = true"
-          class="font-cabin grid grid-cols-3 gap-4 max-md:grid-cols-1 justify-center items-center max-w-7xl mx-auto px-8 py-12 text-sky-800">
-      <div x-show="luxe" x-transition.duration.300ms.delay.300ms class="w-full py-2 bg-white rounded-xl shadow">
-        <img src="{{ asset('images/composants/luxe.png') }}" class="aspect-auto object-contain h-48 mx-auto"
-          alt="voiture luxe">
-        <p class="text-xl text-center montserrat font-semibold text-sky-500 p-3">Luxe</p>
-        <p class="px-6 pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua.</p>
-      </div>
-      <div x-show="routiere" x-transition.duration.300ms.delay.600ms class="w-full py-2 bg-white rounded-xl shadow">
-        <img src="{{ asset('images/composants/routier.png') }}" class="aspect-auto object-contain h-48 mx-auto"
-          alt="voiture routiere">
-        <p class="text-xl text-center montserrat font-semibold text-sky-500 p-3">Routière</p>
-        <p class="px-6 pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua.</p>
-      </div>
-      <div x-show="utilitaire" x-transition.duration.300ms.delay.900ms class="w-full py-2 bg-white rounded-xl shadow">
-        <img src="{{ asset('images/composants/utilitaire.png') }}" class="aspect-auto object-contain h-48 mx-auto"
-          alt="voiture utilitaire">
-        <p class="text-xl text-center montserrat font-semibold text-sky-500 p-3">Utilitaire</p>
-        <p class="px-6 pb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-          labore et dolore magna aliqua.</p>
-      </div>
-    </div>
-  </div> --}}
-
-  {{-- <div class="w-full bg-slate-200">
-    <div class="font-montserrat grid md:grid-cols-3 max-md:grid-cols-1 justify-center max-w-7xl mx-auto md:p-10 max-md:p-6 text-white md:gap-8 max-md:gap-3">
-      <div class="md:w-full max-md:w-80 text-center px-6 max-md:py-3 md:py-6 mx-auto bg-gradient-to-r from-teal-500 to-sky-500 rounded-xl shadow">
-        <i class="ri-calendar-line text-2xl"></i>
-        <p class="text-lg font-semibold py-2">Choisissez la date</p>
-        <p class="lg:text-md max-lg:text-sm py-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.
-          Condimentum vitae sapien pellentesque habitant morbi tristique senectus.</p>
-      </div>
-      <div class="md:w-full max-md:w-80 text-center px-6 max-md:py-3 md:py-6 mx-auto bg-gradient-to-r from-teal-500 to-sky-500 rounded-xl shadow">
-        <i class="ri-roadster-line text-2xl"></i>
-        <p class="text-lg font-semibold md:py-2 max-md:py-1">Désignez votre voiture</p>
-        <p class="mlgtext-md max-lg:text-sm md:py-3 max-md:py-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Condimentum vitae sapien pellentesque habitant morbi tristique senectus.</p>
-      </div>
-      <div class="md:w-full max-md:w-80 text-center px-6 max-md:py-3 md:py-6 mx-auto bg-gradient-to-r from-teal-500 to-sky-500 rounded-xl shadow">
-        <i class="ri-bank-card-line text-2xl"></i>
-        <p class="text-lg font-semibold py-2">Moyens diverses de payement</p>
-        <p class="lg:text-md max-lg:text-sm py-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua.
-          Condimentum vitae sapien pellentesque habitant morbi tristique senectus.</p>
-      </div>
-    </div>
-  </div> --}}

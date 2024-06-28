@@ -8,6 +8,7 @@ use App\Models\Newsletter;
 class NewsletterAccueil extends Component
 {
     public $emailNewsletter;
+    public $newsletter = false;
 
     protected $rules = [
         'emailNewsletter' => 'required|email'
@@ -22,10 +23,11 @@ class NewsletterAccueil extends Component
         $this->validate($this->rules, $this->message);
 
         if( $this->emailNewsletter ){
-            $n = new Newsletter;
-            $n->email = $this->emailNewsletter;
-            $n->save();
+            $newEmail = new Newsletter;
+            $newEmail->email = $this->emailNewsletter;
+            $newEmail->save();
 
+            $this->newsletter = true;
             session()->flash('success','Votre email est ajouté avec succès !');
         }else{
             session()->flash('error','Un erreur s\'est introduit, veuillez réessayer plus tard.');

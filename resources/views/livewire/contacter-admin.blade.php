@@ -2,7 +2,7 @@
 
     {{-- Nothing in the world is as soft and yielding as water. --}}
     <div class="grid grid-cols-2 max-md:grid-cols-1 justify-center align-center px-4 py-8 gap-8">
-        <div class="w-full max-w-lg mx-auto bg-teal-100 p-3 bg-opacity-70 rounded-xl shadow-lg">
+        <div class="w-full max-w-lg mx-auto">
 
             @if (session()->has('message'))
                 <div role="alert" class="alert alert-success font-montserrat py-3 my-6">
@@ -45,17 +45,17 @@
             </form>
 
         </div>
-        <div class="flex flex-col justify-center align-center text-center font-montserrat">
+        <div class="flex flex-col align-center text-center font-montserrat">
             <p class="font-montserrat text-xl text-center pb-6 bg-mediumBlue text-transparent bg-clip-text">Nos Cordonnées</p>
 
-            <div class="flex flex-col text-center py-3 gap-2 text-base">
-                <h2 class="font-bold underline text-teal-600 text-lg">Agadir</h2>
-                <p>Rue Mohammed V, Agadir, Maroc</p>
-                <p><b>Tél :</b> +212 5 28 45 67 89</p>
-                <p ><b>Email :</b><br>
-                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=agadir@locationvoituresexpress.com" target="_blank" class="max-sm:text-sm decoration-teal-600 hover:underline transition">agadir@locationvoituresexpress.com</a></p>
+            <div class="flex flex-col text-center py-3 gap-2 text-base text-darkBlue">
+                <h2 class="font-bold underline text-teal-600 text-lg">National</h2>
+                <p><b class="text-mediumBlue">Tél :</b> 
+                    <a href="tel:+212653 96 75 79">+212 6 53 96 75 79</a></p>
+                <p ><b class="text-mediumBlue">Email :</b>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=agadir@locationvoituresexpress.com" target="_blank" class="decoration-teal-600 hover:underline transition">arhri.salah.pro@gmail.com</a></p>
             </div>
-            <div class="flex flex-col text-center py-3 gap-2 text-base">
+            {{-- <div class="flex flex-col text-center py-3 gap-2 text-base">
                 <h2 class="font-bold underline text-teal-600 text-lg">Marrakech</h2>
                 <p>Avenue Mohammed VI, Marrakech, Maroc</p>
                 <p><b>Tél :</b> +212 5 24 56 78 90</p>
@@ -69,7 +69,7 @@
                 <p><b>Email :</b><br>
                     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=casablanca@locationvoituresexpress.com" target="_blank" class="max-sm:text-sm decoration-teal-600 hover:underline transition">casablanca@locationvoituresexpress.com</a></p>
             </div>
-            
+             --}}
 
             
         </div>
