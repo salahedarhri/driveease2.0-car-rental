@@ -5,7 +5,7 @@
 
         <section class="max-w-5xl mx-auto py-2 font-cabin">
 
-            <h1 class="font-montserrat text-2xl max-sm:text-2xl text-darkBlue font-bold px-3 py-5">Notre sélection de véhicules</h1>
+            <h1 class="font-montserrat text-2xl max-sm:text-xl max-md:text-center text-mediumBlue font-bold px-3 py-5">Notre sélection de véhicules</h1>
 
             @if ($voituresDisponibles->isEmpty())
                 <p>Aucune voiture disponible pour les critères spécifiés.</p>
@@ -19,7 +19,7 @@
                                 <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="{{ $car->photo }}" class="h-56 w-auto object-center object-contain p-3">
                             </div>
                             <div class="sm:w-1/3 px-2 sm:py-4 flex flex-col max-sm:items-center">
-                                <h3 class="text-xl font-semibold font-montserrat pb-2 max-sm:text-center">{{ $car->modele }}</h3>
+                                <h3 class="text-xl font-semibold font-montserrat pb-2 max-sm:text-center text-mediumBlue">{{ $car->modele }}</h3>
                                 <div class="flex flex-row gap-3 font-cabin text-sm align-center py-2">
                                     <span><img src="{{ asset('images/icons/personne.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img>{{ $car->nbPers }}</span>
                                     <span><img src="{{ asset('images/icons/transmission.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img>{{ $car->transmission }}</span>
@@ -27,7 +27,7 @@
                                         <span><img src="{{ asset('images/icons/climatisation.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img>Climatisation</span>
                                     @endif
                                 </div>
-                                <p class="text-slate-600 py-1 text-md"> {{ $car->description }} </p>
+                                <p class=" py-1 text-md"> {{ $car->description }} </p>
 
                                 <button @click="open=!open" class="px-2 sm:mt-6 rounded-md font-semibold font-montserrat text-teal-500 max-sm:pt-4 max-sm:pb-2 underline decoration-teal-500">
                                     Plus de détails &nbsp; &#11033
@@ -39,8 +39,7 @@
                                     <p class="text-md max-sm:text-sm text-lightBlue pb-4 max-sm:pb-2">Total {{ $car->prix * $nbJrs }} DH</p>
             
                                     <form wire:key="car-{{$car->slug}}" wire:submit.prevent="ChoisirVoiture('{{$car->slug}}')">
-                                        <button type="submit"
-                                            class="font-semibold py-2 px-4 rounded-full shadow-md bg-lightBlue hover:bg-teal-500 transition mt-4 w-36 max-sm:w-full text-white">
+                                        <button type="submit" class="font-semibold py-2 px-4 rounded-full shadow-md bg-lightBlue hover:bg-teal-500 transition mt-4 w-36 max-sm:w-full text-white">
                                             Sélectionner
                                         </button>
                                     </form>
@@ -54,19 +53,19 @@
 
                             <div class="grid grid-cols-2 max-sm:grid-cols-1 gap-2 justify-evenly p-4">
                                 <div class="flex flex-col p-4 bg-slate-100 rounded">
-                                    <p class="font-bold text-lg pb-1">Détails de la Voiture </p>
+                                    <p class="font-semibold text-mediumBlue font-montserrat text-lg">Détails de la Voiture </p>
                                     <div class="flex flex-col p-2">
-                                        <p><b class="text-teal-500 mr-2">&#11047;</b>{{ $car->nbPers }} Personnes</p>
-                                        <p><b class="text-teal-500 mr-2">&#11047;</b>Transmission {{ $car->transmission }}</p>
+                                        <p><b class="text-teal-500 mr-2">&#8226;</b>{{ $car->nbPers }} Personnes</p>
+                                        <p><b class="text-teal-500 mr-2">&#8226;</b>Transmission {{ $car->transmission }}</p>
                                         @if( $car->climatisation == true )
-                                        <p><b class="text-teal-500 mr-2">&#11047;</b>Climatisation</p>
+                                        <p><b class="text-teal-500 mr-2">&#8226;</b>Climatisation</p>
                                         @endif
-                                        <p><b class="text-teal-500 mr-2">&#11047;</b>{{ $car->minAge }} ans min.</p>
+                                        <p><b class="text-teal-500 mr-2">&#8226;</b>{{ $car->minAge }} ans min.</p>
                                     </div>
                                 </div>
 
                                 <div class="flex flex-col p-3 bg-slate-100">
-                                    <p class="font-bold text-lg pb-1">Protection Basique <i class="text-sm text-teal-600">&nbsp; inclus</i></p>
+                                    <p class="font-semibold text-mediumBlue font-montserrat text-lg pb-1">Protection Basique <i class="text-sm text-teal-600">&nbsp; inclus</i></p>
                                     <p> <i class="text-lg text-teal-500 mr-2">&#x2713;</i> Protection contre le vol</p>
                                     <p> <i class="text-lg text-teal-500 mr-2">&#x2713;</i> Protection contre les dommages résultant d'une
                                     collision</p>

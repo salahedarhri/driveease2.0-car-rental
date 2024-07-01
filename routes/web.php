@@ -3,9 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\ReservationController;
 use Illuminate\Support\Facades\Route;
-
 //Livewire
 use App\Livewire\ValiderReservation;
 use App\Livewire\VoituresDisponibles;
@@ -34,7 +32,6 @@ Route::get('/apropos', function () { return view('about');})->name('apropos');
 Route::get('/voitures', function(){ return view('cars'); })->name('cars');
 
 //Reservation
-Route::get('/email_envoye', [ReservationController::class, 'renduEmail'])->name('email');
 Route::get('/voituresDisponibles/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}', VoituresDisponibles::class )->name('VoituresDisponibles');
 Route::get('/protectionEtOptions/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ChoisirOptionsEtFranchise::class )->name('Protection&Options');
 Route::get('/resumeReservation/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}/{voiture}', ValiderReservation::class )->name('finaliserReservation');

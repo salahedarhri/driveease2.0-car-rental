@@ -2,7 +2,7 @@
   <div  x-data="{ imageNewsletter:false }" class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center md:py-16">
 
     {{-- Image --}}
-    <div x-intersect:enter="imageNewsletter=true" x-intersect:leave="imageNewsletter=false" class="svgBackground p-4">
+    <div x-intersect:enter="imageNewsletter=true" x-intersect:leave="imageNewsletter=false" class="svgBackground p-4 pr-0">
       <img x-show="imageNewsletter" loading="lazy" x-transition.duration.700ms
           src="{{ asset('images/composants/newsletter.png') }}" alt="landing car photo" class="aspect-auto my-auto">
     </div>
@@ -10,9 +10,9 @@
     {{-- Formulaire --}}
     <div class="px-4 max-md:pb-6 max-md:text-center align-center justify-center text-pretty">
 
-      <h2 class="text-mediumBlue text-3xl font-bold md:py-4 max-md:pb-2">Souscrivez pour recevoir nos dernières nouveautés</h2>
-      <p class="text-darkBlue py-4 font-cabin text-base indent-3">
-        <b class="text-teal-500">Ne manquez plus aucune offre!</b>
+      <h2 class="text-mediumBlue md:text-3xl max-md:text-2xl font-bold md:py-4 max-md:pb-2">Souscrivez pour recevoir nos dernières nouveautés</h2>
+      <p class="text-darkBlue py-4 font-cabin text-base indent-2">
+        <b class="text-teal-500 font-montserrat">Ne manquez plus aucune offre!</b>
           Inscrivez-vous à la newsletter de DriveEase pour recevoir les dernières promotions, des astuces de voyage, et des informations exclusives directement dans votre boîte mail.<br><br>
           Rejoignez notre communauté et restez toujours informé!
       </p>

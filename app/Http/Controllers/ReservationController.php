@@ -3,29 +3,42 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Car;
 use App\Models\Protection;
 use App\Models\Option;
-
+use Carbon\Carbon;
 use App\Models\Conducteur;
 use App\Models\Reservation;
-use Carbon\Carbon;
+use App\Models\Car;
+
 
 
 class ReservationController extends Controller{
+    
     public function renduEmail(){
         $reservationId = session('reservation');
-
         $reservation = Reservation::with('options')->find( $reservationId );
         $conducteur = Conducteur::find( $reservation->idConducteur );
         $voiture = Car::find($reservation->idCar);
+        $protection = Protection::find($reservation->idProtection);
         $options = $reservation->options;
+
+        //Date et nbJrs 
+        $dateDepartCarbon = Carbon::parse($reservation->dateDepart);
+        $dateRetourCarbon = Carbon::parse($reservation->dateRetour);
+        $dateDepartDt = $dateDepartCarbon->format('d-m-Y H:i');
+        $dateRetourDt = $dateRetourCarbon->format('d-m-Y H:i');
+        $nbJrs = max(1, $dateRetourCarbon->diffInDays($dateDepartCarbon));
 
         return view('emails.emailReservation',[
             'conducteur' => $conducteur,
             'reservation' => $reservation,
             'voiture' => $voiture,
             'options' => $options,
+            'nbJrs' => $nbJrs,
+            'dateDepartDt' => $dateDepartDt,
+            'dateRetourDt' => $dateRetourDt,
+            'protection' => $protection,
+            
         ]);
     }
     

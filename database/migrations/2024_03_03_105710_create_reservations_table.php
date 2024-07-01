@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('statut')->default('En attente de confirmation');
             $table->integer('minAge');
             $table->string('moyenPaiement');
+            $table->decimal('prixTotal');
             $table->foreignId('idTransaction')->nullable()->constrained('transactions')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });

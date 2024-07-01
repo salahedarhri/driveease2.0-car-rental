@@ -73,7 +73,6 @@ class ValiderReservation extends Component{
 
         $this->dateDepartCarbon = Carbon::parse($this->dateDepart);
         $this->dateRetourCarbon = Carbon::parse($this->dateRetour);
-
         $this->nbJrs = max(1, $this->dateRetourCarbon->diffInDays($this->dateDepartCarbon));
 
         $this->dateDepartDt = $this->dateDepartCarbon->format('d-m-Y H:i');
@@ -142,35 +141,34 @@ class ValiderReservation extends Component{
         $reservation->dateDepart = trim($this->dateDepart);
         $reservation->dateRetour = trim($this->dateRetour);
         $reservation->minAge = trim($this->minAge);
-        $reservation->moyenPaiement = 'En Agence';
+        $reservation->moyenPaiement = 'Paiement à la livraison';
+
+        if(!empty($this->optnsIds)){
+            $reservation->prixTotal = $this->prixPrtc + ($this->voiture->prix*$this->nbJrs) + $this->prixOptns; 
+        }else{
+            $reservation->prixTotal = $this->prixPrtc + ($this->voiture->prix*$this->nbJrs);}
+            
         $reservation->save();
 
         $reservation->options()->attach($this->optnsChoisi);
         session(['reservation' => $reservation->id ]);
 
-        // Mail::to($conducteur->email)->send( new WelcomeMail($conducteur, $reservation));
+        Mail::to($conducteur->email)->send( 
+            new WelcomeMail($conducteur, $reservation));
 
-        return redirect()->route('email')->with('success','Réservation crée avec succès, Veuillez visiter votre espace Gmail !');
+        return redirect()->route('accueil')->with('success','Réservation crée avec succès, Veuillez visiter votre espace Gmail !');
     }
 
     public function render(){
-        
         // Protection
         if( $this->prtcChoisiId ){
             $this->prtcChoisi = Protection::find( $this->prtcChoisiId );
-            $this->prixPrtc = (float)$this->prtcChoisi->prix * $this->nbJrs;
-        }
-
-
+            $this->prixPrtc = (float)$this->prtcChoisi->prix * $this->nbJrs;    }
         //Options
         if( !empty($this->optnsIds)){
             $this->optnsChoisi = Option::whereIn('id',$this->optnsIds)->get();
             $this->prixOptns = 0;
-
-            foreach( $this->optnsChoisi as $optnChoisi){
-                $this->prixOptns += $optnChoisi->prix;
-            }
-        }
+            foreach( $this->optnsChoisi as $optnChoisi){    $this->prixOptns += $optnChoisi->prix;  }}
 
         return view('livewire.resume',[
             'protectionChoisi' => $this->prtcChoisi,

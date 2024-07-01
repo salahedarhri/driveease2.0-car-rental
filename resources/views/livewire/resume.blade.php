@@ -141,7 +141,7 @@
           @error('emailConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
         </label>
         <label for="numTelConducteur" class="col-span-2 flex flex-col gap-1 font-semibold sm:w-80 max-sm:w-full max-sm:col-span-1 mx-auto">
-          <p class="font-semibold">Numéro de téléphone * <i class="text-teal-600">(Maroc)</i></p>
+          <p class="font-semibold">Numéro de téléphone * <i class="text-teal-600 font-normal text-base">(Maroc)</i></p>
           <input type="tel" pattern="[0-9]{10}" wire:model="numTelConducteur" placeholder="06XXXXXXXX"
             class="focus:ring-0 focus:border-teal-400 rounded-lg border-slate-300 font-normal border-2 placeholder-gray-300 shadow">
           @error('numTelConducteur') <p class="text-red-500 text-sm p-1">{{ $message }}</p>@enderror
