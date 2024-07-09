@@ -8,11 +8,15 @@
 
   <title>DriveEase | Location de voitures</title>
 
+  {{-- Icon --}}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/icons/apple-touch-icon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('images/icons/favicon-32x32.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/icons/favicon-16x16.png') }}">
+  <link rel="manifest" href="{{ asset('images/icons/site.webmanifest') }}">
+
   {{-- Tailwind + JS --}}
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
-
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 </head>
 
 <body class="overflow-x-hidden antialiased font-swap">

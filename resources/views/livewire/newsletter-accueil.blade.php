@@ -1,17 +1,22 @@
-<section class="w-full bg-slate-200 ">
+<section class="w-full bg-slate-200">
   <div  x-data="{ imageNewsletter:false }" class="font-montserrat grid md:grid-cols-2 max-md:grid-cols-1 gap-0 max-w-7xl mx-auto justify-center items-center md:py-16">
 
     {{-- Image --}}
-    <div x-intersect:enter="imageNewsletter=true" x-intersect:leave="imageNewsletter=false" class="svgBackground p-4 pr-0">
+    <div x-intersect:enter="imageNewsletter=true" x-intersect:leave="imageNewsletter=false" class="svgBackground p-4 md:pr-0">
       <img x-show="imageNewsletter" loading="lazy" x-transition.duration.700ms
-          src="{{ asset('images/composants/newsletter.png') }}" alt="landing car photo" class="aspect-auto my-auto">
+          src="{{ asset('images/composants/newsletter-600w.png') }}" alt="landing car photo" class="aspect-auto my-auto"
+          srcset="
+          {{ asset('images/composants/newsletter-800w.png')}} 800w,
+          {{ asset('images/composants/newsletter-600w.png')}} 600w,
+          {{ asset('images/composants/newsletter-400w.png')}} 400w,
+          " >
     </div>
 
     {{-- Formulaire --}}
     <div class="px-4 max-md:pb-6 max-md:text-center align-center justify-center text-pretty">
 
       <h2 class="text-mediumBlue md:text-3xl max-md:text-2xl font-bold md:py-4 max-md:pb-2">Souscrivez pour recevoir nos dernières nouveautés</h2>
-      <p class="text-darkBlue py-4 font-cabin text-base indent-2">
+      <p class="text-darkBlue py-4 md:px-4 font-cabin text-base">
         <b class="text-teal-500 font-montserrat">Ne manquez plus aucune offre!</b>
           Inscrivez-vous à la newsletter de DriveEase pour recevoir les dernières promotions, des astuces de voyage, et des informations exclusives directement dans votre boîte mail.<br><br>
           Rejoignez notre communauté et restez toujours informé!

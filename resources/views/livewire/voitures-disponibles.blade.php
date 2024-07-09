@@ -16,15 +16,15 @@
                         <!-- Informations de Voiture   -->
                         <div class="bg-white overflow-hidden flex flex-col sm:flex-row border-b-2">
                             <div class="sm:w-1/3 py-2 flex items-center justify-center">
-                                <img src="{{ asset('images/voitures/'.$car->photo)}}" alt="{{ $car->photo }}" class="h-56 w-auto object-center object-contain p-3">
+                                <img loading="lazy" src="{{ asset('images/voitures/'.$car->photo)}}" alt="{{ $car->photo }}" class="h-56 w-auto object-center object-contain p-3">
                             </div>
                             <div class="sm:w-1/3 px-2 sm:py-4 flex flex-col max-sm:items-center">
                                 <h3 class="text-xl font-semibold font-montserrat pb-2 max-sm:text-center text-mediumBlue">{{ $car->modele }}</h3>
                                 <div class="flex flex-row gap-3 font-cabin text-sm align-center py-2">
-                                    <span><img src="{{ asset('images/icons/personne.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img>{{ $car->nbPers }}</span>
-                                    <span><img src="{{ asset('images/icons/transmission.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img>{{ $car->transmission }}</span>
+                                    <span><img loading="lazy" src="{{ asset('images/icons/personne.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img loading="lazy">{{ $car->nbPers }}</span>
+                                    <span><img loading="lazy" src="{{ asset('images/icons/transmission.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img loading="lazy">{{ $car->transmission }}</span>
                                     @if( $car->climatisation == true )
-                                        <span><img src="{{ asset('images/icons/climatisation.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img>Climatisation</span>
+                                        <span><img loading="lazy" src="{{ asset('images/icons/climatisation.svg')}}" class="w-6 h-6 align-middle inline-block mr-1"></img loading="lazy">Climatisation</span>
                                     @endif
                                 </div>
                                 <p class=" py-1 text-md"> {{ $car->description }} </p>

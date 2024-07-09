@@ -11,7 +11,7 @@
     <div class="h-full w-full mx-auto bg-cover bg-center"  style="background-image:url({{asset('images/composants/voiture-de-dos.jpg')}});">
       <div class="h-full w-full bg-gray-950 bg-opacity-40">
 
-        <div class="max-w-4xl mx-auto p-4 ">
+        <div class="max-w-4xl mx-auto px-4 py-8">
           <div class="breadcrumbs font-montserrat text-base text-white">
             <ul>
               <li><a href="{{ route('accueil') }}" class="font-bold hover:text-teal-500">Accueil</a></li>
@@ -41,12 +41,12 @@
                 En plus de notre engagement envers la qualité et le service client, nous nous efforçons également d'offrir des tarifs compétitifs et une transparence totale en matière de tarification.<br>
               </p>
           </div>
-          <img src="{{ asset('images/composants/car-family.jpg')}}" alt="car-family" class="w-full h-full object-center object-cover md:rounded-r-xl max-md:rounded-b-xl">
+          <img loading="lazy" src="{{ asset('images/composants/car-family.jpg')}}" alt="car-family" class="w-full h-full object-center object-cover md:rounded-r-xl max-md:rounded-b-xl">
         </div>
 
-        <div class="w-full grid md:grid-cols-2 grid-cols-1 justify-center align-center md:bg-gradient-to-r max-md:bg-gradient-to-b from-bleufonce to-darkBlue text-white rounded-xl">
-            <img src="{{ asset('images/composants/car-in-forest.jpg')}}" alt="car-in-forest" class="w-full h-full object-center object-cover md:rounded-l-xl max-md:rounded-t-xl">
-            <div class="flex flex-col justify-center align-center gap-4 max-md:text-justify p-4 max-md:py-8">
+        <div class="w-full grid md:grid-cols-2 max-md:grid-cols-1 justify-center align-center md:bg-gradient-to-r max-md:bg-gradient-to-b from-bleufonce to-darkBlue text-white rounded-xl">
+            <img loading="lazy" src="{{ asset('images/composants/car-in-forest.jpg')}}" alt="car-in-forest" class="w-full h-full object-center object-cover md:rounded-l-xl max-md:rounded-b-xl">
+            <div class="max-md:order-first flex flex-col justify-center align-center gap-4 max-md:text-justify p-4 max-md:py-8">
                 <h2 class="font-bold lg:text-xl font-montserrat max-md:text-center text-teal-100">Notre Engagement</h2>
                 <p class="font-cabin lg:text-lg text-justify">Nous nous engageons à offrir un service client exceptionnel.<br>
                   Notre équipe dévouée est là pour vous aider à trouver la voiture parfaite pour votre voyage, garantissant ainsi votre sécurité et votre tranquillité d'esprit sur la route.<br>
@@ -71,7 +71,7 @@
 
       <div class="grid md:grid-cols-2 max-md:grid-cols-1 justify-center align-center py-8 max-md:py-4 gap-4">
 
-        <img src="{{ asset('images/composants/selection-voitures.png')}}" alt="selection-voitures.png" class="voiture-accueil object-center object-cover align-center my-auto">
+        <img loading="lazy" src="{{ asset('images/composants/selection-voitures.png')}}" alt="selection-voitures.png" class="voiture-accueil object-center object-cover align-center my-auto">
 
         <div class="flex flex-col justify-center align-center gap-8 max-md:max-w-md mx-auto">
           <div class="flex md:flex-row flex-col gap-3 place-items-center md:place-items-start">

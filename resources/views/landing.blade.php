@@ -15,8 +15,12 @@
           </p>
         </div>
         <div x-intersect:enter="imageLanding=true" class="px-4">
-          <img loading="eager" x-show="imageLanding" x-transition.duration.500.delay.500 src="{{ asset('images/composants/landing.png') }}" alt="Blue renault car facing sideways" 
-          class="voiture-accueil aspect-auto my-auto">
+          <img loading="lazy" x-show="imageLanding" x-transition.duration.500.delay.500 
+          src="{{ asset('images/composants/landing.png') }}" 
+          srcset="{{ asset('images/composants/landing-800w.png') }} 800w,
+                  {{ asset('images/composants/landing-600w.png') }} 600w,
+                  {{ asset('images/composants/landing-400w.png') }} 400w"
+          alt="Blue renault car facing sideways" class="voiture-accueil aspect-auto my-auto">
         </div>
       </section>
 
