@@ -10,7 +10,7 @@
     @vite('resources/js/app.js')
 
 </head>
-<body class="bg-slate-200 text-darkBlue p-3">
+<body class="bg-slate-300 text-darkBlue p-4">
     <main class="container max-w-5xl mx-auto flex flex-col gap-2 px-4 py-4 bg-white font-cabin rounded-lg shadow-lg text-center">
         <section class="py-6 flex flex-col">
             <h1 class="text-2xl font-semibold font-montserrat text-teal-600 py-3">Merci pour Votre Réservation !</h1>
@@ -101,8 +101,9 @@
         <p class="pb-2">Cordialement, l'équipe <b>DriveEase</b></p>
 
     </main>
-    <footer>
-
+    <footer class="text-center py-4 text-sm text-slate-600 font-cabin">
+        &copy; 2024 DriveEase. Ceci est une entreprise fictive.
     </footer>
+
 </body>
 </html>

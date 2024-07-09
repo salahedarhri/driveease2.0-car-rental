@@ -5,10 +5,12 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Newsletter;
 
+use App\Mail\NewsletterMail;
+use Illuminate\Support\Facades\Mail;
+
 class NewsletterAccueil extends Component
 {
     public $emailNewsletter;
-    public $newsletter = false;
 
     protected $rules = [
         'emailNewsletter' => 'required|email'
@@ -27,7 +29,7 @@ class NewsletterAccueil extends Component
             $newEmail->email = $this->emailNewsletter;
             $newEmail->save();
 
-            $this->newsletter = true;
+            Mail::to($newEmail->email)->send( new NewsletterMail($newEmail->email ));
             session()->flash('success','Votre email est ajouté avec succès !');
         }else{
             session()->flash('error','Un erreur s\'est introduit, veuillez réessayer plus tard.');
