@@ -164,7 +164,7 @@
                         <div
                             class="bg-teal-100 flex flex-col justify-center p-3 rounded-lg shadow-lg shadow-teal-600 border border-teal-400">
                             <div class="flex flex-row justify-left gap-2 p-2 h-20">
-                                <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}"
+                                <img loading="lazy" src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}"
                                     class="w-auto h-16 object-center">
                                 <p class="text-lg font-bold"> {{ $optn->option}} </p>
                             </div>
@@ -191,7 +191,7 @@
                         {{-- Affichage standard d'Option --}}
                         <div class="bg-white flex flex-col justify-center p-3 rounded-lg shadow-lg">
                             <div class="flex flex-row justify-left gap-2 p-2 h-20">
-                                <img src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}"
+                                <img loading="lazy" src="{{asset('images/options/'. $optn->urlPhoto )}}" alt="{{$optn->urlPhoto}}"
                                     class="w-auto h-16 object-center">
                                 <p class="text-lg font-bold"> {{ $optn->option}} </p>
                             </div>
