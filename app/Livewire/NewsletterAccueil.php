@@ -13,12 +13,13 @@ class NewsletterAccueil extends Component
     public $emailNewsletter;
 
     protected $rules = [
-        'emailNewsletter' => 'required|email'
+        'emailNewsletter' => 'required|email|unique:App\Models\Newsletter,email'
     ];
 
     protected $message = [
         'required' => 'Le champ est vide.',
         'email' => 'Veuillez insérer un email valide.',
+        'unique' => 'Cet email est déjà inscris dans notre newsletter.'
     ];
 
     public function AjouterEmail(){
@@ -29,7 +30,9 @@ class NewsletterAccueil extends Component
             $newEmail->email = $this->emailNewsletter;
             $newEmail->save();
 
-            Mail::to($newEmail->email)->send( new NewsletterMail($newEmail->email ));
+            Mail::to($newEmail->email)->send( new NewsletterMail($newEmail->email));
+            $this->reset($this->emailNewsletter);
+
             session()->flash('success','Votre email est ajouté avec succès !');
         }else{
             session()->flash('error','Un erreur s\'est introduit, veuillez réessayer plus tard.');
