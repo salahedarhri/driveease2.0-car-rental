@@ -26,11 +26,6 @@ use App\Livewire\Admin\ModifierLieu;
 |
 */
 
-Route::get('/bienvenuer', function () { return view('emails.bienvenueNewsletter');});
-Route::get('/emailr', function () { return view('emails.emailReservation');});
-Route::get('/reset', function () { return view('resetMdp');});
-Route::get('/verif', function () { return view('verificationEmail');});
-
 //Pages standards
 Route::get('/', function () { return view('landing');})->name('accueil');
 Route::get('/apropos', function () { return view('about');})->name('apropos');
