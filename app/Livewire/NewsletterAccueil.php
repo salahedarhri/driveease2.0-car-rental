@@ -7,6 +7,8 @@ use App\Models\Newsletter;
 
 use App\Mail\NewsletterMail;
 use Illuminate\Support\Facades\Mail;
+use Artesaos\SEOTools\Facades\SEOTools;
+
 
 class NewsletterAccueil extends Component
 {
@@ -21,6 +23,18 @@ class NewsletterAccueil extends Component
         'email' => 'Veuillez insérer un email valide.',
         'unique' => 'Cet email est déjà inscris dans notre newsletter.'
     ];
+
+    public function mount(){
+        SEOTools::setTitle('Accueil');
+        SEOTools::setDescription('Louez une voiture en toute simplicité avec DriveEase.
+            Découvrez notre gamme de véhicules pour tous vos besoins,
+            avec des tarifs compétitifs. Réservez maintenant et profitez de votre voyage sans souci.');
+        SEOTools::opengraph()->setUrl( env('APP_URL') );
+        SEOTools::setCanonical( env('APP_URL') );
+        SEOTools::opengraph()->addProperty('type', 'website');
+        SEOTools::opengraph()->addProperty('site_name', 'DriveEase');
+        SEOTools::jsonLd()->addImage( asset('images/composants/landing-400w.png'));
+    }
 
     public function AjouterEmail(){
         $this->validate($this->rules, $this->message);

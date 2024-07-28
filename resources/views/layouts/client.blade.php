@@ -14,9 +14,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('images/icons/favicon-16x16.png') }}">
   <link rel="manifest" href="{{ asset('images/icons/site.webmanifest') }}">
 
-  {{-- Tailwind + JS --}}
+  {{-- Tailwind + Alpine --}}
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
+
+  {{-- SEO --}}
+  {!! SEO::generate() !!}
+
 </head>
 
 <body class="overflow-x-hidden antialiased font-swap">

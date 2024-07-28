@@ -4,9 +4,9 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Message;
+use Artesaos\SEOTools\Facades\SEOTools;
 
-class ContacterAdmin extends Component
-{
+class ContacterAdmin extends Component{
 
     public $nomContact;
     public $prenomContact;
@@ -25,6 +25,20 @@ class ContacterAdmin extends Component
         'required' => 'Ce champ est obligatoire.',
         'email' => 'L\'email doit être un email valide.',
     ];
+
+    public function mount(){
+        SEOTools::setTitle('À Propos');
+        SEOTools::setDescription('Découvrez DriveEase, votre spécialiste en location de voitures au Maroc.
+            Nous nous engageons à offrir un service exceptionnel avec des véhicules de qualité, un support client dédié,
+            et une flexibilité maximale pour répondre à tous vos besoins de mobilité à Agadir, Casablanca, et Marrakech.
+            Apprenez-en plus sur notre mission et nos valeurs pour louer des voitures pas cher.');
+        SEOTools::opengraph()->setUrl( env('APP_URL').'/apropos' );
+        SEOTools::setCanonical( env('APP_URL').'/apropos' );
+        SEOTools::opengraph()->addProperty('type', 'articles');
+        SEOTools::opengraph()->addProperty('site_name', 'DriveEase');
+        SEOTools::jsonLd()->addImage( asset('images/composants/newsletter-400w.png'));
+
+    }
 
     public function validerContact(){
         $this->validate( $this->rules, $this->message );

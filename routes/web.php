@@ -4,7 +4,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Route;
+
 //Livewire
+use App\Livewire\CarsPage;
 use App\Livewire\ValiderReservation;
 use App\Livewire\VoituresDisponibles;
 use App\Livewire\ChoisirOptionsEtFranchise;
@@ -29,7 +31,7 @@ use App\Livewire\Admin\ModifierLieu;
 //Pages standards
 Route::get('/', function () { return view('landing');})->name('accueil');
 Route::get('/apropos', function () { return view('about');})->name('apropos');
-Route::get('/voitures', function(){ return view('cars'); })->name('cars');
+Route::get('/voitures', CarsPage::class )->name('cars');
 
 //Reservation
 Route::get('/voituresDisponibles/{dateDepart}/{dateRetour}/{lieuDepart}/{lieuRetour}/{minAge}', VoituresDisponibles::class )->name('VoituresDisponibles');

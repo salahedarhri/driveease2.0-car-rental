@@ -183,6 +183,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

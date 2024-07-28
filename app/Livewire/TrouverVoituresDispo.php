@@ -3,7 +3,6 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Lieu;
-use App\Http\Controllers\ReservationController;
 
 class TrouverVoituresDispo extends Component {
 
@@ -17,7 +16,6 @@ class TrouverVoituresDispo extends Component {
     public $suggestionsDepart;
     public $suggestionsRetour;
     public $lieux_All;
-
 
     protected $rules = [
             'lieuDepart' => 'required',
