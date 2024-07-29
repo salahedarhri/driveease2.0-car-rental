@@ -4,7 +4,7 @@
     {{-- Image --}}
     <div x-intersect:enter="imageNewsletter=true" x-intersect:leave="imageNewsletter=false" class="svgBackground p-4 md:pr-0">
       <img x-show="imageNewsletter" loading="lazy" x-transition.duration.700ms
-          src="{{ asset('images/composants/newsletter-600w.png') }}" alt="landing car photo" class="aspect-auto my-auto"
+          src="{{ asset('images/composants/newsletter-400w.png') }}" alt="landing car photo" class="aspect-auto my-auto"
           srcset="
           {{ asset('images/composants/newsletter-800w.png')}} 800w,
           {{ asset('images/composants/newsletter-600w.png')}} 600w,

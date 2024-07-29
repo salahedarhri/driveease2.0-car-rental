@@ -25,7 +25,11 @@
         <h1 class="w-fit mx-auto md:text-3xl max-md:text-2xl font-montserrat font-semibold text-center text-mediumBlue py-4">Nos Voitures</h1>
         <div class="w-full grid md:grid-cols-2 max-md:grid-cols-1 md:gap-6 max-md:gap-4 font-cabin p-2 bg-white rounded-lg shadow-lg">
             <section class="flex flex-col items-center p-3 gap-2">
-                <img loading="lazy" src="{{ asset('images/composants/two-hands-shaking-600x400.jpg')}}" alt="two-hands-shaking-600x400.jpg" class="object-cover rounded-md">
+                <img loading="lazy" src="{{ asset('images/composants/two-hands-shaking-400w.jpg')}}" 
+                    srcset="{{ asset('images/composants/two-hands-shaking-600w.jpg') }} 800w,
+                            {{ asset('images/composants/two-hands-shaking-400w.jpg') }} 400w"
+                    sizes="(max-width: 992px) 100vw, 600px"
+                    alt="two-hands-shaking" class="object-cover rounded-md">                
                 <div class="max-md:text-center flex flex-col items-center pt-4">
                     <h3 class="text-xl font-semibold mb-2 font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">Une Expérience de Location Simplifiée</h3>
                     <p class="p-2 text-md indent-4 text-justify">Notre processus de location est simple et rapide. Réservez en ligne en quelques clics et récupérez votre voiture dans l'une de nos nombreuses agences à travers le Maroc.<br>
@@ -33,14 +37,22 @@
                 </div>
             </section>
             <section class="flex flex-col items-center p-3 gap-2">
-                <img loading="lazy" src="{{ asset('images/composants/voiture-maintenance-600x400.jpg')}}" alt="voiture-maintenance-600x400.jpg" class="object-cover rounded-md">
+                <img loading="lazy" src="{{ asset('images/composants/voiture-maintenance-400w.jpg') }}" 
+                    srcset="{{ asset('images/composants/voiture-maintenance-600w.jpg') }} 800w,
+                            {{ asset('images/composants/voiture-maintenance-400w.jpg') }} 400w"
+                    sizes="(max-width: 992px) 100vw, 600px"
+                    alt="voiture-maintenance" class="object-cover rounded-md">                
                 <div class="max-md:text-center flex flex-col items-center pt-4">
                     <h3 class="text-xl font-semibold mb-2 font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">Un Service Client Dédié</h3>
                     <p class="p-2 text-md indent-4 text-justify">Notre équipe de service client est disponible 24/7 pour répondre à toutes vos questions et vous aider en cas de besoin. Votre satisfaction est notre priorité.</p>
                 </div>
             </section>
             <section class="flex flex-col items-center p-3 gap-2">
-                <img loading="lazy" src="{{ asset('images/composants/compteur-vitesse-voiture-600x400.jpg')}}" alt="compteur-vitesse-voiture-600x400.jpg" class="object-cover rounded-md">
+                <img loading="lazy" src="{{ asset('images/composants/compteur-vitesse-voiture-400w.jpg')}}" 
+                    srcset="{{ asset('images/composants/compteur-vitesse-voiture-600w.jpg') }} 800w,
+                            {{ asset('images/composants/compteur-vitesse-voiture-400w.jpg') }} 400w"
+                    sizes="(max-width: 992px) 100vw, 600px"
+                    alt="compteur-vitesse-voiture" class="object-cover rounded-md">                
                 <div class="max-md:text-center flex flex-col items-center pt-4">
                     <h3 class="text-xl font-semibold mb-2 font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">Des Voitures Adaptées à Vos Besoins</h3>
                     <p class="p-2 text-md indent-4 text-justify">DriveEase propose une large gamme de véhicules pour répondre à tous vos besoins de déplacement au Maroc.<br>
@@ -48,7 +60,11 @@
                 </div>
             </section>
             <section class="flex flex-col items-center p-3 gap-2">
-                <img loading="lazy" src="{{ asset('images/composants/homme-conduisant-devant-soleil-600x400.jpg')}}" alt="homme-conduisant-devant-soleil-600x400.jpg" class="object-cover rounded-md">
+                <img loading="lazy" src="{{ asset('images/composants/homme-conduisant-devant-soleil-400w.jpg')}}" 
+                    srcset="{{ asset('images/composants/homme-conduisant-devant-soleil-600w.jpg') }} 800w,
+                        {{ asset('images/composants/homme-conduisant-devant-soleil-400w.jpg') }} 400w"   
+                    sizes="(max-width: 992px) 100vw, 600px" 
+                    alt="homme-conduisant-devant-soleil" class="object-cover rounded-md">                
                 <div class="max-md:text-center flex flex-col items-center pt-4">
                     <h3 class="text-xl font-semibold mb-2 font-montserrat text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-cyan-600">Des Tarifs Compétitifs</h3>
                     <p class="p-2 text-md indent-4 text-justify">Chez DriveEase, nous proposons des tarifs compétitifs sans compromettre la qualité de notre service.<br>Profitez de nos offres spéciales et de nos réductions pour les locations de longue durée.</p>

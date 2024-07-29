@@ -41,11 +41,16 @@
                 En plus de notre engagement envers la qualité et le service client, nous nous efforçons également d'offrir des tarifs compétitifs et une transparence totale en matière de tarification.<br>
               </p>
           </div>
-          <img loading="lazy" src="{{ asset('images/composants/car-family.jpg')}}" alt="car-family" class="w-full h-full object-center object-cover md:rounded-r-xl max-md:rounded-b-xl">
+          <img loading="lazy" src="{{ asset('images/composants/car-family-400w.jpg')}}" 
+              srcset=" {{ asset('images/composants/car-family-400w.jpg') }} 400w, {{ asset('images/composants/car-family-600w.jpg') }} 600w, {{ asset('images/composants/car-family.jpg') }} 750w"
+              alt="car-family" class="w-full h-full object-center object-cover md:rounded-r-xl max-md:rounded-b-xl">
         </div>
 
         <div class="w-full grid md:grid-cols-2 max-md:grid-cols-1 justify-center align-center md:bg-gradient-to-r max-md:bg-gradient-to-b from-bleufonce to-darkBlue text-white rounded-xl">
-            <img loading="lazy" src="{{ asset('images/composants/car-in-forest.jpg')}}" alt="car-in-forest" class="w-full h-full object-center object-cover md:rounded-l-xl max-md:rounded-b-xl">
+            <img loading="lazy" src="{{ asset('images/composants/car-in-forest-400w.jpg')}}" 
+              srcset=" {{ asset('images/composants/car-in-forest-400w.jpg') }} 400w, {{ asset('images/composants/car-in-forest-600w.jpg') }} 600w, {{ asset('images/composants/car-in-forest.jpg') }} 750w"
+              alt="car-in-forest" class="w-full h-full object-center object-cover md:rounded-l-xl max-md:rounded-b-xl">
+
             <div class="max-md:order-first flex flex-col justify-center align-center gap-4 max-md:text-justify p-4 max-md:py-8">
                 <h2 class="font-bold lg:text-xl font-montserrat max-md:text-center text-teal-100">Notre Engagement</h2>
                 <p class="font-cabin lg:text-lg text-justify">Nous nous engageons à offrir un service client exceptionnel.<br>

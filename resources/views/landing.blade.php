@@ -16,7 +16,7 @@
         </div>
         <div x-intersect:enter="imageLanding=true" class="px-4">
           <img loading="lazy" x-show="imageLanding" x-transition.duration.500.delay.500 
-          src="{{ asset('images/composants/landing.png') }}" 
+          src="{{ asset('images/composants/landing-400w.png') }}" 
           srcset="{{ asset('images/composants/landing-800w.png') }} 800w,
                   {{ asset('images/composants/landing-600w.png') }} 600w,
                   {{ asset('images/composants/landing-400w.png') }} 400w"
