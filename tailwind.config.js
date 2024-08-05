@@ -20,8 +20,8 @@ export default {
               },
             fontFamily: {
                 cabin:['Cabin'],
-                tables:['Roboto'],
                 montserrat:['Montserrat'],
+                tables:['Roboto'],
                 poppins:['Poppins'],
             },
             colors:{ 

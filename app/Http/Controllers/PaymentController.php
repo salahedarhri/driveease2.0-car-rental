@@ -8,13 +8,14 @@ use App\Models\Protection;
 use App\Models\Option;
 use App\Models\Car;
 use Carbon\Carbon;
+use Stripe\Stripe;
 
 class PaymentController extends Controller
 {
 
   public function checkout(Request $request){
 
-    \Stripe\Stripe::setApiKey(config('services.stripe.secret'));
+    Stripe::setApiKey(env('STRIPE_SECRET'));
 
     $dateDepart = $request->route('dateDepart');
     $dateRetour = $request->route('dateRetour');
@@ -30,7 +31,6 @@ class PaymentController extends Controller
     $lineItems = [];
 
     $voiture = Car::where('slug',$slugVoiture)->first();
-
     $prtc = Protection::find($prtcChoisi)->first();
 
     $lineItems[] = [
@@ -72,22 +72,33 @@ class PaymentController extends Controller
       }
     }
 
-    try{
-      $session = \Stripe\Checkout\Session::create([
-        'line_items' => $lineItems,
-        'mode' => 'payment',
-        'success_url' => route('success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
-        'cancel_url' => route('cancel'),
-      ]);
-    }catch(\Exception $e){
-      dd($e);
-    }
+    $session = \Stripe\Checkout\Session::create([
+      'line_items' => $lineItems,
+      'mode' => 'payment',
+      'success_url' => route('success', [], true) . "?session_id={CHECKOUT_SESSION_ID}",
+      'cancel_url' => route('cancel'),
+    ]);
+
 
     return redirect($session->url);
   }
 
-  public function success(){
-    return redirect()->route('accueil')->with('success','Paiement réussi !');
+  public function success(Request $request){
+    Stripe::setApiKey(env('STRIPE_SECRET'));
+
+    $sessionId = $request->get('session_id');
+
+    //Données de la session en fonction du session_id
+    $session = \Stripe\Checkout\Session::retrieve($sessionId); 
+
+    //Détails du client et produits
+    $client = $session->customer_details;
+    $produits = $session->allLineItems($sessionId,null,null);
+    $descriptions = collect($produits)->pluck('description')->unique()->toArray();
+
+    // dd($client, $produits, $descriptions );
+
+    return view('paiement.succes',compact('client'))->with('success','Paiement réussi !');
   }
 
   public function cancel(){
@@ -108,14 +119,11 @@ class PaymentController extends Controller
         $endpoint_secret
       );
     } catch (\UnexpectedValueException $e) {
-      // Invalid payload
       return response('', 400);
     } catch (\Stripe\Exception\SignatureVerificationException $e) {
-      // Invalid signature
       return response('', 400);
     }
 
-    //Handle event 
     switch ($event->type) {
       case 'payment_intent.succeeded':
         $paymentIntent = $event->data->object;

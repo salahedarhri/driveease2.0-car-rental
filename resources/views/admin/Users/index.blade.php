@@ -21,8 +21,8 @@
 
           @foreach($utilisateurs as $utilisateur)
             <tr class="border-b-slate-300 hover:bg-sky-100">
-              <td> {{ $utilisateur->name }}</td>
-              <td> {{ $utilisateur->email }}</td>
+              <td>{{ $utilisateur->name }}</td>
+              <td>{{ $utilisateur->email }}</td>
               <td class="text-center"><a href=""><i class="ri-settings-2-line text-cyan-900 text-2xl"></i></a></td>
             </tr>
           @endforeach

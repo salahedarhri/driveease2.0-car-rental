@@ -61,9 +61,8 @@
         <div class="dropdown dropdown-bottom md:hidden">
           <label tabindex="0" class="btn m-1 bg-slate-100 hover:bg-slate-300 border-slate-100 hover:border-slate-500"><i class="ri-menu-fill text-lg"></i></label>
           <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-cyan-900 text-white">
-            {{-- <li><a href="{{ route('admin.utilisateurs.index')}}"><i class="ri-account-circle-line mr-3 text-2xl"></i>Utilisateurs</a></li>
-            <li><a href="{{ route('admin.voitures.index')}}"><i class="ri-car-line mr-3 text-2xl"></i>Voitures</a></li>
-            <li><a><i class="ri-book-2-line mr-3 text-2xl"></i>Reservations</a></li> --}}
+            <li><a href="{{ route('adminNewsletters')}}"><i class="ri-account-circle-line mr-3 text-2xl"></i>Newsletter</a></li>
+            <li><a href="{{ route('adminCars')}}"><i class="ri-car-line mr-3 text-2xl"></i>Voitures</a></li>
           </ul>
         </div>
 
@@ -75,11 +74,13 @@
       
       <ul class="ml-auto">
         <li class="flex items-center">
-          <i class="ri-search-line text-xl mr-2 text-slate-700"></i>
+
           {{-- Recherche --}}
+          {{-- <i class="ri-search-line text-xl mr-2 text-slate-700"></i>
           <form action="" method="post">
             <input type="text" placeholder="Rechercher" class="rounded appearence-none border-slate-300 focus:border-slate-300 mr-2 h-10 max-md:w-32">
-          </form>
+          </form> --}}
+
           {{-- Profil --}}
           <div class="dropdown dropdown-end p-0 m-0">
             <label tabindex="0" class="btn bg-slate-100 hover:bg-slate-300 border-slate-100 hover:border-slate-500 px-2">

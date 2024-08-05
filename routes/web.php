@@ -56,12 +56,9 @@ Route::get('/dashboard', [Controller::class,'dashboard'])->middleware(['auth','v
 
 Route::group(['prefix'=>'admin','middleware'=>['admincheck']],  function(){
     Route::get('dashboard', AdminDashboard::class)->name('adminPanel');
-    //Voitures
     Route::get('voitures', CarsManagement::class)->name('adminCars');
     Route::get('voiture/{id}', ModifierVoiture::class )->name('manageCar');
-    //Newsletter
     Route::get('newsletters', NewslettersManagement::class)->name('adminNewsletters');
-    //Lieux
     Route::get('lieux', LieuxManagement::class)->name('adminLieux');
     Route::get('lieu/{id}', ModifierLieu::class )->name('manageLieu');
 });
