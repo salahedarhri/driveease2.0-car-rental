@@ -49,7 +49,7 @@
         <span class="md:text-lg max-md:text-base"><b class="text-mediumBlue">Tél :</b> 
             <a href="tel:+212653 96 75 79" class="text-darkBlue">+212 6 53 96 75 79</a></span>
         <span class="md:text-lg max-md:text-base"><b class="text-mediumBlue">Email :</b>
-            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arhri.salah.pro@gmail.com" target="_blank" class="decoration-teal-600 hover:underline transition text-darkBlue">arhri.salah.pro@gmail.com</a></span>
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=arhri.salah.pro@gmail.com" target="_blank" class="decoration-teal-600 hover:underline transition text-darkBlue">arhri.salah@gmail.com</a></span>
     </section>
 
 </section>
