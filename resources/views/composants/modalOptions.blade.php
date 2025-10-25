@@ -1,8 +1,8 @@
 <div class="fixed inset-0 bg-slate-800 bg-opacity-60 flex items-center justify-center max-md:px-4">
 
      <!-- Modal -->
-     @if( isset($optnsIds) && in_array($optn->id, $optnsIds))
-     <div  @click.away="open = false" class="flex flex-col max-w-xl bg-teal-100 shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
+    @if( isset($optnsIds) && in_array($optn->id, $optnsIds))
+      <div  @click.away="open = false" class="flex flex-col max-w-xl bg-teal-100 shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
     @else
       <div  @click.away="open = false" class="flex flex-col max-w-xl bg-white shadow-lg rounded-lg border-2 border-teal-600 border-opacity-50">
     @endif

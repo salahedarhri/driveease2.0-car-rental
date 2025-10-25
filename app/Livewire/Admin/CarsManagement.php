@@ -75,7 +75,6 @@ class CarsManagement extends Component
             $voiture->minAge = trim($this->minAge);
             $voiture->climatisation = ($this->climatisation == 'Oui')?true:false;
             $voiture->slug = Str::slug("$this->modele");
-
             $voiturePhoto = $voiture->slug.'-photo.jpg';
             $this->photo->storeAs('voitures', $voiturePhoto,'public');
 
