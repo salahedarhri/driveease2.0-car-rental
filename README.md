@@ -1,22 +1,27 @@
 <p align="center"><a href="https://driveease-location.com" target="_blank"><img src="https://github.com/salahedarhri/driveease-car-rental/blob/main/DE%20banner.jpg" width="800" alt="DriveEase Logo"></a></p>
 
 # 🚘 DriveEase
+DriveEase est un projet de site e-commerce dédié aux services de location de voitures, développé avec Laravel, Tailwind CSS, Alpine.js et Livewire.<br>Il s'agit d'une version initiale du projet, le dépôt officiel est privé pour le moment.
 
-DriveEase is an E-commerce website project dedicated to car rental services. using Laravel, Tailwind CSS, Alpine.js and Livewire.<br>This is an early version of the project, the actual repository is private for the moment.
-- Visit the Website : <a href="https://driveease-location.com" target="_blank">DriveEase</a>
+## 🚘 Fonctionnalités
+- Paiement en ligne via Stripe.
+- Design responsive avec un fort accent sur l'expérience utilisateur (UX).
+- Tableau de bord administrateur pour la gestion des véhicules, utilisateurs, réservations et newsletters.
+- Optimisé SEO, avec une interface soignée et dynamique.
 
-## 🚘 Features 
-- Online Payment functionality using Stripe.
-- Responsive Design with high focus on UX.
-- Admin Dashboard for Cars, Users, Reservations and Newsletter management.
-- SEO Optimized, maintaining Aesthetically pleasing & dynamic UI.
-
-## 🚘 Tech Stack & Technologies
+## 🚘 Stack Technique & Technologies
 - `Laravel`
 - `Alpine.js`
 - `Livewire`
 - `Tailwind CSS`
 - `Daisy UI`
+
+## 🚘 Interface Client
+<img src="https://github.com/salahedarhri/driveease-car-rental/blob/main/accueil.jpg" width="100%" alt="DriveEase Admin Dashboard">
+<img src="https://github.com/salahedarhri/driveease-car-rental/blob/main/voitures.jpg" width="100%" alt="DriveEase Admin Dashboard">
+<img src="https://github.com/salahedarhri/driveease-car-rental/blob/main/franchises.jpg" width="100%" alt="DriveEase Admin Dashboard">
+<img src="https://github.com/salahedarhri/driveease-car-rental/blob/main/recap.jpg" width="100%" alt="DriveEase Admin Dashboard">
+
 
 ## 🚘 Admin Dashboard 
 <img src="https://github.com/salahedarhri/driveease-car-rental/blob/main/voitures.JPG" width="100%" alt="DriveEase Admin Dashboard">
